@@ -75,6 +75,33 @@
             clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
             opacity: 0.2;
         }
+        /* Header */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background: rgba(26, 26, 26, 0.8);
+            padding: 10px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+        }
+        .logo {
+            height: 60px;
+            filter: drop-shadow(0 0 5px #00D4FF);
+        }
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin: 0 10px;
+            font-size: 16px;
+            transition: border-bottom 0.3s;
+        }
+        nav a:hover {
+            border-bottom: 2px solid #00D4FF;
+        }
     </style>
 </head>
 <body>
@@ -97,6 +124,24 @@
         <div class="hexagon" style="top: 75%; left: 35%;"></div>
         <div class="hexagon" style="top: 95%; left: 65%;"></div>
     </div>
+    <!-- Header -->
+    <header>
+        <img src="https://via.placeholder.com/60x60.png?text=S" alt="SymbanChain Logo" class="logo">
+        <nav>
+            <a href="#">Homepage</a>
+            <a href="#">About Us</a>
+            <a href="#">Tokenomics</a>
+            <a href="#">IDO</a>
+            <a href="#">Whitepaper</a>
+            <a href="#">Airdrop</a>
+            <a href="#">How to Buy $SYMBAN</a>
+            <a href="#">FAQ</a>
+            <a href="#">Terms</a>
+            <a href="#">Privacy Policy</a>
+            <a href="#">Refund Policy</a>
+            <a href="#">Support</a>
+        </nav>
+    </header>
     <h1>SymbanChain Website</h1>
     <script>
         // Simulate more stars
