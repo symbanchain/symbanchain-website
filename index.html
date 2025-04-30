@@ -333,6 +333,129 @@
                 margin: 5px;
             }
         }
+        /* New Tokens Section */
+        .new-tokens {
+            padding: 50px 20px;
+            text-align: center;
+        }
+        .new-tokens h2 {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 36px;
+            color: #00D4FF;
+            margin-bottom: 20px;
+        }
+        .tabs {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+        .tabs a {
+            color: white;
+            font-size: 18px;
+            margin: 0 15px;
+            text-decoration: none;
+            border-bottom: 2px solid transparent;
+            transition: border-bottom 0.3s;
+        }
+        .tabs a.active {
+            border-bottom: 2px solid #FFD700;
+        }
+        .carousel {
+            display: flex;
+            overflow-x: auto;
+            gap: 20px;
+            padding: 20px;
+            justify-content: center;
+        }
+        .token-card {
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid #00D4FF;
+            border-radius: 10px;
+            padding: 15px;
+            width: 200px;
+            text-align: left;
+            flex-shrink: 0;
+        }
+        .token-card img {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            margin-bottom: 10px;
+        }
+        .token-card p {
+            margin: 5px 0;
+            font-size: 14px;
+        }
+        .token-card p span {
+            color: #00FF00;
+        }
+        .token-card a {
+            display: block;
+            margin-top: 10px;
+            padding: 10px;
+            background: #00D4FF;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            text-align: center;
+        }
+        /* Responsive New Tokens */
+        @media (max-width: 768px) {
+            .new-tokens {
+                padding: 30px 10px;
+            }
+            .new-tokens h2 {
+                font-size: 28px;
+            }
+            .tabs {
+                flex-direction: column;
+                align-items: center;
+            }
+            .tabs a {
+                margin: 5px 0;
+                font-size: 16px;
+            }
+            .carousel {
+                justify-content: flex-start;
+            }
+            .token-card {
+                width: 150px;
+                padding: 10px;
+            }
+            .token-card img {
+                width: 40px;
+                height: 40px;
+            }
+            .token-card p {
+                font-size: 12px;
+            }
+            .token-card a {
+                padding: 8px;
+                font-size: 12px;
+            }
+        }
+        @media (max-width: 480px) {
+            .new-tokens h2 {
+                font-size: 24px;
+            }
+            .tabs a {
+                font-size: 14px;
+            }
+            .token-card {
+                width: 120px;
+            }
+            .token-card img {
+                width: 30px;
+                height: 30px;
+            }
+            .token-card p {
+                font-size: 10px;
+            }
+            .token-card a {
+                padding: 6px;
+                font-size: 10px;
+            }
+        }
     </style>
 </head>
 <body>
@@ -396,6 +519,38 @@
             <a href="#" class="close" onclick="closeLightbox()">Close</a>
         </div>
     </div>
+    <!-- New Tokens Section -->
+    <div class="new-tokens">
+        <h2>New Tokens 🌠</h2>
+        <div class="tabs">
+            <a href="#" class="active">Newly Launched</a>
+            <a href="#">Fixed-Price Sale</a>
+            <a href="#">Top 10</a>
+        </div>
+        <div class="carousel">
+            <div class="token-card">
+                <img src="https://via.placeholder.com/50x50.png?text=T" alt="$NEWTOKEN Logo">
+                <p>$NEWTOKEN – <span>92/100 ✅</span></p>
+                <p>Market Cap: $100K</p>
+                <p>24h Volume: $10K</p>
+                <a href="#">Trade Now</a>
+            </div>
+            <div class="token-card">
+                <img src="https://via.placeholder.com/50x50.png?text=T" alt="$NEWTOKEN2 Logo">
+                <p>$NEWTOKEN2 – <span>88/100 ✅</span></p>
+                <p>Market Cap: $80K</p>
+                <p>24h Volume: $8K</p>
+                <a href="#">Trade Now</a>
+            </div>
+            <div class="token-card">
+                <img src="https://via.placeholder.com/50x50.png?text=T" alt="$NEWTOKEN3 Logo">
+                <p>$NEWTOKEN3 – <span>95/100 ✅</span></p>
+                <p>Market Cap: $120K</p>
+                <p>24h Volume: $15K</p>
+                <a href="#">Trade Now</a>
+            </div>
+        </div>
+    </div>
     <script>
         // Simulate more stars
         const starsContainer = document.querySelector('.stars');
@@ -410,14 +565,11 @@
         // Cookie Consent
         function acceptCookies() {
             document.getElementById('cookieConsent').style.display = 'none';
-            // Simulate setting a cookie (in a real app, we'd use document.cookie)
             localStorage.setItem('cookieConsent', 'accepted');
-            // Show Lightbox after accepting cookies
             setTimeout(() => {
                 document.getElementById('lightbox').style.display = 'flex';
             }, 5000);
         }
-        // Check if cookie consent already given
         if (localStorage.getItem('cookieConsent') !== 'accepted') {
             document.getElementById('cookieConsent').style.display = 'flex';
         } else {
