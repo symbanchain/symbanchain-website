@@ -191,6 +191,148 @@
                 font-size: 14px;
             }
         }
+        /* Cookie Consent Popup */
+        .cookie-consent {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            z-index: 2000;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .cookie-consent-content {
+            background: #1A1A1A;
+            padding: 20px;
+            border: 2px solid #00D4FF;
+            border-radius: 10px;
+            text-align: center;
+            max-width: 500px;
+            width: 90%;
+        }
+        .cookie-consent-content p {
+            font-size: 18px;
+            margin: 0 0 20px;
+        }
+        .cookie-consent-content a {
+            color: #00D4FF;
+            text-decoration: underline;
+        }
+        .cookie-consent-content button {
+            padding: 10px 20px;
+            margin: 0 10px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .cookie-consent-content .accept {
+            background: #FFD700;
+            color: #00D4FF;
+        }
+        .cookie-consent-content .learn-more {
+            background: #00D4FF;
+            color: white;
+        }
+        /* Responsive Cookie Consent */
+        @media (max-width: 768px) {
+            .cookie-consent-content {
+                padding: 15px;
+            }
+            .cookie-consent-content p {
+                font-size: 16px;
+            }
+            .cookie-consent-content button {
+                padding: 8px 16px;
+                font-size: 14px;
+            }
+        }
+        @media (max-width: 480px) {
+            .cookie-consent-content p {
+                font-size: 14px;
+            }
+            .cookie-consent-content button {
+                padding: 6px 12px;
+                font-size: 12px;
+                margin: 5px;
+            }
+        }
+        /* Lightbox */
+        .lightbox {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            z-index: 2000;
+            display: none;
+            justify-content: center;
+            align-items: center;
+        }
+        .lightbox-content {
+            background: #1A1A1A;
+            padding: 20px;
+            border: 2px solid #00D4FF;
+            border-radius: 10px;
+            text-align: center;
+            max-width: 600px;
+            width: 90%;
+        }
+        .lightbox-content p {
+            font-size: 24px;
+            margin: 0 0 20px;
+        }
+        .lightbox-content p span {
+            color: #00D4FF;
+        }
+        .lightbox-content p .gold {
+            color: #FFD700;
+        }
+        .lightbox-content a {
+            display: inline-block;
+            padding: 10px 20px;
+            margin: 0 10px;
+            text-decoration: none;
+            border-radius: 5px;
+        }
+        .lightbox-content .buy-now {
+            background: #FFD700;
+            color: #00D4FF;
+        }
+        .lightbox-content .learn-more {
+            background: #00D4FF;
+            color: white;
+        }
+        .lightbox-content .close {
+            background: white;
+            color: #00D4FF;
+        }
+        /* Responsive Lightbox */
+        @media (max-width: 768px) {
+            .lightbox-content {
+                padding: 15px;
+            }
+            .lightbox-content p {
+                font-size: 18px;
+            }
+            .lightbox-content a {
+                padding: 8px 16px;
+                font-size: 14px;
+            }
+        }
+        @media (max-width: 480px) {
+            .lightbox-content p {
+                font-size: 16px;
+            }
+            .lightbox-content a {
+                padding: 6px 12px;
+                font-size: 12px;
+                margin: 5px;
+            }
+        }
     </style>
 </head>
 <body>
@@ -237,6 +379,23 @@
         <p>Create Tokens, Play to Invest, Join Our $100M IDO on May 16!</p>
         <a href="#" class="cta">Buy $SYMBAN Now</a>
     </div>
+    <!-- Cookie Consent Popup -->
+    <div class="cookie-consent" id="cookieConsent">
+        <div class="cookie-consent-content">
+            <p>We use cookies to enhance your experience. By continuing, you agree to our <a href="#">Privacy Policy</a>.</p>
+            <button class="accept" onclick="acceptCookies()">Accept</button>
+            <button class="learn-more" onclick="window.location.href='#'">Learn More</button>
+        </div>
+    </div>
+    <!-- Lightbox -->
+    <div class="lightbox" id="lightbox">
+        <div class="lightbox-content">
+            <p>🌌 <span>$SYMBAN</span> IDO: May 16, 2025 – <span>$0.50</span> One-Time Offer! Ends When <span class="gold">$100M</span> Raised! 🚀</p>
+            <a href="#" class="buy-now">Buy Now</a>
+            <a href="#" class="learn-more">Learn More</a>
+            <a href="#" class="close" onclick="closeLightbox()">Close</a>
+        </div>
+    </div>
     <script>
         // Simulate more stars
         const starsContainer = document.querySelector('.stars');
@@ -247,6 +406,28 @@
             star.style.left = `${Math.random() * 100}%`;
             star.style.animationDelay = `${Math.random() * 2}s`;
             starsContainer.appendChild(star);
+        }
+        // Cookie Consent
+        function acceptCookies() {
+            document.getElementById('cookieConsent').style.display = 'none';
+            // Simulate setting a cookie (in a real app, we'd use document.cookie)
+            localStorage.setItem('cookieConsent', 'accepted');
+            // Show Lightbox after accepting cookies
+            setTimeout(() => {
+                document.getElementById('lightbox').style.display = 'flex';
+            }, 5000);
+        }
+        // Check if cookie consent already given
+        if (localStorage.getItem('cookieConsent') !== 'accepted') {
+            document.getElementById('cookieConsent').style.display = 'flex';
+        } else {
+            setTimeout(() => {
+                document.getElementById('lightbox').style.display = 'flex';
+            }, 5000);
+        }
+        // Lightbox
+        function closeLightbox() {
+            document.getElementById('lightbox').style.display = 'none';
         }
     </script>
 </body>
