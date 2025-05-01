@@ -7,25 +7,13 @@
     <style>
         body {
             margin: 0;
-            background: #1A1A1A;
+            background: radial-gradient(circle at center, #0A0B1A, #1A1C33);
             overflow: hidden;
             height: 100vh;
             display: flex;
             justify-content: center;
             align-items: center;
             position: relative;
-        }
-        /* Subtle Cosmic Glow */
-        .cosmic-glow {
-            position: absolute;
-            width: 500px;
-            height: 500px;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            background: radial-gradient(circle, #1A1A1A, #4B0082 50%, #1A1A1A 80%);
-            opacity: 0.3;
-            z-index: 1;
         }
         /* Marketing Logo */
         .logo-container {
@@ -43,49 +31,81 @@
             animation: pulse 0.5s infinite alternate;
         }
         @keyframes pulse {
-            0% { filter: drop-shadow(0 0 5px #00D4FF) drop-shadow(0 0 3px #FFD700); }
-            100% { filter: drop-shadow(0 0 20px #00D4FF) drop-shadow(0 0 10px #FFD700); }
+            0% { filter: drop-shadow(0 0 5px #00D4FF); }
+            100% { filter: drop-shadow(0 0 20px #00D4FF); }
         }
-        /* Hexagon Ring */
-        .hexagon-ring {
+        /* Blockchain Network */
+        .blockchain-network {
             position: absolute;
             width: 400px;
             height: 400px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            animation: spin 3.5s linear infinite;
             z-index: 2;
         }
-        .hexagon {
+        .blockchain-node {
             position: absolute;
-            width: 50px;
-            height: 50px;
+            width: 20px;
+            height: 20px;
             border: 2px solid #00D4FF;
             clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
-            opacity: 0.7;
-            filter: drop-shadow(0 0 5px #00D4FF) drop-shadow(0 0 3px #FFD700);
+            opacity: 0;
+            animation: nodePulse 1s infinite;
         }
-        .hexagon-particle {
+        .blockchain-line {
+            position: absolute;
+            stroke: #00D4FF;
+            stroke-width: 1;
+            opacity: 0.3;
+        }
+        .data-stream {
             position: absolute;
             width: 5px;
             height: 5px;
+            background: white;
+            border-radius: 50%;
+            animation: streamMove 0.5s forwards;
+        }
+        @keyframes nodePulse {
+            0% { opacity: 0.3; transform: scale(0.8); }
+            50% { opacity: 1; transform: scale(1); }
+            100% { opacity: 0.3; transform: scale(0.8); }
+        }
+        @keyframes streamMove {
+            0% { opacity: 1; transform: translate(0, 0); }
+            100% { opacity: 0; transform: translate(var(--tx), var(--ty)); }
+        }
+        /* AI Neural Pulse */
+        .neural-pulse {
+            position: absolute;
+            width: 500px;
+            height: 500px;
+            z-index: 1;
+            opacity: 0;
+            animation: neuralFade 2s infinite 1s;
+        }
+        .neural-node {
+            position: absolute;
+            width: 10px;
+            height: 10px;
             background: #00D4FF;
             border-radius: 50%;
-            animation: particleFade 1s forwards;
+            opacity: 0;
+            animation: neuralNodeFlash 1s infinite;
         }
-        .hexagon-particle.gold {
-            background: #FFD700;
-            width: 3px;
-            height: 3px;
+        .neural-line {
+            position: absolute;
+            stroke: #00D4FF;
+            stroke-width: 1;
+            opacity: 0.2;
         }
-        @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
+        @keyframes neuralFade {
+            0% { opacity: 0; }
+            50% { opacity: 0.5; }
+            100% { opacity: 0; }
         }
-        @keyframes particleFade {
-            0% { opacity: 1; transform: scale(1); }
-            100% { opacity: 0; transform: scale(0); }
+        @keyframes neuralNodeFlash {
+            0% { opacity: 0; transform: scale(0.5); }
+            50% { opacity: 1; transform: scale(1); }
+            100% { opacity: 0; transform: scale(0.5); }
         }
         /* Lightning Bolts */
         .lightning-container {
@@ -112,7 +132,7 @@
             position: absolute;
             width: 5px;
             height: 5px;
-            background: #FFD700;
+            background: #00D4FF;
             border-radius: 50%;
             animation: sparkFade 0.3s forwards;
         }
@@ -139,30 +159,27 @@
         .loading-bar {
             width: 0;
             height: 100%;
-            background: linear-gradient(to right, #00D4FF, #FFD700);
+            background: linear-gradient(to right, #00D4FF, #00D4FF);
             position: relative;
             animation: load 1s forwards 2s;
         }
-        .loading-bar::before {
-            content: '';
+        .data-packet {
             position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, #FFFFFF80, transparent);
-            background-size: 50px;
-            animation: energyWave 1s linear infinite;
+            width: 5px;
+            height: 5px;
+            background: white;
+            border-radius: 50%;
+            animation: packetMove 0.5s forwards;
         }
         @keyframes load {
             0% { width: 0; }
             100% { width: 100%; }
         }
-        @keyframes energyWave {
-            0% { background-position: 0 0; }
-            100% { background-position: 50px 0; }
+        @keyframes packetMove {
+            0% { opacity: 1; transform: translateX(0); }
+            100% { opacity: 0; transform: translateX(300px); }
         }
-        /* Explosion and Crumble */
+        /* Crumble Effect */
         .crumble-container {
             position: absolute;
             width: 300px;
@@ -188,6 +205,7 @@
             0% { opacity: 1; transform: translate(0, 0) rotate(0deg); }
             100% { opacity: 0; transform: translate(var(--tx), var(--ty)) rotate(var(--rotate)); }
         }
+        /* Explosion */
         .explosion-container {
             position: absolute;
             width: 100%;
@@ -203,9 +221,6 @@
             background: #00D4FF;
             border-radius: 50%;
             animation: scatter 0.5s forwards;
-        }
-        .explosion-particle.gold {
-            background: #FFD700;
         }
         @keyframes explode {
             0% { opacity: 0; }
@@ -238,22 +253,35 @@
             <feBlend in="SourceGraphic" in2="glow" mode="screen" />
         </filter>
     </svg>
-    <!-- Cosmic Glow -->
-    <div class="cosmic-glow"></div>
     <!-- Logo -->
     <div class="logo-container">
         <img src="https://i.imgur.com/eonZEmm.png" alt="SymbanChain Marketing Logo" class="logo">
     </div>
-    <!-- Hexagon Ring -->
-    <div class="hexagon-ring">
-        <div class="hexagon" style="transform: rotate(0deg) translate(200px, 0);"></div>
-        <div class="hexagon" style="transform: rotate(45deg) translate(200px, 0);"></div>
-        <div class="hexagon" style="transform: rotate(90deg) translate(200px, 0);"></div>
-        <div class="hexagon" style="transform: rotate(135deg) translate(200px, 0);"></div>
-        <div class="hexagon" style="transform: rotate(180deg) translate(200px, 0);"></div>
-        <div class="hexagon" style="transform: rotate(225deg) translate(200px, 0);"></div>
-        <div class="hexagon" style="transform: rotate(270deg) translate(200px, 0);"></div>
-        <div class="hexagon" style="transform: rotate(315deg) translate(200px, 0);"></div>
+    <!-- Blockchain Network -->
+    <div class="blockchain-network">
+        <svg style="position: absolute; width: 100%; height: 100%;">
+            <line class="blockchain-line" x1="200" y1="50" x2="350" y2="200" />
+            <line class="blockchain-line" x1="350" y1="200" x2="200" y2="350" />
+            <line class="blockchain-line" x1="200" y1="350" x2="50" y2="200" />
+            <line class="blockchain-line" x1="50" y1="200" x2="200" y2="50" />
+        </svg>
+        <div class="blockchain-node" style="top: 50px; left: 200px; animation-delay: 0s;"></div>
+        <div class="blockchain-node" style="top: 200px; right: 50px; animation-delay: 0.2s;"></div>
+        <div class="blockchain-node" style="bottom: 50px; left: 200px; animation-delay: 0.4s;"></div>
+        <div class="blockchain-node" style="top: 200px; left: 50px; animation-delay: 0.6s;"></div>
+    </div>
+    <!-- AI Neural Pulse -->
+    <div class="neural-pulse">
+        <svg style="position: absolute; width: 100%; height: 100%;">
+            <line class="neural-line" x1="250" y1="100" x2="400" y2="250" />
+            <line class="neural-line" x1="400" y1="250" x2="250" y2="400" />
+            <line class="neural-line" x1="250" y1="400" x2="100" y2="250" />
+            <line class="neural-line" x1="100" y1="250" x2="250" y2="100" />
+        </svg>
+        <div class="neural-node" style="top: 100px; left: 250px; animation-delay: 1s;"></div>
+        <div class="neural-node" style="top: 250px; right: 100px; animation-delay: 1.2s;"></div>
+        <div class="neural-node" style="bottom: 100px; left: 250px; animation-delay: 1.4s;"></div>
+        <div class="neural-node" style="top: 250px; left: 100px; animation-delay: 1.6s;"></div>
     </div>
     <!-- Lightning Bolts -->
     <div class="lightning-container">
@@ -289,22 +317,45 @@
         <p>Redirecting... If not redirected, <a href="/index.html" style="color: #00D4FF;">click here</a>.</p>
     </div>
     <script>
-        // Hexagon Particles
+        // Blockchain Network Data Streams
         try {
-            console.log('Generating hexagon particles...');
-            const hexagonRing = document.querySelector('.hexagon-ring');
-            for (let i = 0; i < 100; i++) {
-                const particle = document.createElement('div');
-                particle.className = `hexagon-particle ${i % 2 === 0 ? 'gold' : ''}`;
-                const angle = Math.random() * 360;
-                const distance = Math.random() * 100 + 50;
-                particle.style.transform = `rotate(${angle}deg) translate(${distance}px, 0)`;
-                particle.style.animationDelay = `${Math.random() * 2}s`;
-                hexagonRing.appendChild(particle);
-            }
-            console.log('Hexagon particles generated successfully.');
+            console.log('Generating blockchain data streams...');
+            const blockchainNetwork = document.querySelector('.blockchain-network');
+            const nodes = document.querySelectorAll('.blockchain-node');
+            nodes.forEach(node => {
+                for (let i = 0; i < 3; i++) {
+                    const stream = document.createElement('div');
+                    stream.className = 'data-stream';
+                    const tx = (Math.random() - 0.5) * 100;
+                    const ty = (Math.random() - 0.5) * 100;
+                    stream.style.setProperty('--tx', `${tx}px`);
+                    stream.style.setProperty('--ty', `${ty}px`);
+                    stream.style.left = `calc(${node.style.left} + ${node.style.width || '20px'} / 2)`;
+                    stream.style.top = `calc(${node.style.top || node.style.bottom} + ${node.style.height || '20px'} / 2)`;
+                    stream.style.animationDelay = `${parseFloat(node.style.animationDelay) + Math.random() * 0.5}s`;
+                    blockchainNetwork.appendChild(stream);
+                }
+            });
+            console.log('Blockchain data streams generated successfully.');
         } catch (error) {
-            console.error('Error generating hexagon particles:', error);
+            console.error('Error generating blockchain data streams:', error);
+        }
+
+        // Neural Pulse Nodes
+        try {
+            console.log('Generating neural pulse nodes...');
+            const neuralPulse = document.querySelector('.neural-pulse');
+            for (let i = 0; i < 20; i++) {
+                const node = document.createElement('div');
+                node.className = 'neural-node';
+                node.style.top = `${Math.random() * 100}%`;
+                node.style.left = `${Math.random() * 100}%`;
+                node.style.animationDelay = `${1 + Math.random() * 0.5}s`;
+                neuralPulse.appendChild(node);
+            }
+            console.log('Neural pulse nodes generated successfully.');
+        } catch (error) {
+            console.error('Error generating neural pulse nodes:', error);
         }
 
         // Lightning Sparks
@@ -327,6 +378,24 @@
             console.log('Lightning sparks generated successfully.');
         } catch (error) {
             console.error('Error generating lightning sparks:', error);
+        }
+
+        // Loading Bar Data Packets
+        try {
+            console.log('Generating loading bar data packets...');
+            const loadingBar = document.querySelector('.loading-bar');
+            for (let i = 0; i < 20; i++) {
+                const packet = document.createElement('div');
+                packet.className = 'data-packet';
+                packet.style.left = '0';
+                packet.style.top = '50%';
+                packet.style.transform = 'translateY(-50%)';
+                packet.style.animationDelay = `${Math.random() * 1}s`;
+                loadingBar.appendChild(packet);
+            }
+            console.log('Loading bar data packets generated successfully.');
+        } catch (error) {
+            console.error('Error generating loading bar data packets:', error);
         }
 
         // Crumble Effect
@@ -367,7 +436,7 @@
             const explosionContainer = document.querySelector('.explosion-container');
             for (let i = 0; i < 100; i++) {
                 const particle = document.createElement('div');
-                particle.className = `explosion-particle ${i % 2 === 0 ? 'gold' : ''}`;
+                particle.className = 'explosion-particle';
                 const tx = (Math.random() - 0.5) * 1000;
                 const ty = (Math.random() - 0.5) * 1000;
                 particle.style.setProperty('--tx', `${tx}px`);
