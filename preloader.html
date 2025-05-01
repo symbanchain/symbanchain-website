@@ -185,7 +185,7 @@
 <body>
     <!-- Logo -->
     <div class="logo-container">
-        <img src="https://imgur.com/a/marketing-logo-png-3rmjtnl" alt="SymbanChain Marketing Logo" class="logo">
+        <img src="https://i.imgur.com/eonZEmm.png" alt="SymbanChain Marketing Logo" class="logo">
     </div>
     <!-- Hexagon Ring -->
     <div class="hexagon-ring">
@@ -203,7 +203,7 @@
         <div class="lightning" style="top: 20%; left: 20%; animation-delay: 1s;"></div>
         <div class="lightning" style="top: 20%; right: 20%; animation-delay: 1.2s;"></div>
         <div class="lightning" style="bottom: 20%; left: 20%; animation-delay: 1.4s;"></div>
-        <div class="lightning" style="bottom: 20%; right: 20%; animation-delay: 1.6s;"></div>
+        <div class="lightning" style="top: 20%; right: 20%; animation-delay: 1.6s;"></div>
     </div>
     <!-- Loading Bar -->
     <div class="loading-bar-container">
@@ -220,6 +220,7 @@
     <script>
         // Hexagon Particles
         try {
+            console.log('Generating hexagon particles...');
             const hexagonRing = document.querySelector('.hexagon-ring');
             for (let i = 0; i < 20; i++) {
                 const particle = document.createElement('div');
@@ -230,12 +231,14 @@
                 particle.style.animationDelay = `${Math.random() * 2}s`;
                 hexagonRing.appendChild(particle);
             }
+            console.log('Hexagon particles generated successfully.');
         } catch (error) {
             console.error('Error generating hexagon particles:', error);
         }
 
         // Explosion Particles
         try {
+            console.log('Generating explosion particles...');
             const explosionContainer = document.querySelector('.explosion-container');
             for (let i = 0; i < 50; i++) {
                 const particle = document.createElement('div');
@@ -248,6 +251,7 @@
                 particle.style.top = '50%';
                 explosionContainer.appendChild(particle);
             }
+            console.log('Explosion particles generated successfully.');
         } catch (error) {
             console.error('Error generating explosion particles:', error);
         }
@@ -267,6 +271,7 @@
         // Show fallback link after 5 seconds if redirect hasn't occurred
         setTimeout(() => {
             if (window.location.pathname !== '/index.html') {
+                console.log('Redirect did not occur, showing fallback link.');
                 document.getElementById('fallbackLink').style.display = 'block';
             }
         }, 5000);
