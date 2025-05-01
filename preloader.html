@@ -169,12 +169,23 @@
             50% { opacity: 1; transform: rotate(10deg); }
             100% { opacity: 0; transform: rotate(20deg); }
         }
+        /* Fallback Link */
+        .fallback-link {
+            position: absolute;
+            bottom: 10%;
+            color: #00D4FF;
+            text-align: center;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 14px;
+            display: none;
+            z-index: 5;
+        }
     </style>
 </head>
 <body>
     <!-- Logo -->
     <div class="logo-container">
-        <img src="https://raw.githubusercontent.com/symbanchain/symbanchain-website/main/marketing-logo.png" alt="SymbanChain Marketing Logo" class="logo">
+        <img src="https://i.imgur.com/3rmjtnl.png" alt="SymbanChain Marketing Logo" class="logo">
     </div>
     <!-- Hexagon Ring -->
     <div class="hexagon-ring">
@@ -201,6 +212,10 @@
     <!-- Explosion and Galaxy Reveal -->
     <div class="explosion-container">
         <div class="galaxy"></div>
+    </div>
+    <!-- Fallback Link -->
+    <div class="fallback-link" id="fallbackLink">
+        <p>Redirecting... If not redirected, <a href="/index.html" style="color: #00D4FF;">click here</a>.</p>
     </div>
     <script>
         // Hexagon Particles
@@ -240,13 +255,21 @@
         // Redirect to Homepage
         setTimeout(() => {
             try {
-                window.location.href = 'index.html';
+                const redirectUrl = window.location.origin + '/index.html';
+                console.log('Attempting to redirect to:', redirectUrl);
+                window.location.replace(redirectUrl);
             } catch (error) {
                 console.error('Error redirecting to index.html:', error);
-                // Fallback: Display an error message
-                document.body.innerHTML = '<p style="color: white; text-align: center;">Error loading page. Please visit <a href="index.html" style="color: #00D4FF;">index.html</a> directly.</p>';
+                document.getElementById('fallbackLink').style.display = 'block';
             }
-        }, 3500);
+        }, 4500);
+
+        // Show fallback link after 5 seconds if redirect hasn't occurred
+        setTimeout(() => {
+            if (window.location.pathname !== '/index.html') {
+                document.getElementById('fallbackLink').style.display = 'block';
+            }
+        }, 5000);
     </script>
 </body>
 </html>
