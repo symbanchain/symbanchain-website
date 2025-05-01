@@ -7,7 +7,7 @@
     <style>
         body {
             margin: 0;
-            background: linear-gradient(to bottom, #1A1A1A, #002244);
+            background: #1A1A1A;
             overflow: hidden;
             height: 100vh;
             display: flex;
@@ -15,68 +15,27 @@
             align-items: center;
             position: relative;
         }
-        /* Background Starfield */
-        .starfield {
+        /* Subtle Cosmic Glow */
+        .cosmic-glow {
             position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            pointer-events: none;
-            z-index: 0;
-        }
-        .starfield-star {
-            position: absolute;
-            background: white;
-            border-radius: 50%;
-            animation: twinkle 2s infinite;
-        }
-        .starfield-star.small { width: 1px; height: 1px; }
-        .starfield-star.medium { width: 2px; height: 2px; }
-        .starfield-star.large { width: 3px; height: 3px; }
-        @keyframes twinkle {
-            0%, 100% { opacity: 0.3; }
-            50% { opacity: 1; }
-        }
-        /* Nebula Glow */
-        .nebula {
-            position: absolute;
-            border-radius: 50%;
-            opacity: 0.3;
-            filter: blur(50px);
-            z-index: 1;
-        }
-        .nebula-center {
-            width: 400px;
-            height: 400px;
+            width: 500px;
+            height: 500px;
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
-            background: radial-gradient(circle, #4B0082, #003366);
-        }
-        /* Rotating Galaxy */
-        .galaxy-bg {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            background: radial-gradient(circle, #4B0082, #003366);
-            opacity: 0.2;
-            animation: rotateGalaxy 20s linear infinite;
-            z-index: 2;
-        }
-        @keyframes rotateGalaxy {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
+            background: radial-gradient(circle, #1A1A1A, #4B0082 50%, #1A1A1A 80%);
+            opacity: 0.3;
+            z-index: 1;
         }
         /* Marketing Logo */
         .logo-container {
             position: relative;
-            width: 250px;
-            height: 250px;
+            width: 300px;
+            height: 300px;
             display: flex;
             justify-content: center;
             align-items: center;
-            z-index: 4;
+            z-index: 3;
         }
         .logo {
             width: 100%;
@@ -96,16 +55,16 @@
             justify-content: center;
             align-items: center;
             animation: spin 3.5s linear infinite;
-            z-index: 3;
+            z-index: 2;
         }
         .hexagon {
             position: absolute;
-            width: 40px;
-            height: 40px;
+            width: 50px;
+            height: 50px;
             border: 2px solid #00D4FF;
             clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
             opacity: 0.7;
-            filter: drop-shadow(0 0 5px #00D4FF);
+            filter: drop-shadow(0 0 5px #00D4FF) drop-shadow(0 0 3px #FFD700);
         }
         .hexagon-particle {
             position: absolute;
@@ -114,6 +73,11 @@
             background: #00D4FF;
             border-radius: 50%;
             animation: particleFade 1s forwards;
+        }
+        .hexagon-particle.gold {
+            background: #FFD700;
+            width: 3px;
+            height: 3px;
         }
         @keyframes spin {
             0% { transform: rotate(0deg); }
@@ -128,17 +92,21 @@
             position: absolute;
             width: 100%;
             height: 100%;
-            z-index: 5;
+            z-index: 4;
         }
         .lightning {
             position: absolute;
             width: 150px;
             height: 150px;
-            background: linear-gradient(to bottom, #00D4FF, #FFD700);
-            clip-path: polygon(50% 0%, 60% 40%, 90% 50%, 60% 60%, 50% 100%, 40% 60%, 10% 50%, 40% 40%);
             opacity: 0;
             animation: flash 0.5s forwards;
             filter: drop-shadow(0 0 5px #00D4FF);
+        }
+        .lightning path {
+            stroke: #00D4FF;
+            stroke-width: 3;
+            fill: none;
+            filter: url(#glow);
         }
         .spark {
             position: absolute;
@@ -166,42 +134,67 @@
             border: 2px solid #00D4FF;
             border-radius: 5px;
             overflow: hidden;
-            z-index: 6;
+            z-index: 5;
         }
         .loading-bar {
             width: 0;
             height: 100%;
-            background: linear-gradient(to right, #1A1A1A, #FFD700);
+            background: linear-gradient(to right, #00D4FF, #FFD700);
             position: relative;
             animation: load 1s forwards 2s;
         }
-        .star-particle {
+        .loading-bar::before {
+            content: '';
             position: absolute;
-            width: 3px;
-            height: 3px;
-            background: #FFFFFF;
-            border-radius: 50%;
-            animation: starMove 1s forwards;
-        }
-        .star-particle.gold {
-            background: #FFD700;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, #FFFFFF80, transparent);
+            background-size: 50px;
+            animation: energyWave 1s linear infinite;
         }
         @keyframes load {
             0% { width: 0; }
             100% { width: 100%; }
         }
-        @keyframes starMove {
-            0% { opacity: 1; transform: translateX(0); }
-            100% { opacity: 0; transform: translateX(300px); }
+        @keyframes energyWave {
+            0% { background-position: 0 0; }
+            100% { background-position: 50px 0; }
         }
-        /* Explosion and Galaxy Reveal */
+        /* Explosion and Crumble */
+        .crumble-container {
+            position: absolute;
+            width: 300px;
+            height: 300px;
+            z-index: 6;
+            display: none;
+            animation: crumble 0.5s forwards 3s;
+        }
+        .crumble-fragment {
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background: url('https://i.imgur.com/eonZEmm.png') no-repeat;
+            background-size: 300px 300px;
+            animation: crumbleFragment 0.5s forwards;
+            filter: drop-shadow(0 0 5px #00D4FF);
+        }
+        @keyframes crumble {
+            0% { opacity: 1; }
+            100% { opacity: 0; }
+        }
+        @keyframes crumbleFragment {
+            0% { opacity: 1; transform: translate(0, 0) rotate(0deg); }
+            100% { opacity: 0; transform: translate(var(--tx), var(--ty)) rotate(var(--rotate)); }
+        }
         .explosion-container {
             position: absolute;
             width: 100%;
             height: 100%;
             z-index: 7;
             display: none;
-            animation: explode 0.5s forwards 3s;
+            animation: explode 0.5s forwards 3.5s;
         }
         .explosion-particle {
             position: absolute;
@@ -223,19 +216,6 @@
             0% { opacity: 1; transform: translate(0, 0); }
             100% { opacity: 0; transform: translate(var(--tx), var(--ty)); }
         }
-        .galaxy {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            background: radial-gradient(circle, #4B0082, #003366);
-            opacity: 0;
-            animation: revealGalaxy 0.5s forwards 3s;
-        }
-        @keyframes revealGalaxy {
-            0% { opacity: 0; transform: rotate(0deg); }
-            50% { opacity: 1; transform: rotate(10deg); }
-            100% { opacity: 0; transform: rotate(20deg); }
-        }
         /* Fallback Link */
         .fallback-link {
             position: absolute;
@@ -250,18 +230,16 @@
     </style>
 </head>
 <body>
-    <!-- Starfield Background -->
-    <div class="starfield">
-        <div class="starfield-star medium" style="top: 10%; left: 20%; animation-delay: 0s;"></div>
-        <div class="starfield-star small" style="top: 30%; left: 50%; animation-delay: 0.5s;"></div>
-        <div class="starfield-star large" style="top: 50%; left: 80%; animation-delay: 1s;"></div>
-        <div class="starfield-star medium" style="top: 70%; left: 30%; animation-delay: 1.5s;"></div>
-        <div class="starfield-star small" style="top: 90%; left: 60%; animation-delay: 2s;"></div>
-    </div>
-    <!-- Nebula Glow -->
-    <div class="nebula nebula-center"></div>
-    <!-- Rotating Galaxy Background -->
-    <div class="galaxy-bg"></div>
+    <!-- SVG Filters for Glow -->
+    <svg style="position: absolute; width: 0; height: 0;">
+        <filter id="glow">
+            <feGaussianBlur in="SourceGraphic" stdDeviation="2" result="blur" />
+            <feColorMatrix in="blur" mode="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 18 -7" result="glow" />
+            <feBlend in="SourceGraphic" in2="glow" mode="screen" />
+        </filter>
+    </svg>
+    <!-- Cosmic Glow -->
+    <div class="cosmic-glow"></div>
     <!-- Logo -->
     <div class="logo-container">
         <img src="https://i.imgur.com/eonZEmm.png" alt="SymbanChain Marketing Logo" class="logo">
@@ -279,51 +257,45 @@
     </div>
     <!-- Lightning Bolts -->
     <div class="lightning-container">
-        <div class="lightning" style="top: 10%; left: 10%; animation-delay: 0.8s;"></div>
-        <div class="lightning" style="top: 10%; right: 10%; animation-delay: 1.0s;"></div>
-        <div class="lightning" style="bottom: 10%; left: 10%; animation-delay: 1.2s;"></div>
-        <div class="lightning" style="bottom: 10%; right: 10%; animation-delay: 1.4s;"></div>
-        <div class="lightning" style="top: 20%; left: 30%; animation-delay: 1.6s;"></div>
-        <div class="lightning" style="bottom: 20%; right: 30%; animation-delay: 1.8s;"></div>
+        <svg class="lightning" style="top: 10%; left: 10%; animation-delay: 0.8s;">
+            <path d="M75,0 L85,40 L115,50 L85,60 L75,100 L65,60 L35,50 L65,40 Z" />
+        </svg>
+        <svg class="lightning" style="top: 10%; right: 10%; animation-delay: 1.0s;">
+            <path d="M75,0 L85,40 L115,50 L85,60 L75,100 L65,60 L35,50 L65,40 Z" />
+        </svg>
+        <svg class="lightning" style="bottom: 10%; left: 10%; animation-delay: 1.2s;">
+            <path d="M75,0 L85,40 L115,50 L85,60 L75,100 L65,60 L35,50 L65,40 Z" />
+        </svg>
+        <svg class="lightning" style="bottom: 10%; right: 10%; animation-delay: 1.4s;">
+            <path d="M75,0 L85,40 L115,50 L85,60 L75,100 L65,60 L35,50 L65,40 Z" />
+        </svg>
+        <svg class="lightning" style="top: 20%; left: 30%; animation-delay: 1.6s;">
+            <path d="M75,0 L85,40 L115,50 L85,60 L75,100 L65,60 L35,50 L65,40 Z" />
+        </svg>
+        <svg class="lightning" style="bottom: 20%; right: 30%; animation-delay: 1.8s;">
+            <path d="M75,0 L85,40 L115,50 L85,60 L75,100 L65,60 L35,50 L65,40 Z" />
+        </svg>
     </div>
     <!-- Loading Bar -->
     <div class="loading-bar-container">
         <div class="loading-bar"></div>
     </div>
-    <!-- Explosion and Galaxy Reveal -->
-    <div class="explosion-container">
-        <div class="galaxy"></div>
-    </div>
+    <!-- Crumble Effect -->
+    <div class="crumble-container"></div>
+    <!-- Explosion -->
+    <div class="explosion-container"></div>
     <!-- Fallback Link -->
     <div class="fallback-link" id="fallbackLink">
         <p>Redirecting... If not redirected, <a href="/index.html" style="color: #00D4FF;">click here</a>.</p>
     </div>
     <script>
-        // Starfield Particles
-        try {
-            console.log('Generating starfield particles...');
-            const starfield = document.querySelector('.starfield');
-            for (let i = 0; i < 50; i++) {
-                const star = document.createElement('div');
-                const sizeClass = i % 3 === 0 ? 'large' : i % 2 === 0 ? 'medium' : 'small';
-                star.className = `starfield-star ${sizeClass}`;
-                star.style.top = `${Math.random() * 100}%`;
-                star.style.left = `${Math.random() * 100}%`;
-                star.style.animationDelay = `${Math.random() * 2}s`;
-                starfield.appendChild(star);
-            }
-            console.log('Starfield particles generated successfully.');
-        } catch (error) {
-            console.error('Error generating starfield particles:', error);
-        }
-
         // Hexagon Particles
         try {
             console.log('Generating hexagon particles...');
             const hexagonRing = document.querySelector('.hexagon-ring');
-            for (let i = 0; i < 50; i++) {
+            for (let i = 0; i < 100; i++) {
                 const particle = document.createElement('div');
-                particle.className = 'hexagon-particle';
+                particle.className = `hexagon-particle ${i % 2 === 0 ? 'gold' : ''}`;
                 const angle = Math.random() * 360;
                 const distance = Math.random() * 100 + 50;
                 particle.style.transform = `rotate(${angle}deg) translate(${distance}px, 0)`;
@@ -357,29 +329,43 @@
             console.error('Error generating lightning sparks:', error);
         }
 
-        // Loading Bar Star Particles
+        // Crumble Effect
         try {
-            console.log('Generating loading bar star particles...');
-            const loadingBar = document.querySelector('.loading-bar');
-            for (let i = 0; i < 20; i++) {
-                const star = document.createElement('div');
-                star.className = `star-particle ${i % 2 === 0 ? 'gold' : ''}`;
-                star.style.left = '0';
-                star.style.top = '50%';
-                star.style.transform = 'translateY(-50%)';
-                star.style.animationDelay = `${Math.random() * 1}s`;
-                loadingBar.appendChild(star);
+            console.log('Generating crumble fragments...');
+            const crumbleContainer = document.querySelector('.crumble-container');
+            const logoWidth = 300;
+            const logoHeight = 300;
+            const fragmentSize = 20;
+            const cols = Math.ceil(logoWidth / fragmentSize);
+            const rows = Math.ceil(logoHeight / fragmentSize);
+            for (let row = 0; row < rows; row++) {
+                for (let col = 0; col < cols; col++) {
+                    const fragment = document.createElement('div');
+                    fragment.className = 'crumble-fragment';
+                    const x = col * fragmentSize;
+                    const y = row * fragmentSize;
+                    fragment.style.backgroundPosition = `-${x}px -${y}px`;
+                    fragment.style.left = `${x}px`;
+                    fragment.style.top = `${y}px`;
+                    const tx = (Math.random() - 0.5) * 200;
+                    const ty = (Math.random() - 0.5) * 200;
+                    const rotate = (Math.random() - 0.5) * 360;
+                    fragment.style.setProperty('--tx', `${tx}px`);
+                    fragment.style.setProperty('--ty', `${ty}px`);
+                    fragment.style.setProperty('--rotate', `${rotate}deg`);
+                    crumbleContainer.appendChild(fragment);
+                }
             }
-            console.log('Loading bar star particles generated successfully.');
+            console.log('Crumble fragments generated successfully.');
         } catch (error) {
-            console.error('Error generating loading bar star particles:', error);
+            console.error('Error generating crumble fragments:', error);
         }
 
         // Explosion Particles
         try {
             console.log('Generating explosion particles...');
             const explosionContainer = document.querySelector('.explosion-container');
-            for (let i = 0; i < 50; i++) {
+            for (let i = 0; i < 100; i++) {
                 const particle = document.createElement('div');
                 particle.className = `explosion-particle ${i % 2 === 0 ? 'gold' : ''}`;
                 const tx = (Math.random() - 0.5) * 1000;
