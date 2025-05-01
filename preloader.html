@@ -29,21 +29,8 @@
         .logo {
             width: 100%;
             height: 100%;
-            animation: pulse 1s infinite alternate;
+            animation: pulse 1s infinite alternate, outlinePulse 1s infinite alternate;
             position: relative;
-        }
-        .logo::before {
-            content: '';
-            position: absolute;
-            top: -2px;
-            left: -2px;
-            right: -2px;
-            bottom: -2px;
-            border: 2px solid #FFD700;
-            border-radius: 50%;
-            opacity: 0.5;
-            animation: outlinePulse 1s infinite alternate;
-            z-index: -1;
         }
         @keyframes pulse {
             0% { filter: drop-shadow(0 0 3px #00D4FF); }
