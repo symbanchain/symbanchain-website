@@ -202,7 +202,7 @@
             height: 100%;
             background: rgba(0, 0, 0, 0.7);
             z-index: 2000;
-            display: flex;
+            display: none;
             justify-content: center;
             align-items: center;
         }
@@ -539,4 +539,53 @@
             </div>
             <div class="token-card">
                 <img src="https://via.placeholder.com/50x50.png?text=T" alt="$NEWTOKEN2 Logo">
-                <p $SYMBAN Now” button, “Trade Now” buttons) to actual pages (e.g., `how-to-buy.html`).
+                <p>$NEWTOKEN2 – <span>88/100 ✅</span></p>
+                <p>Market Cap: $80K</p>
+                <p>24h Volume: $8K</p>
+                <a href="#">Trade Now</a>
+            </div>
+            <div class="token-card">
+                <img src="https://via.placeholder.com/50x50.png?text=T" alt="$NEWTOKEN3 Logo">
+                <p>$NEWTOKEN3 – <span>95/100 ✅</span></p>
+                <p>Market Cap: $120K</p>
+                <p>24h Volume: $15K</p>
+                <a href="#">Trade Now</a>
+            </div>
+        </div>
+    </div>
+    <script>
+        // Simulate more stars
+        const starsContainer = document.querySelector('.stars');
+        for (let i = 0; i < 95; i++) {
+            const star = document.createElement('div');
+            const sizeClass = i % 3 === 0 ? 'large' : i % 2 === 0 ? 'medium' : 'small';
+            star.className = `star ${sizeClass}`;
+            star.style.top = `${Math.random() * 100}%`;
+            star.style.left = `${Math.random() * 100}%`;
+            star.style.animationDelay = `${Math.random() * 2}s`;
+            starsContainer.appendChild(star);
+        }
+        // Cookie Consent
+        function acceptCookies() {
+            document.getElementById('cookieConsent').style.display = 'none';
+            localStorage.setItem('cookieConsent', 'accepted');
+            setTimeout(() => {
+                document.getElementById('lightbox').style.display = 'flex';
+            }, 5000);
+        }
+        if (localStorage.getItem('cookieConsent') !== 'accepted') {
+            setTimeout(() => {
+                document.getElementById('cookieConsent').style.display = 'flex';
+            }, 1000);
+        } else {
+            setTimeout(() => {
+                document.getElementById('lightbox').style.display = 'flex';
+            }, 6000);
+        }
+        // Lightbox
+        function closeLightbox() {
+            document.getElementById('lightbox').style.display = 'none';
+        }
+    </script>
+</body>
+</html>
