@@ -11,15 +11,16 @@
             overflow: hidden;
             height: 100vh;
             display: flex;
+            flex-direction: column;
             justify-content: center;
             align-items: center;
             position: relative;
         }
-        /* Marketing Logo */
+        /* Logo Container */
         .logo-container {
             position: relative;
-            width: 300px;
-            height: 300px;
+            width: 200px;
+            height: 200px;
             display: flex;
             justify-content: center;
             align-items: center;
@@ -28,185 +29,138 @@
         .logo {
             width: 100%;
             height: 100%;
-            animation: pulse 0.5s infinite alternate;
+            animation: pulse 1s infinite alternate;
         }
         @keyframes pulse {
-            0% { filter: drop-shadow(0 0 5px #00D4FF) drop-shadow(0 0 3px #FFD700); }
-            100% { filter: drop-shadow(0 0 20px #00D4FF) drop-shadow(0 0 10px #FFD700); }
+            0% { filter: drop-shadow(0 0 5px #00D4FF); }
+            100% { filter: drop-shadow(0 0 15px #00D4FF); }
         }
-        /* Hexagon Ring */
-        .hexagon-ring {
+        /* Energy Waves */
+        .energy-wave {
             position: absolute;
-            width: 400px;
-            height: 400px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            animation: spin 3.5s linear infinite;
+            width: 200px;
+            height: 200px;
+            border: 2px solid #00D4FF;
+            border-radius: 50%;
+            opacity: 0;
+            animation: waveExpand 2s infinite;
             z-index: 2;
         }
-        .hexagon {
+        @keyframes waveExpand {
+            0% { width: 200px; height: 200px; opacity: 0.5; }
+            100% { width: 300px; height: 300px; opacity: 0; }
+        }
+        /* Blockchain Nodes */
+        .blockchain-nodes {
             position: absolute;
-            width: 40px;
-            height: 40px;
-            border: 2px solid #00D4FF;
+            width: 300px;
+            height: 300px;
+            z-index: 1;
+        }
+        .blockchain-node {
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            border: 1px solid #00D4FF;
             clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
-            opacity: 0.7;
-            filter: drop-shadow(0 0 5px #00D4FF);
+            opacity: 0.5;
+            animation: nodePulse 1.5s infinite;
         }
-        .hexagon-particle {
+        .blockchain-line {
             position: absolute;
-            width: 5px;
-            height: 5px;
-            background: #00D4FF;
-            border-radius: 50%;
-            animation: particleFade 1s forwards;
+            stroke: #00D4FF;
+            stroke-width: 1;
+            opacity: 0.2;
         }
-        .hexagon-particle.gold {
+        @keyframes nodePulse {
+            0% { opacity: 0.3; transform: scale(0.8); }
+            50% { opacity: 0.7; transform: scale(1); }
+            100% { opacity: 0.3; transform: scale(0.8); }
+        }
+        /* Gold Fill Effect for Logo */
+        .logo-fill {
+            position: absolute;
+            width: 200px;
+            height: 200px;
             background: #FFD700;
-            width: 3px;
-            height: 3px;
+            clip-path: url(#logo-clip);
+            animation: fillLogo 2s forwards 1s;
+            z-index: 2;
         }
-        @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
+        @keyframes fillLogo {
+            0% { clip-path: inset(100% 0 0 0); }
+            100% { clip-path: inset(0 0 0 0); }
         }
-        @keyframes particleFade {
-            0% { opacity: 1; transform: scale(1); }
-            100% { opacity: 0; transform: scale(0); }
+        /* Text Animation */
+        .text-container {
+            position: relative;
+            margin-top: 20px;
+            font-family: 'Montserrat', sans-serif;
+            text-align: center;
+            z-index: 3;
         }
-        /* Lightning Bolts */
-        .lightning-container {
+        .text-symbanchain {
+            font-size: 24px;
+            color: #00D4FF;
+            opacity: 0;
+            animation: typeText 1s forwards 2s steps(12);
+        }
+        .text-aipowered {
+            font-size: 16px;
+            color: #FFD700;
+            opacity: 0;
+            animation: typeText 0.5s forwards 3s steps(10);
+            letter-spacing: 2px;
+        }
+        @keyframes typeText {
+            0% { opacity: 0; width: 0; }
+            50% { opacity: 1; }
+            100% { opacity: 1; width: 100%; }
+        }
+        /* Dissolve Effect */
+        .dissolve-container {
             position: absolute;
             width: 100%;
             height: 100%;
             z-index: 4;
-        }
-        .lightning {
-            position: absolute;
-            width: 150px;
-            height: 150px;
-            opacity: 0;
-            animation: flash 0.5s forwards;
-            filter: drop-shadow(0 0 5px #00D4FF);
-        }
-        .lightning path {
-            stroke: #00D4FF;
-            stroke-width: 3;
-            fill: none;
-            filter: url(#glow);
-        }
-        @keyframes flash {
-            0% { opacity: 0; transform: scale(0.5); }
-            10% { opacity: 1; transform: scale(1); }
-            100% { opacity: 0; transform: scale(0.5); }
-        }
-        /* Loading Bar */
-        .loading-bar-container {
-            position: absolute;
-            bottom: 20%;
-            width: 300px;
-            height: 10px;
-            border: 2px solid #00D4FF;
-            border-radius: 5px;
-            overflow: hidden;
-            z-index: 5;
-        }
-        .loading-bar {
-            width: 0;
-            height: 100%;
-            background: linear-gradient(to right, #1A1A1A, #FFD700, #00D4FF);
-            position: relative;
-            animation: load 1s forwards 2s;
-        }
-        .loading-bar::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, #FFFFFF80, transparent);
-            background-size: 50px;
-            animation: shimmer 1s linear infinite;
-        }
-        @keyframes load {
-            0% { width: 0; }
-            100% { width: 100%; }
-        }
-        @keyframes shimmer {
-            0% { background-position: 0 0; }
-            100% { background-position: 50px 0; }
-        }
-        /* Crumble Effect */
-        .crumble-container {
-            position: absolute;
-            width: 300px;
-            height: 300px;
-            z-index: 6;
             display: none;
-            animation: crumble 0.5s forwards 3s;
+            animation: dissolve 1s forwards 4s;
         }
-        .crumble-fragment {
-            position: absolute;
-            width: 20px;
-            height: 20px;
-            background: url('https://i.imgur.com/eonZEmm.png') no-repeat;
-            background-size: 300px 300px;
-            animation: crumbleFragment 0.5s forwards;
-            filter: drop-shadow(0 0 5px #00D4FF);
-        }
-        @keyframes crumble {
-            0% { opacity: 1; }
-            100% { opacity: 0; }
-        }
-        @keyframes crumbleFragment {
-            0% { opacity: 1; transform: translate(0, 0) rotate(0deg); }
-            100% { opacity: 0; transform: translate(var(--tx), var(--ty)) rotate(var(--rotate)); }
-        }
-        /* Explosion */
-        .explosion-container {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            z-index: 7;
-            display: none;
-            animation: explode 0.5s forwards 3.5s;
-        }
-        .explosion-particle {
+        .dissolve-particle {
             position: absolute;
             width: 5px;
             height: 5px;
             background: #00D4FF;
             border-radius: 50%;
-            animation: scatter 0.5s forwards;
+            animation: scatter 1s forwards;
         }
-        .explosion-particle.gold {
+        .dissolve-particle.gold {
             background: #FFD700;
         }
-        @keyframes explode {
-            0% { opacity: 0; }
-            10% { opacity: 1; }
+        @keyframes dissolve {
+            0% { opacity: 1; }
             100% { opacity: 0; }
         }
         @keyframes scatter {
             0% { opacity: 1; transform: translate(0, 0); }
             100% { opacity: 0; transform: translate(var(--tx), var(--ty)); }
         }
-        /* Galaxy Reveal */
-        .galaxy {
+        /* Shockwave Transition */
+        .shockwave {
             position: absolute;
-            width: 100%;
-            height: 100%;
-            background: radial-gradient(circle, #4B0082, #003366);
-            opacity: 0;
-            animation: revealGalaxy 0.5s forwards 3.5s;
-            z-index: 8;
+            width: 0;
+            height: 0;
+            border: 2px solid #00D4FF;
+            border-radius: 50%;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            animation: shockwaveExpand 0.5s forwards 4.5s;
+            z-index: 5;
         }
-        @keyframes revealGalaxy {
-            0% { opacity: 0; transform: rotate(0deg); }
-            50% { opacity: 1; transform: rotate(10deg); }
-            100% { opacity: 0; transform: rotate(20deg); }
+        @keyframes shockwaveExpand {
+            0% { width: 0; height: 0; opacity: 1; }
+            100% { width: 1000px; height: 1000px; opacity: 0; }
         }
         /* Fallback Link */
         .fallback-link {
@@ -217,13 +171,18 @@
             font-family: 'Montserrat', sans-serif;
             font-size: 14px;
             display: none;
-            z-index: 9;
+            z-index: 6;
         }
     </style>
 </head>
 <body>
-    <!-- SVG Filters for Glow -->
+    <!-- SVG for Logo Clip Path -->
     <svg style="position: absolute; width: 0; height: 0;">
+        <defs>
+            <clipPath id="logo-clip">
+                <image href="https://i.imgur.com/MzmK3ec.png" width="200" height="200" />
+            </clipPath>
+        </defs>
         <filter id="glow">
             <feGaussianBlur in="SourceGraphic" stdDeviation="2" result="blur" />
             <feColorMatrix in="blur" mode="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 18 -7" result="glow" />
@@ -232,127 +191,57 @@
     </svg>
     <!-- Logo -->
     <div class="logo-container">
-        <img src="https://i.imgur.com/eonZEmm.png" alt="SymbanChain Marketing Logo" class="logo">
+        <img src="https://i.imgur.com/MzmK3ec.png" alt="SymbanChain S Logo" class="logo">
+        <div class="logo-fill"></div>
+        <div class="energy-wave" style="animation-delay: 0s;"></div>
+        <div class="energy-wave" style="animation-delay: 0.5s;"></div>
+        <div class="energy-wave" style="animation-delay: 1s;"></div>
     </div>
-    <!-- Hexagon Ring -->
-    <div class="hexagon-ring">
-        <div class="hexagon" style="transform: rotate(0deg) translate(200px, 0);"></div>
-        <div class="hexagon" style="transform: rotate(45deg) translate(200px, 0);"></div>
-        <div class="hexagon" style="transform: rotate(90deg) translate(200px, 0);"></div>
-        <div class="hexagon" style="transform: rotate(135deg) translate(200px, 0);"></div>
-        <div class="hexagon" style="transform: rotate(180deg) translate(200px, 0);"></div>
-        <div class="hexagon" style="transform: rotate(225deg) translate(200px, 0);"></div>
-        <div class="hexagon" style="transform: rotate(270deg) translate(200px, 0);"></div>
-        <div class="hexagon" style="transform: rotate(315deg) translate(200px, 0);"></div>
+    <!-- Blockchain Nodes -->
+    <div class="blockchain-nodes">
+        <svg style="position: absolute; width: 100%; height: 100%;">
+            <line class="blockchain-line" x1="150" y1="50" x2="250" y2="150" />
+            <line class="blockchain-line" x1="250" y1="150" x2="150" y2="250" />
+            <line class="blockchain-line" x1="150" y1="250" x2="50" y2="150" />
+            <line class="blockchain-line" x1="50" y1="150" x2="150" y2="50" />
+        </svg>
+        <div class="blockchain-node" style="top: 50px; left: 150px; animation-delay: 0s;"></div>
+        <div class="blockchain-node" style="top: 150px; right: 50px; animation-delay: 0.2s;"></div>
+        <div class="blockchain-node" style="bottom: 50px; left: 150px; animation-delay: 0.4s;"></div>
+        <div class="blockchain-node" style="top: 150px; left: 50px; animation-delay: 0.6s;"></div>
     </div>
-    <!-- Lightning Bolts -->
-    <div class="lightning-container">
-        <svg class="lightning" style="top: 10%; left: 10%; animation-delay: 0.8s;">
-            <path d="M75,0 L85,40 L115,50 L85,60 L75,100 L65,60 L35,50 L65,40 Z" />
-        </svg>
-        <svg class="lightning" style="top: 10%; right: 10%; animation-delay: 1.0s;">
-            <path d="M75,0 L85,40 L115,50 L85,60 L75,100 L65,60 L35,50 L65,40 Z" />
-        </svg>
-        <svg class="lightning" style="bottom: 10%; left: 10%; animation-delay: 1.2s;">
-            <path d="M75,0 L85,40 L115,50 L85,60 L75,100 L65,60 L35,50 L65,40 Z" />
-        </svg>
-        <svg class="lightning" style="bottom: 10%; right: 10%; animation-delay: 1.4s;">
-            <path d="M75,0 L85,40 L115,50 L85,60 L75,100 L65,60 L35,50 L65,40 Z" />
-        </svg>
-        <svg class="lightning" style="top: 20%; left: 30%; animation-delay: 1.6s;">
-            <path d="M75,0 L85,40 L115,50 L85,60 L75,100 L65,60 L35,50 L65,40 Z" />
-        </svg>
-        <svg class="lightning" style="bottom: 20%; right: 30%; animation-delay: 1.8s;">
-            <path d="M75,0 L85,40 L115,50 L85,60 L75,100 L65,60 L35,50 L65,40 Z" />
-        </svg>
+    <!-- Text -->
+    <div class="text-container">
+        <div class="text-symbanchain">SymbanChain</div>
+        <div class="text-aipowered">AI-POWERED</div>
     </div>
-    <!-- Loading Bar -->
-    <div class="loading-bar-container">
-        <div class="loading-bar"></div>
+    <!-- Dissolve Effect -->
+    <div class="dissolve-container">
+        <div class="shockwave"></div>
     </div>
-    <!-- Crumble Effect -->
-    <div class="crumble-container"></div>
-    <!-- Explosion -->
-    <div class="explosion-container"></div>
-    <!-- Galaxy Reveal -->
-    <div class="galaxy"></div>
     <!-- Fallback Link -->
     <div class="fallback-link" id="fallbackLink">
         <p>Redirecting... If not redirected, <a href="/index.html" style="color: #00D4FF;">click here</a>.</p>
     </div>
     <script>
-        // Hexagon Particles
+        // Dissolve Particles
         try {
-            console.log('Generating hexagon particles...');
-            const hexagonRing = document.querySelector('.hexagon-ring');
-            for (let i = 0; i < 50; i++) {
+            console.log('Generating dissolve particles...');
+            const dissolveContainer = document.querySelector('.dissolve-container');
+            for (let i = 0; i < 100; i++) {
                 const particle = document.createElement('div');
-                particle.className = `hexagon-particle ${i % 2 === 0 ? 'gold' : ''}`;
-                const angle = Math.random() * 360;
-                const distance = Math.random() * 100 + 50;
-                particle.style.transform = `rotate(${angle}deg) translate(${distance}px, 0)`;
-                particle.style.animationDelay = `${Math.random() * 2}s`;
-                hexagonRing.appendChild(particle);
-            }
-            console.log('Hexagon particles generated successfully.');
-        } catch (error) {
-            console.error('Error generating hexagon particles:', error);
-        }
-
-        // Crumble Effect
-        try {
-            console.log('Generating crumble fragments...');
-            const crumbleContainer = document.querySelector('.crumble-container');
-            const logoWidth = 300;
-            const logoHeight = 300;
-            const fragmentSize = 20;
-            const cols = Math.ceil(logoWidth / fragmentSize);
-            const rows = Math.ceil(logoHeight / fragmentSize);
-            for (let row = 0; row < rows; row++) {
-                for (let col = 0; col < cols; col++) {
-                    const fragment = document.createElement('div');
-                    fragment.className = 'crumble-fragment';
-                    const x = col * fragmentSize;
-                    const y = row * fragmentSize;
-                    fragment.style.backgroundPosition = `-${x}px -${y}px`;
-                    fragment.style.left = `${x}px`;
-                    fragment.style.top = `${y}px`;
-                    const tx = (Math.random() - 0.5) * 200;
-                    const ty = (Math.random() - 0.5) * 200;
-                    const rotate = (Math.random() - 0.5) * 360;
-                    fragment.style.setProperty('--tx', `${tx}px`);
-                    fragment.style.setProperty('--ty', `${ty}px`);
-                    fragment.style.setProperty('--rotate', `${rotate}deg`);
-                    crumbleContainer.appendChild(fragment);
-                }
-            }
-            console.log('Crumble fragments generated successfully.');
-        } catch (error) {
-            console.error('Error generating crumble fragments:', error);
-        }
-
-        // Explosion Particles
-        try {
-            consoleV2Y29tL2ltZy9leGFtcGxlL2ltYWdlLnBuZw==) format, which doesn’t work for embedding in web pages due to CORS restrictions. We’ll use the Imgur direct link instead.
-
-        // Explosion Particles
-        try {
-            console.log('Generating explosion particles...');
-            const explosionContainer = document.querySelector('.explosion-container');
-            for (let i = 0; i < 50; i++) {
-                const particle = document.createElement('div');
-                particle.className = `explosion-particle ${i % 2 === 0 ? 'gold' : ''}`;
-                const tx = (Math.random() - 0.5) * 1000;
-                const ty = (Math.random() - 0.5) * 1000;
+                particle.className = `dissolve-particle ${i % 2 === 0 ? 'gold' : ''}`;
+                const tx = (Math.random() - 0.5) * 500;
+                const ty = (Math.random() - 0.5) * 500;
                 particle.style.setProperty('--tx', `${tx}px`);
                 particle.style.setProperty('--ty', `${ty}px`);
                 particle.style.left = '50%';
                 particle.style.top = '50%';
-                explosionContainer.appendChild(particle);
+                dissolveContainer.appendChild(particle);
             }
-            console.log('Explosion particles generated successfully.');
+            console.log('Dissolve particles generated successfully.');
         } catch (error) {
-            console.error('Error generating explosion particles:', error);
+            console.error('Error generating dissolve particles:', error);
         }
 
         // Redirect to Homepage
