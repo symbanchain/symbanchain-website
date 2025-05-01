@@ -174,7 +174,7 @@
 <body>
     <!-- Logo -->
     <div class="logo-container">
-        <img src="https://drive.google.com/uc?export=download&id=1tEJxymJOiusqHN4YvI_NdWWrHv5XWSqt" alt="SymbanChain Marketing Logo" class="logo">
+        <img src="https://raw.githubusercontent.com/symbanchain/symbanchain-website/main/marketing-logo.png" alt="SymbanChain Marketing Logo" class="logo">
     </div>
     <!-- Hexagon Ring -->
     <div class="hexagon-ring">
@@ -204,32 +204,48 @@
     </div>
     <script>
         // Hexagon Particles
-        const hexagonRing = document.querySelector('.hexagon-ring');
-        for (let i = 0; i < 20; i++) {
-            const particle = document.createElement('div');
-            particle.className = 'hexagon-particle';
-            const angle = Math.random() * 360;
-            const distance = Math.random() * 100 + 50;
-            particle.style.transform = `rotate(${angle}deg) translate(${distance}px, 0)`;
-            particle.style.animationDelay = `${Math.random() * 2}s`;
-            hexagonRing.appendChild(particle);
+        try {
+            const hexagonRing = document.querySelector('.hexagon-ring');
+            for (let i = 0; i < 20; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'hexagon-particle';
+                const angle = Math.random() * 360;
+                const distance = Math.random() * 100 + 50;
+                particle.style.transform = `rotate(${angle}deg) translate(${distance}px, 0)`;
+                particle.style.animationDelay = `${Math.random() * 2}s`;
+                hexagonRing.appendChild(particle);
+            }
+        } catch (error) {
+            console.error('Error generating hexagon particles:', error);
         }
+
         // Explosion Particles
-        const explosionContainer = document.querySelector('.explosion-container');
-        for (let i = 0; i < 50; i++) {
-            const particle = document.createElement('div');
-            particle.className = `explosion-particle ${i % 2 === 0 ? 'gold' : ''}`;
-            const tx = (Math.random() - 0.5) * 1000;
-            const ty = (Math.random() - 0.5) * 1000;
-            particle.style.setProperty('--tx', `${tx}px`);
-            particle.style.setProperty('--ty', `${ty}px`);
-            particle.style.left = '50%';
-            particle.style.top = '50%';
-            explosionContainer.appendChild(particle);
+        try {
+            const explosionContainer = document.querySelector('.explosion-container');
+            for (let i = 0; i < 50; i++) {
+                const particle = document.createElement('div');
+                particle.className = `explosion-particle ${i % 2 === 0 ? 'gold' : ''}`;
+                const tx = (Math.random() - 0.5) * 1000;
+                const ty = (Math.random() - 0.5) * 1000;
+                particle.style.setProperty('--tx', `${tx}px`);
+                particle.style.setProperty('--ty', `${ty}px`);
+                particle.style.left = '50%';
+                particle.style.top = '50%';
+                explosionContainer.appendChild(particle);
+            }
+        } catch (error) {
+            console.error('Error generating explosion particles:', error);
         }
+
         // Redirect to Homepage
         setTimeout(() => {
-            window.location.href = 'index.html';
+            try {
+                window.location.href = 'index.html';
+            } catch (error) {
+                console.error('Error redirecting to index.html:', error);
+                // Fallback: Display an error message
+                document.body.innerHTML = '<p style="color: white; text-align: center;">Error loading page. Please visit <a href="index.html" style="color: #00D4FF;">index.html</a> directly.</p>';
+            }
         }, 3500);
     </script>
 </body>
