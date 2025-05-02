@@ -3,15 +3,24 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="SymbanChain: The leading AI-powered Web3 gaming blockchain with unrivaled security, speed, and staking rewards. Join the universe and invest in our $100M IDO!">
-    <meta name="keywords" content="SymbanChain, Web3, blockchain, gaming, AI, staking, token creation, IDO, airdrop, investors">
+    <meta name="description" content="SymbanChain: The ultimate AI-powered Web3 gaming blockchain. Experience unrivaled innovation, security, and rewards. Join our $100M IDO and step into the future.">
+    <meta name="keywords" content="SymbanChain, Web3, blockchain, gaming, AI, staking, token creation, IDO, airdrop, investors, crypto">
     <meta name="author" content="SYMBAN AI LTD">
-    <title>SymbanChain | AI-Powered Web3 Gaming Blockchain</title>
+    <title>SymbanChain | The Future of Web3 Gaming</title>
     <link rel="icon" href="https://i.imgur.com/MzmK3ec.png" type="image/png">
-    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Montserrat:wght@400;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Exo+2:wght@400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
 </head>
-<body style="background: #0a0a1a;">
+<body>
+    <!-- Cosmic Scene -->
+    <div class="cosmic-scene">
+        <canvas id="cosmicCanvas"></canvas>
+        <div class="particles"></div>
+    </div>
+
+    <!-- Audio Toggle -->
+    <button id="audioToggle" class="audio-toggle">🔊</button>
+
     <!-- Cookie Consent Popup -->
     <div id="cookieConsent" class="cookie-consent">
         <div class="cookie-content">
@@ -23,13 +32,6 @@
         </div>
     </div>
 
-    <!-- Background Layers -->
-    <div class="background">
-        <div class="nebula"></div>
-        <div class="stars"></div>
-        <div class="hexagon-network"></div>
-    </div>
-
     <!-- Header -->
     <header>
         <div class="logo">
@@ -37,9 +39,9 @@
         </div>
         <nav>
             <ul>
-                <li class="dropdown">
-                    <a href="#" class="dropdown-toggle">Platform</a>
-                    <div class="dropdown-menu">
+                <li class="holo-dropdown">
+                    <a href="#" class="holo-toggle">Platform</a>
+                    <div class="holo-menu">
                         <a href="create-token.html">Create Token</a>
                         <a href="games.html">Games</a>
                         <a href="trade.html">Trade</a>
@@ -47,14 +49,14 @@
                         <a href="wallet.html">Wallet</a>
                     </div>
                 </li>
-                <li><a href="ido.html">IDO</a></li>
-                <li><a href="buy-symban.html">How to Buy</a></li>
-                <li><a href="about-us.html">About Us</a></li>
-                <li><a href="faq.html">FAQ</a></li>
-                <li><a href="contact-us.html">Contact Us</a></li>
-                <li class="dropdown">
-                    <a href="#" class="dropdown-toggle">Policies</a>
-                    <div class="dropdown-menu">
+                <li><a href="ido.html" class="holo-link">IDO</a></li>
+                <li><a href="buy-symban.html" class="holo-link">How to Buy</a></li>
+                <li><a href="about-us.html" class="holo-link">About Us</a></li>
+                <li><a href="faq.html" class="holo-link">FAQ</a></li>
+                <li><a href="contact-us.html" class="holo-link">Contact Us</a></li>
+                <li class="holo-dropdown">
+                    <a href="#" class="holo-toggle">Policies</a>
+                    <div class="holo-menu">
                         <a href="terms.html">Terms</a>
                         <a href="privacy.html">Privacy</a>
                         <a href="refund.html">Refund</a>
@@ -66,73 +68,75 @@
 
     <!-- Hero Section -->
     <section class="hero">
-        <canvas id="constellationCanvas"></canvas>
         <div class="hero-content">
-            <h1>SymbanChain: AI-Powered Web3 Gaming Universe</h1>
-            <div class="action-buttons">
-                <a href="create-token.html" class="action-btn">Create Token</a>
-                <a href="games.html" class="action-btn">Play Games</a>
-                <a href="trade.html" class="action-btn">Trade Tokens</a>
-                <a href="stake.html" class="action-btn">Stake $SYMBAN</a>
-                <a href="wallet.html" class="action-btn">Download App</a>
-                <a href="https://t.me/symbanchain" class="action-btn">Join Community</a>
-                <button id="joinAirdropBtn" class="action-btn airdrop-btn">Join Airdrop</button>
+            <div id="holoLogo" class="holo-logo"></div>
+            <h1 id="heroTagline"></h1>
+            <div class="holo-actions">
+                <a href="create-token.html" class="holo-btn">Create Token</a>
+                <a href="games.html" class="holo-btn">Play Games</a>
+                <a href="trade.html" class="holo-btn">Trade Tokens</a>
+                <a href="stake.html" class="holo-btn">Stake $SYMBAN</a>
+                <a href="wallet.html" class="holo-btn">Download App</a>
+                <a href="https://t.me/symbanchain" class="holo-btn">Join Community</a>
+                <button id="joinAirdropBtn" class="holo-btn airdrop-btn">Join Airdrop</button>
             </div>
         </div>
     </section>
 
     <!-- Airdrop Modal -->
-    <div id="airdropModal" class="modal">
-        <div class="modal-content">
-            <span id="closeAirdropModal" class="close">×</span>
+    <div id="airdropModal" class="holo-modal">
+        <div class="holo-modal-content">
+            <span id="closeAirdropModal" class="holo-close">×</span>
             <h2>Join the SymbanChain Airdrop</h2>
             <form id="airdropForm">
                 <input type="text" placeholder="Wallet Address" required>
                 <input type="text" placeholder="X Handle" required>
                 <input type="text" placeholder="Telegram ID" required>
                 <input type="email" placeholder="Email" required>
-                <button type="submit">Claim 1,000 $SYMBAN</button>
+                <button type="submit" class="holo-btn">Claim 1,000 $SYMBAN</button>
             </form>
         </div>
     </div>
 
     <!-- USPs Section -->
-    <section class="usps">
-        <h2>Why SymbanChain?</h2>
-        <div class="usp-cards">
-            <div class="usp-card">
-                <h3>Unruggable</h3>
-                <p>&lt;0.1% rug pulls with 5-minute AI audits</p>
+    <section class="holo-usps">
+        <h2>Redefining Web3 Gaming</h2>
+        <div class="holo-usp-grid">
+            <div class="holo-usp-card" data-gsap>
+                <h3>Unruggable Security</h3>
+                <p>Less than 0.1% rug pulls with 5-minute AI audits.</p>
             </div>
-            <div class="usp-card">
-                <h3>Ultra-Fast</h3>
-                <p>10,000 TPS at launch, scaling to 100,000</p>
+            <div class="holo-usp-card" data-gsap>
+                <h3>Unmatched Speed</h3>
+                <p>10,000 TPS at launch, scaling to 100,000.</p>
             </div>
-            <div class="usp-card">
-                <h3>Low Fees</h3>
-                <p>Transaction fees as low as $0.001</p>
+            <div class="holo-usp-card" data-gsap>
+                <h3>Minimal Fees</h3>
+                <p>Transactions as low as $0.001.</p>
             </div>
-            <div class="usp-card">
-                <h3>Staking Rewards</h3>
-                <p>Earn up to 8% APY + 5% of every new token</p>
+            <div class="holo-usp-card" data-gsap>
+                <h3>Lucrative Staking</h3>
+                <p>Earn up to 8% APY plus 5% of every new token.</p>
             </div>
         </div>
     </section>
 
     <!-- IDO Section -->
-    <section class="ido-section">
+    <section class="holo-ido">
         <h2>Join Our $100M IDO – June 15-29, 2025</h2>
-        <div id="countdownTimer" class="countdown">
-            <div><span id="days"></span> Days</div>
-            <div><span id="hours"></span> Hours</div>
-            <div><span id="minutes"></span> Minutes</div>
-            <div><span id="seconds"></span> Seconds</div>
+        <div class="holo-countdown-sphere">
+            <div id="countdownTimer" class="holo-countdown">
+                <div><span id="days"></span> Days</div>
+                <div><span id="hours"></span> Hours</div>
+                <div><span id="minutes"></span> Minutes</div>
+                <div><span id="seconds"></span> Seconds</div>
+            </div>
         </div>
-        <a href="buy-symban.html" class="ido-btn">Buy $SYMBAN Now</a>
+        <a href="buy-symban.html" class="holo-btn ido-btn">Buy $SYMBAN Now</a>
     </section>
 
     <!-- Footer -->
-    <footer>
+    <footer class="holo-footer">
         <div class="footer-content">
             <img src="https://i.imgur.com/MzmK3ec.png" alt="SymbanChain S Logo" class="footer-logo">
             <div class="footer-links">
@@ -153,6 +157,8 @@
     </footer>
 
     <script src="https://cdn.jsdelivr.net/npm/three@0.167.1/build/three.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
     <script src="script.js"></script>
 </body>
 </html>
