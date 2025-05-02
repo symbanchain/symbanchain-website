@@ -3,104 +3,146 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="SymbanChain: The only AI-driven Web3 gaming blockchain with <0.1% rug pulls, 5-min audits, 10,000 TPS, $0.001 fees, and staking rewards. Join the universe today!">
-    <meta name="keywords" content="SymbanChain, Web3, blockchain, gaming, AI, staking, token creation, IDO, airdrop">
+    <meta name="description" content="SymbanChain: The leading AI-powered Web3 gaming blockchain with unrivaled security, speed, and staking rewards. Join the universe and invest in our $100M IDO!">
+    <meta name="keywords" content="SymbanChain, Web3, blockchain, gaming, AI, staking, token creation, IDO, airdrop, investors">
     <meta name="author" content="SYMBAN AI LTD">
     <title>SymbanChain | AI-Powered Web3 Gaming Blockchain</title>
     <link rel="icon" href="https://i.imgur.com/MzmK3ec.png" type="image/png">
-    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700&family=Montserrat:wght@400&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700&family=Montserrat:wght@400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
+    <!-- Cookie Consent Popup -->
+    <div id="cookieConsent" class="cookie-consent">
+        <div class="cookie-content">
+            <p>We use cookies to enhance your experience. By continuing, you agree to our <a href="privacy.html">Privacy Policy</a> and <a href="terms.html">Terms of Use</a>.</p>
+            <div class="cookie-buttons">
+                <button id="acceptCookies" class="cookie-btn">Accept</button>
+                <button id="customizeCookies" class="cookie-btn">Customize</button>
+            </div>
+        </div>
+    </div>
+
     <!-- Background Layers -->
     <div class="background">
         <div class="nebula"></div>
         <div class="stars"></div>
+        <div class="hexagon-network"></div>
     </div>
 
     <!-- Header -->
     <header>
         <div class="logo">
-            <img src="https://i.imgur.com/eonZEmm.png" alt="SymbanChain Logo" class="logo-img">
+            <img src="https://i.imgur.com/MzmK3ec.png" alt="SymbanChain S Logo" class="logo-img">
         </div>
         <nav>
             <ul>
-                <li><a href="create-token.html">Create Token</a></li>
-                <li><a href="games.html">Games</a></li>
-                <li><a href="trade.html">Trade</a></li>
-                <li><a href="stake.html">Stake</a></li>
-                <li><a href="wallet.html">Wallet</a></li>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle">Platform</a>
+                    <div class="dropdown-menu">
+                        <a href="create-token.html">Create Token</a>
+                        <a href="games.html">Games</a>
+                        <a href="trade.html">Trade</a>
+                        <a href="stake.html">Stake</a>
+                        <a href="wallet.html">Wallet</a>
+                    </div>
+                </li>
                 <li><a href="ido.html">IDO</a></li>
                 <li><a href="buy-symban.html">How to Buy</a></li>
-                <li><a href="terms.html">Terms</a></li>
-                <li><a href="privacy.html">Privacy</a></li>
-                <li><a href="refund.html">Refund</a></li>
+                <li><a href="about-us.html">About Us</a></li>
+                <li><a href="faq.html">FAQ</a></li>
+                <li><a href="contact-us.html">Contact Us</a></li>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle">Policies</a>
+                    <div class="dropdown-menu">
+                        <a href="terms.html">Terms</a>
+                        <a href="privacy.html">Privacy</a>
+                        <a href="refund.html">Refund</a>
+                    </div>
+                </li>
             </ul>
         </nav>
     </header>
 
     <!-- Hero Section -->
     <section class="hero">
-        <canvas id="galaxyCanvas"></canvas>
+        <div id="constellationCanvas"></div>
         <div class="hero-content">
-            <h1 id="welcomeMessage"></h1>
-            <div class="hexagon-buttons">
-                <a href="create-token.html" class="hexagon-btn">
-                    <img src="/assets/icon-create.webp" alt="Create Token Icon">
-                    Create Token
-                </a>
-                <a href="games.html" class="hexagon-btn">
-                    <img src="/assets/icon-games.webp" alt="Play Games Icon">
-                    Play Games
-                </a>
-                <a href="trade.html" class="hexagon-btn">
-                    <img src="/assets/icon-trade.webp" alt="Trade Tokens Icon">
-                    Trade Tokens
-                </a>
-                <a href="stake.html" class="hexagon-btn">
-                    <img src="/assets/icon-stake.webp" alt="Stake Icon">
-                    Stake $SYMBAN
-                </a>
-                <a href="wallet.html" class="hexagon-btn">
-                    <img src="/assets/icon-download.webp" alt="Download App Icon">
-                    Download App
-                </a>
-                <a href="https://t.me/symbanchain" class="hexagon-btn">
-                    <img src="/assets/icon-community.webp" alt="Join Community Icon">
-                    Join Community
-                </a>
+            <h1>SymbanChain: AI-Powered Web3 Gaming Universe</h1>
+            <div class="action-buttons">
+                <a href="create-token.html" class="action-btn">Create Token</a>
+                <a href="games.html" class="action-btn">Play Games</a>
+                <a href="trade.html" class="action-btn">Trade Tokens</a>
+                <a href="stake.html" class="action-btn">Stake $SYMBAN</a>
+                <a href="wallet.html" class="action-btn">Download App</a>
+                <a href="https://t.me/symbanchain" class="action-btn">Join Community</a>
+                <button id="joinAirdropBtn" class="action-btn airdrop-btn">Join Airdrop</button>
             </div>
         </div>
     </section>
 
-    <!-- Airdrop Section -->
-    <section class="airdrop">
-        <h2>Join the SymbanChain Airdrop! 🌌</h2>
-        <form id="airdropForm">
-            <input type="text" placeholder="Wallet Address" required>
-            <input type="text" placeholder="X Handle" required>
-            <input type="text" placeholder="Telegram ID" required>
-            <input type="email" placeholder="Email" required>
-            <button type="submit">Claim 1,000 $SYMBAN</button>
-        </form>
-    </section>
-
-    <!-- IDO Popup -->
-    <div id="idoPopup" class="popup">
-        <div class="popup-content">
-            <p>🌌 One-Time Offer: Get $SYMBAN at $0.50! IDO June 15-29, 2025. Altseason Is Here – Price Will Skyrocket Post-IDO! Don’t Miss Out! 🚀</p>
-            <div class="popup-buttons">
-                <a href="buy-symban.html" class="popup-btn">Buy Now</a>
-                <a href="ido.html" class="popup-btn">Learn More</a>
-                <button class="popup-btn close-btn">Close</button>
-            </div>
+    <!-- Airdrop Modal -->
+    <div id="airdropModal" class="modal">
+        <div class="modal-content">
+            <span id="closeAirdropModal" class="close">&times;</span>
+            <h2>Join the SymbanChain Airdrop</h2>
+            <form id="airdropForm">
+                <input type="text" placeholder="Wallet Address" required>
+                <input type="text" placeholder="X Handle" required>
+                <input type="text" placeholder="Telegram ID" required>
+                <input type="email" placeholder="Email" required>
+                <button type="submit">Claim 1,000 $SYMBAN</button>
+            </form>
         </div>
     </div>
+
+    <!-- USPs Section -->
+    <section class="usps">
+        <h2>Why SymbanChain?</h2>
+        <div class="usp-cards">
+            <div class="usp-card">
+                <h3>Unruggable</h3>
+                <p>&lt;0.1% rug pulls with 5-minute AI audits</p>
+            </div>
+            <div class="usp-card">
+                <h3>Ultra-Fast</h3>
+                <p>10,000 TPS at launch, scaling to 100,000</p>
+            </div>
+            <div class="usp-card">
+                <h3>Low Fees</h3>
+                <p>Transaction fees as low as $0.001</p>
+            </div>
+            <div class="usp-card">
+                <h3>Staking Rewards</h3>
+                <p>Earn up to 8% APY + 5% of every new token</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- IDO Section -->
+    <section class="ido-section">
+        <h2>Join Our $100M IDO – June 15-29, 2025</h2>
+        <div id="countdownTimer" class="countdown">
+            <div><span id="days"></span> Days</div>
+            <div><span id="hours"></span> Hours</div>
+            <div><span id="minutes"></span> Minutes</div>
+            <div><span id="seconds"></span> Seconds</div>
+        </div>
+        <a href="buy-symban.html" class="ido-btn">Buy $SYMBAN Now</a>
+    </section>
 
     <!-- Footer -->
     <footer>
         <div class="footer-content">
             <img src="https://i.imgur.com/MzmK3ec.png" alt="SymbanChain S Logo" class="footer-logo">
+            <div class="footer-links">
+                <a href="about-us.html">About Us</a>
+                <a href="faq.html">FAQ</a>
+                <a href="contact-us.html">Contact Us</a>
+                <a href="terms.html">Terms</a>
+                <a href="privacy.html">Privacy</a>
+                <a href="refund.html">Refund</a>
+            </div>
             <div class="social-links">
                 <a href="https://x.com/SymbanChain">X</a>
                 <a href="https://t.me/symbanchain">Telegram</a>
