@@ -8,10 +8,10 @@
     <meta name="author" content="SYMBAN AI LTD">
     <title>SymbanChain | AI-Powered Web3 Gaming Blockchain</title>
     <link rel="icon" href="https://i.imgur.com/MzmK3ec.png" type="image/png">
-    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700&family=Montserrat:wght@400;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Montserrat:wght@400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
 </head>
-<body>
+<body style="background: #0a0a1a;">
     <!-- Cookie Consent Popup -->
     <div id="cookieConsent" class="cookie-consent">
         <div class="cookie-content">
@@ -66,7 +66,7 @@
 
     <!-- Hero Section -->
     <section class="hero">
-        <div id="constellationCanvas"></div>
+        <canvas id="constellationCanvas"></canvas>
         <div class="hero-content">
             <h1>SymbanChain: AI-Powered Web3 Gaming Universe</h1>
             <div class="action-buttons">
@@ -84,7 +84,7 @@
     <!-- Airdrop Modal -->
     <div id="airdropModal" class="modal">
         <div class="modal-content">
-            <span id="closeAirdropModal" class="close">&times;</span>
+            <span id="closeAirdropModal" class="close">×</span>
             <h2>Join the SymbanChain Airdrop</h2>
             <form id="airdropForm">
                 <input type="text" placeholder="Wallet Address" required>
@@ -152,7 +152,7 @@
         </div>
     </footer>
 
-    <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/build/three.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.167.1/build/three.min.js"></script>
     <script src="script.js"></script>
 </body>
 </html>
