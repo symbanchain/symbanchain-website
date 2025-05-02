@@ -1,5 +1,37 @@
-// Debug Logs
 console.log('Script.js loaded');
+
+// Audio Ambience
+const cosmicAudio = new Audio('https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3'); // Placeholder cosmic sound
+cosmicAudio.loop = true;
+cosmicAudio.volume = 0.3;
+
+const audioToggle = document.getElementById('audioToggle');
+let isAudioPlaying = false;
+
+cosmicAudio.addEventListener('canplaythrough', () => {
+    cosmicAudio.play().then(() => {
+        isAudioPlaying = true;
+        console.log('Cosmic audio playing');
+    }).catch(err => {
+        console.error('Audio playback failed:', err);
+    });
+});
+
+audioToggle.addEventListener('click', () => {
+    if (isAudioPlaying) {
+        cosmicAudio.pause();
+        audioToggle.classList.add('muted');
+        audioToggle.textContent = '🔇';
+        isAudioPlaying = false;
+        console.log('Audio muted');
+    } else {
+        cosmicAudio.play();
+        audioToggle.classList.remove('muted');
+        audioToggle.textContent = '🔊';
+        isAudioPlaying = true;
+        console.log('Audio unmuted');
+    }
+});
 
 // Cookie Consent Popup
 const cookieConsent = document.getElementById('cookieConsent');
@@ -59,55 +91,116 @@ if (joinAirdropBtn && airdropModal && closeAirdropModal) {
     console.error('Airdrop modal elements not found');
 }
 
-// Constellation Effect with Three.js
+// Cosmic Scene with Three.js
 if (typeof THREE !== 'undefined') {
     const scene = new THREE.Scene();
     const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
-    const renderer = new THREE.WebGLRenderer({ canvas: document.getElementById('constellationCanvas'), alpha: true });
+    const renderer = new THREE.WebGLRenderer({ canvas: document.getElementById('cosmicCanvas'), alpha: true });
+    renderer.setSize(window.innerWidth, window.innerHeight);
 
-    if (renderer) {
-        renderer.setSize(window.innerWidth, window.innerHeight);
-        console.log('Three.js renderer initialized');
+    // Starfield
+    const starGeometry = new THREE.BufferGeometry();
+    const starMaterial = new THREE.PointsMaterial({ color: 0xFFFFFF, size: 0.1 });
+    const starVertices = [];
 
-        // Create stars to form an 'S' shape
-        const stars = [];
-        const sShape = [
-            { x: -5, y: 5 }, { x: -3, y: 5 }, { x: -1, y: 5 }, { x: 1, y: 5 }, { x: 3, y: 5 }, { x: 5, y: 5 }, // Top horizontal
-            { x: 5, y: 3 }, { x: 5, y: 1 }, { x: 3, y: 1 }, { x: 1, y: 1 }, // Right vertical
-            { x: -1, y: 1 }, { x: -3, y: 1 }, { x: -5, y: 1 }, { x: -5, y: -1 }, { x: -5, y: -3 }, // Middle horizontal
-            { x: -5, y: -5 }, { x: -3, y: -5 }, { x: -1, y: -5 }, { x: 1, y: -5 }, { x: 3, y: -5 }, { x: 5, y: -5 }, // Bottom horizontal
-            { x: 5, y: -3 }, { x: 5, y: -1 } // Left vertical
-        ];
-
-        sShape.forEach(point => {
-            const geometry = new THREE.SphereGeometry(0.2, 32, 32);
-            const material = new THREE.MeshBasicMaterial({ color: 0x00eaff });
-            const star = new THREE.Mesh(geometry, material);
-            star.position.set(point.x * 2, point.y * 2, 0);
-            stars.push(star);
-            scene.add(star);
-        });
-
-        camera.position.z = 30;
-
-        function animateStars() {
-            requestAnimationFrame(animateStars);
-            stars.forEach(star => {
-                star.scale.set(
-                    1 + Math.sin(Date.now() * 0.002) * 0.2,
-                    1 + Math.sin(Date.now() * 0.002) * 0.2,
-                    1 + Math.sin(Date.now() * 0.002) * 0.2
-                );
-            });
-            renderer.render(scene, camera);
-        }
-        animateStars();
-        console.log('Constellation effect started');
-    } else {
-        console.error('Constellation canvas not found');
+    for (let i = 0; i < 5000; i++) {
+        const x = (Math.random() - 0.5) * 2000;
+        const y = (Math.random() - 0.5) * 2000;
+        const z = (Math.random() - 0.5) * 2000;
+        starVertices.push(x, y, z);
     }
+
+    starGeometry.setAttribute('position', new THREE.Float32BufferAttribute(starVertices, 3));
+    const stars = new THREE.Points(starGeometry, starMaterial);
+    scene.add(stars);
+
+    // Planets
+    const planetGeometry = new THREE.SphereGeometry(5, 32, 32);
+    const planetMaterial = new THREE.MeshBasicMaterial({ color: 0x00eaff, wireframe: true });
+    const planet1 = new THREE.Mesh(planetGeometry, planetMaterial);
+    planet1.position.set(20, 10, -50);
+    scene.add(planet1);
+
+    const planet2 = new THREE.Mesh(planetGeometry, planetMaterial);
+    planet2.position.set(-30, -15, -70);
+    scene.add(planet2);
+
+    camera.position.z = 50;
+
+    let mouseX = 0, mouseY = 0;
+    document.addEventListener('mousemove', (e) => {
+        mouseX = (e.clientX / window.innerWidth) * 2 - 1;
+        mouseY = -(e.clientY / window.innerHeight) * 2 + 1;
+    });
+
+    function animateCosmicScene() {
+        requestAnimationFrame(animateCosmicScene);
+
+        camera.position.x += (mouseX * 20 - camera.position.x) * 0.05;
+        camera.position.y += (mouseY * 20 - camera.position.y) * 0.05;
+        camera.lookAt(scene.position);
+
+        planet1.rotation.y += 0.01;
+        planet2.rotation.y += 0.005;
+
+        renderer.render(scene, camera);
+    }
+    animateCosmicScene();
+    console.log('Cosmic scene initialized');
 } else {
     console.error('Three.js not loaded');
+}
+
+// Holographic Logo Animation
+const holoLogo = document.getElementById('holoLogo');
+if (holoLogo) {
+    gsap.fromTo(holoLogo, 
+        { scale: 0, opacity: 0 }, 
+        { scale: 1, opacity: 1, duration: 2, ease: 'power2.out' }
+    );
+    console.log('Holographic logo animation started');
+}
+
+// Typewriter Effect for Tagline
+const tagline = "SymbanChain: AI-Powered Web3 Gaming Universe";
+const taglineElement = document.getElementById('heroTagline');
+let i = 0;
+
+function typeWriter() {
+    if (i < tagline.length) {
+        taglineElement.innerHTML += tagline.charAt(i);
+        i++;
+        setTimeout(typeWriter, 50);
+    }
+}
+
+window.addEventListener('load', () => {
+    setTimeout(typeWriter, 2000);
+    console.log('Typewriter effect started');
+});
+
+// GSAP Scroll Animations
+if (typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined') {
+    gsap.registerPlugin(ScrollTrigger);
+
+    gsap.utils.toArray('[data-gsap]').forEach((element, index) => {
+        gsap.from(element, {
+            scrollTrigger: {
+                trigger: element,
+                start: 'top 80%',
+                toggleActions: 'play none none none'
+            },
+            opacity: 0,
+            y: 50,
+            rotationY: 20,
+            duration: 1,
+            delay: index * 0.2,
+            ease: 'power2.out'
+        });
+    });
+    console.log('GSAP scroll animations initialized');
+} else {
+    console.error('GSAP or ScrollTrigger not loaded');
 }
 
 // IDO Countdown Timer
