@@ -1,3 +1,5 @@
+import * as THREE from 'https://unpkg.com/three@0.155.0/build/three.module.js';
+
 console.log('Script.js loaded');
 
 // Cookie Consent Popup
@@ -9,6 +11,8 @@ if (cookieConsent) {
     if (!localStorage.getItem('cookiesAccepted')) {
         cookieConsent.style.display = 'block';
         console.log('Cookie consent popup displayed');
+    } else {
+        console.log('Cookies already accepted, popup not shown');
     }
 
     acceptCookiesBtn.addEventListener('click', () => {
@@ -85,24 +89,13 @@ if (typeof THREE !== 'undefined') {
             const stars = new THREE.Points(starGeometry, starMaterial);
             scene.add(stars);
 
-            // Planets
-            const planetGeometry = new THREE.SphereGeometry(5, 32, 32);
-            const planetMaterial = new THREE.MeshBasicMaterial({ color: 0x00eaff, wireframe: true });
-            const planet1 = new THREE.Mesh(planetGeometry, planetMaterial);
-            planet1.position.set(20, 10, -50);
-            scene.add(planet1);
-
-            const planet2 = new THREE.Mesh(planetGeometry, planetMaterial);
-            planet2.position.set(-30, -15, -70);
-            scene.add(planet2);
-
             camera.position.z = 50;
 
             let mouseX = 0, mouseY = 0;
             document.addEventListener('mousemove', (e) => {
                 mouseX = (e.clientX / window.innerWidth) * 2 - 1;
                 mouseY = -(e.clientY / window.innerHeight) * 2 + 1;
-                console.log('Mouse moved: x=', mouseX, 'y=', mouseY);
+                console.log('Mouse moved: x=', mouseX, 'y=', mouseY); // TODO: Remove in production
             });
 
             function animateCosmicScene() {
@@ -111,9 +104,6 @@ if (typeof THREE !== 'undefined') {
                 camera.position.x += (mouseX * 20 - camera.position.x) * 0.05;
                 camera.position.y += (mouseY * 20 - camera.position.y) * 0.05;
                 camera.lookAt(scene.position);
-
-                planet1.rotation.y += 0.01;
-                planet2.rotation.y += 0.005;
 
                 renderer.render(scene, camera);
             }
@@ -126,7 +116,7 @@ if (typeof THREE !== 'undefined') {
         console.error('Error initializing cosmic scene:', error);
     }
 } else {
-    console.error('Three.js not loaded');
+    console.error('Three.js not loaded - ensure the CDN URL is correct and loaded before this script');
 }
 
 // Holographic Logo Animation
@@ -169,23 +159,31 @@ if (typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined') {
     if (uspCards.length > 0) {
         uspCards.forEach((element, index) => {
             console.log(`Setting up GSAP animation for USP card ${index + 1}`);
-            gsap.from(element, {
-                scrollTrigger: {
-                    trigger: element,
-                    start: 'top 90%', // Adjusted to trigger earlier
-                    end: 'top 60%',
-                    toggleActions: 'play none none none',
-                    markers: false // Set to true for debugging
+            gsap.fromTo(element, 
+                {
+                    opacity: 0,
+                    y: 50,
+                    rotationY: 20
                 },
-                opacity: 0,
-                y: 50,
-                rotationY: 20,
-                duration: 1,
-                delay: index * 0.2,
-                ease: 'power2.out',
-                onStart: () => console.log(`Animation started for USP card ${index + 1}`),
-                onComplete: () => console.log(`Animation completed for USP card ${index + 1}`)
-            });
+                {
+                    scrollTrigger: {
+                        trigger: element,
+                        start: 'top 100%', // Adjusted to trigger when the top of the element hits the bottom of the viewport
+                        end: 'top 70%',
+                        scrub: 1, // Adds parallax effect by tying animation to scroll position
+                        toggleActions: 'play none none none',
+                        markers: false // Set to true for debugging
+                    },
+                    opacity: 1,
+                    y: 0,
+                    rotationY: 0,
+                    duration: 1,
+                    delay: index * 0.2,
+                    ease: 'power2.out',
+                    onStart: () => console.log(`Animation started for USP card ${index + 1}`),
+                    onComplete: () => console.log(`Animation completed for USP card ${index + 1}`)
+                }
+            );
         });
         console.log('GSAP scroll animations initialized for USP cards');
     } else {
