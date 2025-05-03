@@ -95,7 +95,6 @@ if (typeof THREE !== 'undefined') {
             document.addEventListener('mousemove', (e) => {
                 mouseX = (e.clientX / window.innerWidth) * 2 - 1;
                 mouseY = -(e.clientY / window.innerHeight) * 2 + 1;
-                console.log('Mouse moved: x=', mouseX, 'y=', mouseY); // TODO: Remove in production
             });
 
             function animateCosmicScene() {
@@ -162,22 +161,21 @@ if (typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined') {
             gsap.fromTo(element, 
                 {
                     opacity: 0,
-                    y: 50,
-                    rotationY: 20
+                    y: 100, // Increased for more pronounced effect
+                    rotationY: 30 // Increased for more noticeable 3D effect
                 },
                 {
                     scrollTrigger: {
                         trigger: element,
-                        start: 'top 100%', // Adjusted to trigger when the top of the element hits the bottom of the viewport
-                        end: 'top 70%',
-                        scrub: 1, // Adds parallax effect by tying animation to scroll position
+                        start: 'top 100%',
+                        end: 'top 60%',
                         toggleActions: 'play none none none',
-                        markers: false // Set to true for debugging
+                        markers: false
                     },
                     opacity: 1,
                     y: 0,
                     rotationY: 0,
-                    duration: 1,
+                    duration: 1.2,
                     delay: index * 0.2,
                     ease: 'power2.out',
                     onStart: () => console.log(`Animation started for USP card ${index + 1}`),
