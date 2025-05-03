@@ -350,12 +350,31 @@ nav ul li {
     box-shadow: 0 0 15px #00eaff;
     transform: rotateY(0deg);
     transition: all 0.5s;
+    position: relative;
 }
 
 .holo-usp-card:hover {
     transform: rotateY(10deg);
     border-color: #ffd700;
     box-shadow: 0 0 25px #ffd700;
+}
+
+.holo-usp-card:hover::before {
+    content: '';
+    position: absolute;
+    top: -2px;
+    left: -2px;
+    width: calc(100% + 4px);
+    height: calc(100% + 4px);
+    border: 2px solid #ffd700;
+    border-radius: 10px;
+    animation: cardGlow 1.5s infinite;
+}
+
+@keyframes cardGlow {
+    0% { border-color: #ffd700; opacity: 0.5; }
+    50% { border-color: #00eaff; opacity: 1; }
+    100% { border-color: #ffd700; opacity: 0.5; }
 }
 
 .holo-usp-card h3 {
