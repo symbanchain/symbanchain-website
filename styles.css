@@ -92,10 +92,10 @@ nav ul li {
 .holo-link:hover::before {
     content: '';
     position: absolute;
-    top: -2px;
-    left: -2px;
-    width: calc(100% + 4px);
-    height: calc(100% + 4px);
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
     border: 2px solid #ffd700;
     border-radius: 5px;
     animation: cardGlow 1.5s infinite;
@@ -128,10 +128,10 @@ nav ul li {
 .holo-dropdown .holo-toggle:hover::before {
     content: '';
     position: absolute;
-    top: -2px;
-    left: -2px;
-    width: calc(100% + 4px);
-    height: calc(100% + 4px);
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
     border: 2px solid #ffd700;
     border-radius: 5px;
     animation: cardGlow 1.5s infinite;
@@ -365,6 +365,7 @@ nav ul li {
     flex-wrap: wrap;
     justify-content: center;
     gap: 40px;
+    perspective: 1000px; /* Added to ensure 3D transforms render correctly */
 }
 
 .holo-usp-card {
@@ -380,7 +381,7 @@ nav ul li {
 }
 
 .holo-usp-card:hover {
-    transform: rotateY(10deg) scale(1.05);
+    transform: rotateY(10deg) scale(1.05) !important;
     border-color: #ffd700;
     box-shadow: 0 0 25px #ffd700;
 }
