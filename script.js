@@ -161,32 +161,51 @@ if (typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined') {
             gsap.fromTo(element, 
                 {
                     opacity: 0,
-                    y: 100, // Increased for more pronounced effect
-                    rotationY: 30 // Increased for more noticeable 3D effect
+                    y: 150,
+                    rotationY: 45
                 },
                 {
                     scrollTrigger: {
                         trigger: element,
                         start: 'top 100%',
-                        end: 'top 60%',
-                        toggleActions: 'play none none none',
+                        end: 'top 30%', // Extended range for slower, more pronounced effect
+                        scrub: 2, // Slower parallax effect
                         markers: false
                     },
                     opacity: 1,
-                    y: 0,
-                    rotationY: 0,
-                    duration: 1.2,
+                    y: -50,
+                    rotationY: -15,
+                    duration: 1.5,
                     delay: index * 0.2,
                     ease: 'power2.out',
                     onStart: () => console.log(`Animation started for USP card ${index + 1}`),
                     onComplete: () => console.log(`Animation completed for USP card ${index + 1}`)
                 }
             );
+
+            // Debug hover events
+            element.addEventListener('mouseenter', () => {
+                console.log(`Hover started for USP card ${index + 1}`);
+            });
+            element.addEventListener('mouseleave', () => {
+                console.log(`Hover ended for USP card ${index + 1}`);
+            });
         });
         console.log('GSAP scroll animations initialized for USP cards');
     } else {
         console.error('No USP cards found for GSAP animation');
     }
+
+    // Debug hover events for top menu items
+    const menuLinks = document.querySelectorAll('.holo-link, .holo-toggle');
+    menuLinks.forEach((link, index) => {
+        link.addEventListener('mouseenter', () => {
+            console.log(`Hover started for menu item ${index + 1}`);
+        });
+        link.addEventListener('mouseleave', () => {
+            console.log(`Hover ended for menu item ${index + 1}`);
+        });
+    });
 } else {
     console.error('GSAP or ScrollTrigger not loaded');
 }
