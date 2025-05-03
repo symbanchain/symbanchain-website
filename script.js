@@ -63,11 +63,13 @@ if (joinAirdropBtn && airdropModal && closeAirdropModal) {
 }
 
 // Cosmic Scene with Three.js
+let scene, camera, renderer;
+
 if (typeof THREE !== 'undefined') {
     try {
-        const scene = new THREE.Scene();
-        const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
-        const renderer = new THREE.WebGLRenderer({ canvas: document.getElementById('cosmicCanvas'), alpha: true });
+        scene = new THREE.Scene();
+        camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+        renderer = new THREE.WebGLRenderer({ canvas: document.getElementById('cosmicCanvas'), alpha: true });
 
         if (renderer) {
             renderer.setSize(window.innerWidth, window.innerHeight);
@@ -108,6 +110,16 @@ if (typeof THREE !== 'undefined') {
             }
             animateCosmicScene();
             console.log('Cosmic scene initialized successfully');
+
+            // Resize handler for responsive canvas
+            window.addEventListener('resize', () => {
+                const width = window.innerWidth;
+                const height = window.innerHeight;
+                renderer.setSize(width, height);
+                camera.aspect = width / height;
+                camera.updateProjectionMatrix();
+                console.log('Canvas resized for cosmic scene');
+            });
         } else {
             console.error('Cosmic canvas not found');
         }
@@ -168,8 +180,8 @@ if (typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined') {
                     scrollTrigger: {
                         trigger: element,
                         start: 'top 100%',
-                        end: 'top 30%', // Extended range for slower, more pronounced effect
-                        scrub: 2, // Slower parallax effect
+                        end: 'top 30%',
+                        scrub: 2,
                         markers: false
                     },
                     opacity: 1,
@@ -242,3 +254,16 @@ if (countdownTimer) {
 } else {
     console.error('Countdown timer elements not found');
 }
+
+// Hamburger Menu Toggle for Mobile
+const hamburger = document.createElement('button');
+hamburger.classList.add('hamburger');
+hamburger.innerHTML = '☰';
+document.querySelector('header').insertBefore(hamburger, document.querySelector('nav'));
+
+const navMenu = document.querySelector('nav ul');
+hamburger.addEventListener('click', () => {
+    navMenu.classList.toggle('active');
+    hamburger.innerHTML = navMenu.classList.contains('active') ? '✕' : '☰';
+    console.log('Hamburger menu toggled');
+});
