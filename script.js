@@ -60,65 +60,70 @@ if (joinAirdropBtn && airdropModal && closeAirdropModal) {
 
 // Cosmic Scene with Three.js
 if (typeof THREE !== 'undefined') {
-    const scene = new THREE.Scene();
-    const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
-    const renderer = new THREE.WebGLRenderer({ canvas: document.getElementById('cosmicCanvas'), alpha: true });
+    try {
+        const scene = new THREE.Scene();
+        const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+        const renderer = new THREE.WebGLRenderer({ canvas: document.getElementById('cosmicCanvas'), alpha: true });
 
-    if (renderer) {
-        renderer.setSize(window.innerWidth, window.innerHeight);
-        console.log('Three.js renderer initialized');
+        if (renderer) {
+            renderer.setSize(window.innerWidth, window.innerHeight);
+            console.log('Three.js renderer initialized');
 
-        // Starfield
-        const starGeometry = new THREE.BufferGeometry();
-        const starMaterial = new THREE.PointsMaterial({ color: 0xFFFFFF, size: 0.1 });
-        const starVertices = [];
+            // Starfield
+            const starGeometry = new THREE.BufferGeometry();
+            const starMaterial = new THREE.PointsMaterial({ color: 0xFFFFFF, size: 0.1 });
+            const starVertices = [];
 
-        for (let i = 0; i < 5000; i++) {
-            const x = (Math.random() - 0.5) * 2000;
-            const y = (Math.random() - 0.5) * 2000;
-            const z = (Math.random() - 0.5) * 2000;
-            starVertices.push(x, y, z);
+            for (let i = 0; i < 5000; i++) {
+                const x = (Math.random() - 0.5) * 2000;
+                const y = (Math.random() - 0.5) * 2000;
+                const z = (Math.random() - 0.5) * 2000;
+                starVertices.push(x, y, z);
+            }
+
+            starGeometry.setAttribute('position', new THREE.Float32BufferAttribute(starVertices, 3));
+            const stars = new THREE.Points(starGeometry, starMaterial);
+            scene.add(stars);
+
+            // Planets
+            const planetGeometry = new THREE.SphereGeometry(5, 32, 32);
+            const planetMaterial = new THREE.MeshBasicMaterial({ color: 0x00eaff, wireframe: true });
+            const planet1 = new THREE.Mesh(planetGeometry, planetMaterial);
+            planet1.position.set(20, 10, -50);
+            scene.add(planet1);
+
+            const planet2 = new THREE.Mesh(planetGeometry, planetMaterial);
+            planet2.position.set(-30, -15, -70);
+            scene.add(planet2);
+
+            camera.position.z = 50;
+
+            let mouseX = 0, mouseY = 0;
+            document.addEventListener('mousemove', (e) => {
+                mouseX = (e.clientX / window.innerWidth) * 2 - 1;
+                mouseY = -(e.clientY / window.innerHeight) * 2 + 1;
+                console.log('Mouse moved: x=', mouseX, 'y=', mouseY);
+            });
+
+            function animateCosmicScene() {
+                requestAnimationFrame(animateCosmicScene);
+
+                camera.position.x += (mouseX * 20 - camera.position.x) * 0.05;
+                camera.position.y += (mouseY * 20 - camera.position.y) * 0.05;
+                camera.lookAt(scene.position);
+
+                planet1.rotation.y += 0.01;
+                planet2.rotation.y += 0.005;
+
+                renderer.render(scene, camera);
+            }
+            animateCosmicScene();
+            console.log('Cosmic scene initialized successfully');
+        } else {
+            console.error('Cosmic canvas not found');
         }
-
-        starGeometry.setAttribute('position', new THREE.Float32BufferAttribute(starVertices, 3));
-        const stars = new THREE.Points(starGeometry, starMaterial);
-        scene.add(stars);
-
-        // Planets
-        const planetGeometry = new THREE.SphereGeometry(5, 32, 32);
-        const planetMaterial = new THREE.MeshBasicMaterial({ color: 0x00eaff, wireframe: true });
-        const planet1 = new THREE.Mesh(planetGeometry, planetMaterial);
-        planet1.position.set(20, 10, -50);
-        scene.add(planet1);
-
-        const planet2 = new THREE.Mesh(planetGeometry, planetMaterial);
-        planet2.position.set(-30, -15, -70);
-        scene.add(planet2);
-
-        camera.position.z = 50;
-
-        let mouseX = 0, mouseY = 0;
-        document.addEventListener('mousemove', (e) => {
-            mouseX = (e.clientX / window.innerWidth) * 2 - 1;
-            mouseY = -(e.clientY / window.innerHeight) * 2 + 1;
-        });
-
-        function animateCosmicScene() {
-            requestAnimationFrame(animateCosmicScene);
-
-            camera.position.x += (mouseX * 20 - camera.position.x) * 0.05;
-            camera.position.y += (mouseY * 20 - camera.position.y) * 0.05;
-            camera.lookAt(scene.position);
-
-            planet1.rotation.y += 0.01;
-            planet2.rotation.y += 0.005;
-
-            renderer.render(scene, camera);
-        }
-        animateCosmicScene();
-        console.log('Cosmic scene initialized');
-    } else {
-        console.error('Cosmic canvas not found');
+    } catch (error) {
+        console.error('Error initializing cosmic scene:', error);
     }
 } else {
     console.error('Three.js not loaded');
@@ -132,6 +137,8 @@ if (holoLogo) {
         { scale: 1, opacity: 1, duration: 2, ease: 'power2.out' }
     );
     console.log('Holographic logo animation started');
+} else {
+    console.error('Holo logo element not found');
 }
 
 // Typewriter Effect for Tagline
@@ -156,24 +163,34 @@ window.addEventListener('load', () => {
 if (typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined') {
     gsap.registerPlugin(ScrollTrigger);
 
-    gsap.utils.toArray('.holo-usp-card').forEach((element, index) => {
-        gsap.from(element, {
-            scrollTrigger: {
-                trigger: element,
-                start: 'top 80%',
-                end: 'top 50%',
-                toggleActions: 'play none none none',
-                markers: false // Set to true for debugging
-            },
-            opacity: 0,
-            y: 50,
-            rotationY: 20,
-            duration: 1,
-            delay: index * 0.2,
-            ease: 'power2.out'
+    console.log('GSAP and ScrollTrigger loaded, initializing animations');
+
+    const uspCards = document.querySelectorAll('.holo-usp-card');
+    if (uspCards.length > 0) {
+        uspCards.forEach((element, index) => {
+            console.log(`Setting up GSAP animation for USP card ${index + 1}`);
+            gsap.from(element, {
+                scrollTrigger: {
+                    trigger: element,
+                    start: 'top 90%', // Adjusted to trigger earlier
+                    end: 'top 60%',
+                    toggleActions: 'play none none none',
+                    markers: false // Set to true for debugging
+                },
+                opacity: 0,
+                y: 50,
+                rotationY: 20,
+                duration: 1,
+                delay: index * 0.2,
+                ease: 'power2.out',
+                onStart: () => console.log(`Animation started for USP card ${index + 1}`),
+                onComplete: () => console.log(`Animation completed for USP card ${index + 1}`)
+            });
         });
-    });
-    console.log('GSAP scroll animations initialized for USP cards');
+        console.log('GSAP scroll animations initialized for USP cards');
+    } else {
+        console.error('No USP cards found for GSAP animation');
+    }
 } else {
     console.error('GSAP or ScrollTrigger not loaded');
 }
