@@ -80,12 +80,25 @@ nav ul li {
     border: 1px solid #00eaff;
     border-radius: 5px;
     transition: all 0.3s;
+    position: relative;
 }
 
 .holo-link:hover {
     background: #00eaff;
     color: #000;
     box-shadow: 0 0 15px #00eaff;
+}
+
+.holo-link:hover::before {
+    content: '';
+    position: absolute;
+    top: -2px;
+    left: -2px;
+    width: calc(100% + 4px);
+    height: calc(100% + 4px);
+    border: 2px solid #ffd700;
+    border-radius: 5px;
+    animation: cardGlow 1.5s infinite;
 }
 
 .holo-dropdown .holo-toggle {
@@ -98,6 +111,7 @@ nav ul li {
     border: 1px solid #00eaff;
     border-radius: 5px;
     transition: all 0.3s;
+    position: relative;
 }
 
 .holo-dropdown .holo-toggle::after {
@@ -109,6 +123,18 @@ nav ul li {
     background: #00eaff;
     color: #000;
     box-shadow: 0 0 15px #00eaff;
+}
+
+.holo-dropdown .holo-toggle:hover::before {
+    content: '';
+    position: absolute;
+    top: -2px;
+    left: -2px;
+    width: calc(100% + 4px);
+    height: calc(100% + 4px);
+    border: 2px solid #ffd700;
+    border-radius: 5px;
+    animation: cardGlow 1.5s infinite;
 }
 
 .holo-menu {
@@ -354,7 +380,7 @@ nav ul li {
 }
 
 .holo-usp-card:hover {
-    transform: rotateY(10deg);
+    transform: rotateY(10deg) scale(1.05);
     border-color: #ffd700;
     box-shadow: 0 0 25px #ffd700;
 }
