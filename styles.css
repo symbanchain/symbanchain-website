@@ -43,30 +43,6 @@ body {
     100% { background-position: 200px 200px; }
 }
 
-.audio-toggle {
-    position: fixed;
-    top: 20px;
-    right: 20px;
-    background: rgba(0, 0, 0, 0.8);
-    border: 2px solid #00eaff;
-    color: #00eaff;
-    padding: 5px 10px;
-    border-radius: 5px;
-    cursor: pointer;
-    z-index: 2000;
-    transition: all 0.3s;
-}
-
-.audio-toggle:hover {
-    background: #00eaff;
-    color: #000;
-    box-shadow: 0 0 10px #00eaff;
-}
-
-.audio-toggle.muted {
-    text-decoration: line-through;
-}
-
 header {
     position: fixed;
     top: 0;
@@ -224,12 +200,13 @@ nav ul li {
 .holo-btn::before {
     content: '';
     position: absolute;
-    top: -2px;
-    left: -2px;
-    width: calc(100% + 4px);
-    height: calc(100% + 4px);
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
     border: 2px solid transparent;
     border-radius: 5px;
+    box-sizing: border-box;
     animation: energyPulse 2s infinite;
 }
 
@@ -534,12 +511,18 @@ footer p {
     text-align: center;
     width: 90%;
     max-width: 500px;
-    animation: slideUp 0.5s ease-in-out;
+    animation: slideUp 0.5s ease-in-out forwards;
 }
 
 @keyframes slideUp {
-    0% { transform: translateX(-50%) translateY(100px); opacity: 0; }
-    100% { transform: translateX(-50%) translateY(0); opacity: 1; }
+    0% { 
+        transform: translateX(-50%) translateY(100px); 
+        opacity: 0; 
+    }
+    100% { 
+        transform: translateX(-50%) translateY(0); 
+        opacity: 1; 
+    }
 }
 
 .cookie-content p {
@@ -566,19 +549,34 @@ footer p {
 
 .cookie-btn {
     padding: 10px 20px;
-    background: rgba(0, 234, 255, 0.1);
     border: 2px solid #00eaff;
-    color: #fff;
     border-radius: 5px;
     font-family: 'Orbitron', sans-serif;
     font-size: 16px;
     cursor: pointer;
     transition: all 0.3s;
-    box-shadow: 0 0 10px #00eaff;
 }
 
-.cookie-btn:hover {
+.accept-btn {
     background: #00eaff;
     color: #000;
-    box-shadow: 0 0 20px #00eaff;
+    box-shadow: 0 0 15px #00eaff;
+}
+
+.accept-btn:hover {
+    background: #ffd700;
+    color: #000;
+    box-shadow: 0 0 20px #ffd700;
+}
+
+.customize-btn {
+    background: rgba(0, 234, 255, 0.1);
+    color: #fff;
+    opacity: 0.7;
+}
+
+.customize-btn:hover {
+    opacity: 1;
+    background: rgba(0, 234, 255, 0.3);
+    box-shadow: 0 0 10px #00eaff;
 }
