@@ -1,38 +1,5 @@
 console.log('Script.js loaded');
 
-// Audio Ambience
-const cosmicAudio = new Audio('https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3'); // Placeholder cosmic sound
-cosmicAudio.loop = true;
-cosmicAudio.volume = 0.3;
-
-const audioToggle = document.getElementById('audioToggle');
-let isAudioPlaying = false;
-
-cosmicAudio.addEventListener('canplaythrough', () => {
-    cosmicAudio.play().then(() => {
-        isAudioPlaying = true;
-        console.log('Cosmic audio playing');
-    }).catch(err => {
-        console.error('Audio playback failed:', err);
-    });
-});
-
-audioToggle.addEventListener('click', () => {
-    if (isAudioPlaying) {
-        cosmicAudio.pause();
-        audioToggle.classList.add('muted');
-        audioToggle.textContent = '🔇';
-        isAudioPlaying = false;
-        console.log('Audio muted');
-    } else {
-        cosmicAudio.play();
-        audioToggle.classList.remove('muted');
-        audioToggle.textContent = '🔊';
-        isAudioPlaying = true;
-        console.log('Audio unmuted');
-    }
-});
-
 // Cookie Consent Popup
 const cookieConsent = document.getElementById('cookieConsent');
 const acceptCookiesBtn = document.getElementById('acceptCookies');
@@ -96,57 +63,63 @@ if (typeof THREE !== 'undefined') {
     const scene = new THREE.Scene();
     const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
     const renderer = new THREE.WebGLRenderer({ canvas: document.getElementById('cosmicCanvas'), alpha: true });
-    renderer.setSize(window.innerWidth, window.innerHeight);
 
-    // Starfield
-    const starGeometry = new THREE.BufferGeometry();
-    const starMaterial = new THREE.PointsMaterial({ color: 0xFFFFFF, size: 0.1 });
-    const starVertices = [];
+    if (renderer) {
+        renderer.setSize(window.innerWidth, window.innerHeight);
+        console.log('Three.js renderer initialized');
 
-    for (let i = 0; i < 5000; i++) {
-        const x = (Math.random() - 0.5) * 2000;
-        const y = (Math.random() - 0.5) * 2000;
-        const z = (Math.random() - 0.5) * 2000;
-        starVertices.push(x, y, z);
+        // Starfield
+        const starGeometry = new THREE.BufferGeometry();
+        const starMaterial = new THREE.PointsMaterial({ color: 0xFFFFFF, size: 0.1 });
+        const starVertices = [];
+
+        for (let i = 0; i < 5000; i++) {
+            const x = (Math.random() - 0.5) * 2000;
+            const y = (Math.random() - 0.5) * 2000;
+            const z = (Math.random() - 0.5) * 2000;
+            starVertices.push(x, y, z);
+        }
+
+        starGeometry.setAttribute('position', new THREE.Float32BufferAttribute(starVertices, 3));
+        const stars = new THREE.Points(starGeometry, starMaterial);
+        scene.add(stars);
+
+        // Planets
+        const planetGeometry = new THREE.SphereGeometry(5, 32, 32);
+        const planetMaterial = new THREE.MeshBasicMaterial({ color: 0x00eaff, wireframe: true });
+        const planet1 = new THREE.Mesh(planetGeometry, planetMaterial);
+        planet1.position.set(20, 10, -50);
+        scene.add(planet1);
+
+        const planet2 = new THREE.Mesh(planetGeometry, planetMaterial);
+        planet2.position.set(-30, -15, -70);
+        scene.add(planet2);
+
+        camera.position.z = 50;
+
+        let mouseX = 0, mouseY = 0;
+        document.addEventListener('mousemove', (e) => {
+            mouseX = (e.clientX / window.innerWidth) * 2 - 1;
+            mouseY = -(e.clientY / window.innerHeight) * 2 + 1;
+        });
+
+        function animateCosmicScene() {
+            requestAnimationFrame(animateCosmicScene);
+
+            camera.position.x += (mouseX * 20 - camera.position.x) * 0.05;
+            camera.position.y += (mouseY * 20 - camera.position.y) * 0.05;
+            camera.lookAt(scene.position);
+
+            planet1.rotation.y += 0.01;
+            planet2.rotation.y += 0.005;
+
+            renderer.render(scene, camera);
+        }
+        animateCosmicScene();
+        console.log('Cosmic scene initialized');
+    } else {
+        console.error('Cosmic canvas not found');
     }
-
-    starGeometry.setAttribute('position', new THREE.Float32BufferAttribute(starVertices, 3));
-    const stars = new THREE.Points(starGeometry, starMaterial);
-    scene.add(stars);
-
-    // Planets
-    const planetGeometry = new THREE.SphereGeometry(5, 32, 32);
-    const planetMaterial = new THREE.MeshBasicMaterial({ color: 0x00eaff, wireframe: true });
-    const planet1 = new THREE.Mesh(planetGeometry, planetMaterial);
-    planet1.position.set(20, 10, -50);
-    scene.add(planet1);
-
-    const planet2 = new THREE.Mesh(planetGeometry, planetMaterial);
-    planet2.position.set(-30, -15, -70);
-    scene.add(planet2);
-
-    camera.position.z = 50;
-
-    let mouseX = 0, mouseY = 0;
-    document.addEventListener('mousemove', (e) => {
-        mouseX = (e.clientX / window.innerWidth) * 2 - 1;
-        mouseY = -(e.clientY / window.innerHeight) * 2 + 1;
-    });
-
-    function animateCosmicScene() {
-        requestAnimationFrame(animateCosmicScene);
-
-        camera.position.x += (mouseX * 20 - camera.position.x) * 0.05;
-        camera.position.y += (mouseY * 20 - camera.position.y) * 0.05;
-        camera.lookAt(scene.position);
-
-        planet1.rotation.y += 0.01;
-        planet2.rotation.y += 0.005;
-
-        renderer.render(scene, camera);
-    }
-    animateCosmicScene();
-    console.log('Cosmic scene initialized');
 } else {
     console.error('Three.js not loaded');
 }
@@ -183,12 +156,14 @@ window.addEventListener('load', () => {
 if (typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined') {
     gsap.registerPlugin(ScrollTrigger);
 
-    gsap.utils.toArray('[data-gsap]').forEach((element, index) => {
+    gsap.utils.toArray('.holo-usp-card').forEach((element, index) => {
         gsap.from(element, {
             scrollTrigger: {
                 trigger: element,
                 start: 'top 80%',
-                toggleActions: 'play none none none'
+                end: 'top 50%',
+                toggleActions: 'play none none none',
+                markers: false // Set to true for debugging
             },
             opacity: 0,
             y: 50,
@@ -198,7 +173,7 @@ if (typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined') {
             ease: 'power2.out'
         });
     });
-    console.log('GSAP scroll animations initialized');
+    console.log('GSAP scroll animations initialized for USP cards');
 } else {
     console.error('GSAP or ScrollTrigger not loaded');
 }
