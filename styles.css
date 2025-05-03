@@ -60,6 +60,7 @@ header {
     filter: drop-shadow(0 0 10px #00eaff);
 }
 
+/* Navigation */
 nav ul {
     display: flex;
     list-style: none;
@@ -172,6 +173,67 @@ nav ul li {
     display: block;
 }
 
+/* Hamburger Menu for Mobile */
+.hamburger {
+    display: none;
+    font-size: 30px;
+    color: #00eaff;
+    cursor: pointer;
+    background: none;
+    border: none;
+}
+
+@media (max-width: 768px) {
+    header {
+        padding: 15px 20px;
+    }
+
+    .logo-img {
+        height: 40px;
+    }
+
+    .hamburger {
+        display: block;
+    }
+
+    nav ul {
+        display: none;
+        flex-direction: column;
+        position: absolute;
+        top: 70px;
+        left: 0;
+        width: 100%;
+        background: rgba(0, 0, 0, 0.95);
+        padding: 20px 0;
+    }
+
+    nav ul.active {
+        display: flex;
+    }
+
+    nav ul li {
+        margin: 10px 0;
+        text-align: center;
+    }
+
+    .holo-link, .holo-dropdown .holo-toggle {
+        font-size: 14px;
+        padding: 10px;
+    }
+
+    .holo-menu {
+        position: static;
+        background: rgba(0, 0, 0, 0.8);
+        border: none;
+        box-shadow: none;
+        padding: 10px 0;
+    }
+
+    .holo-menu a {
+        font-size: 12px;
+    }
+}
+
 .hero {
     height: 100vh;
     display: flex;
@@ -257,6 +319,50 @@ nav ul li {
 .airdrop-btn:hover {
     background: #00eaff;
     color: #000;
+}
+
+@media (max-width: 1024px) {
+    .hero-content h1 {
+        font-size: 48px;
+        margin-bottom: 30px;
+    }
+
+    .holo-logo {
+        width: 150px;
+        height: 150px;
+    }
+
+    .holo-btn {
+        padding: 12px 25px;
+        font-size: 16px;
+    }
+}
+
+@media (max-width: 768px) {
+    .hero {
+        height: auto;
+        padding: 100px 20px;
+    }
+
+    .hero-content h1 {
+        font-size: 36px;
+        margin-bottom: 20px;
+    }
+
+    .holo-logo {
+        width: 120px;
+        height: 120px;
+    }
+
+    .holo-actions {
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    .holo-btn {
+        padding: 10px 20px;
+        font-size: 14px;
+    }
 }
 
 .holo-modal {
@@ -346,6 +452,27 @@ nav ul li {
     box-shadow: 0 0 20px #00eaff;
 }
 
+@media (max-width: 768px) {
+    .holo-modal-content {
+        padding: 20px;
+        max-width: 90%;
+    }
+
+    .holo-modal-content h2 {
+        font-size: 24px;
+        margin-bottom: 15px;
+    }
+
+    #airdropForm input {
+        font-size: 14px;
+    }
+
+    #airdropForm button {
+        font-size: 16px;
+        padding: 8px;
+    }
+}
+
 .holo-usps {
     padding: 100px 50px;
     text-align: center;
@@ -365,7 +492,7 @@ nav ul li {
     flex-wrap: wrap;
     justify-content: center;
     gap: 40px;
-    perspective: 1000px; /* Added to ensure 3D transforms render correctly */
+    perspective: 1000px;
 }
 
 .holo-usp-card {
@@ -414,6 +541,61 @@ nav ul li {
 .holo-usp-card p {
     font-size: 16px;
     opacity: 0.8;
+}
+
+@media (max-width: 1024px) {
+    .holo-usps {
+        padding: 80px 30px;
+    }
+
+    .holo-usps h2 {
+        font-size: 40px;
+        margin-bottom: 40px;
+    }
+
+    .holo-usp-card {
+        width: 220px;
+        padding: 20px;
+    }
+
+    .holo-usp-card h3 {
+        font-size: 20px;
+    }
+
+    .holo-usp-card p {
+        font-size: 14px;
+    }
+}
+
+@media (max-width: 768px) {
+    .holo-usps {
+        padding: 60px 20px;
+    }
+
+    .holo-usps h2 {
+        font-size: 32px;
+        margin-bottom: 30px;
+    }
+
+    .holo-usp-grid {
+        flex-direction: column;
+        align-items: center;
+        gap: 20px;
+    }
+
+    .holo-usp-card {
+        width: 100%;
+        max-width: 300px;
+        padding: 15px;
+    }
+
+    .holo-usp-card h3 {
+        font-size: 18px;
+    }
+
+    .holo-usp-card p {
+        font-size: 13px;
+    }
 }
 
 .holo-ido {
@@ -480,6 +662,71 @@ nav ul li {
     font-size: 20px;
 }
 
+@media (max-width: 1024px) {
+    .holo-ido {
+        padding: 80px 30px;
+    }
+
+    .holo-ido h2 {
+        font-size: 40px;
+        margin-bottom: 30px;
+    }
+
+    .holo-countdown-sphere {
+        width: 250px;
+        height: 250px;
+    }
+
+    .holo-countdown div {
+        padding: 10px;
+        font-size: 18px;
+    }
+
+    .holo-countdown span {
+        font-size: 28px;
+    }
+
+    .ido-btn {
+        padding: 12px 30px;
+        font-size: 18px;
+    }
+}
+
+@media (max-width: 768px) {
+    .holo-ido {
+        padding: 60px 20px;
+    }
+
+    .holo-ido h2 {
+        font-size: 32px;
+        margin-bottom: 20px;
+    }
+
+    .holo-countdown-sphere {
+        width: 200px;
+        height: 200px;
+    }
+
+    .holo-countdown {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .holo-countdown div {
+        padding: 8px;
+        font-size: 16px;
+    }
+
+    .holo-countdown span {
+        font-size: 24px;
+    }
+
+    .ido-btn {
+        padding: 10px 20px;
+        font-size: 16px;
+    }
+}
+
 .holo-footer {
     padding: 50px;
     text-align: center;
@@ -540,6 +787,38 @@ footer p {
     font-size: 14px;
     margin-top: 20px;
     opacity: 0.7;
+}
+
+@media (max-width: 768px) {
+    .holo-footer {
+        padding: 30px 20px;
+    }
+
+    .footer-logo {
+        height: 30px;
+        margin-bottom: 15px;
+    }
+
+    .footer-links {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 10px;
+    }
+
+    .footer-links a {
+        margin: 5px 10px;
+        font-size: 12px;
+    }
+
+    .social-links a {
+        margin: 5px 10px;
+        font-size: 14px;
+    }
+
+    footer p {
+        font-size: 12px;
+    }
 }
 
 .cookie-consent {
@@ -625,4 +904,21 @@ footer p {
     opacity: 1;
     background: rgba(0, 234, 255, 0.3);
     box-shadow: 0 0 10px #00eaff;
+}
+
+@media (max-width: 768px) {
+    .cookie-consent {
+        padding: 15px;
+        max-width: 90%;
+    }
+
+    .cookie-content p {
+        font-size: 14px;
+        margin-bottom: 15px;
+    }
+
+    .cookie-btn {
+        padding: 8px 15px;
+        font-size: 14px;
+    }
 }
