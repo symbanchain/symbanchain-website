@@ -86,10 +86,10 @@
             <span id="closeAirdropModal" class="holo-close">×</span>
             <h2>Join the SymbanChain Airdrop</h2>
             <form id="airdropForm">
-                <input type="text" placeholder="Wallet Address" required>
-                <input type="text" placeholder="X Handle" required>
-                <input type="text" placeholder="Telegram ID" required>
-                <input type="email" placeholder="Email" required>
+                <input type="text" id="walletAddress" name="walletAddress" placeholder="Wallet Address" required>
+                <input type="text" id="xHandle" name="xHandle" placeholder="X Handle" required>
+                <input type="text" id="telegramId" name="telegramId" placeholder="Telegram ID" required>
+                <input type="email" id="email" name="email" placeholder="Email" required>
                 <button type="submit" class="holo-btn">Claim 1,000 $SYMBAN</button>
             </form>
         </div>
@@ -153,9 +153,9 @@
         </div>
     </footer>
 
-    <script src="https://unpkg.com/three@0.155.0/build/three.min.js"></script>
+    <script src="https://unpkg.com/three@0.155.0/build/three.module.js" type="module"></script>
     <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
-    <script src="script.js"></script>
+    <script src="script.js" type="module"></script>
 </body>
 </html>
