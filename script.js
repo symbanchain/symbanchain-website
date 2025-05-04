@@ -2,6 +2,26 @@ import * as THREE from 'https://unpkg.com/three@0.155.0/build/three.module.js';
 
 console.log('Script.js loaded');
 
+// Debug Logo Loading
+const headerLogo = document.querySelector('.logo-img');
+const footerLogo = document.querySelector('.footer-logo');
+const heroLogo = document.querySelector('.holo-logo');
+
+if (headerLogo) {
+    headerLogo.addEventListener('load', () => console.log('Header logo loaded successfully'));
+    headerLogo.addEventListener('error', () => console.error('Header logo failed to load:', headerLogo.src));
+}
+
+if (footerLogo) {
+    footerLogo.addEventListener('load', () => console.log('Footer logo loaded successfully'));
+    footerLogo.addEventListener('error', () => console.error('Footer logo failed to load:', footerLogo.src));
+}
+
+// Note: heroLogo uses a background image, so we can't directly listen for load events
+if (heroLogo) {
+    console.log('Hero logo (background image) set to:', getComputedStyle(heroLogo).backgroundImage);
+}
+
 // Cookie Consent Popup
 const cookieConsent = document.getElementById('cookieConsent');
 const acceptCookiesBtn = document.getElementById('acceptCookies');
