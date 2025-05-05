@@ -17,7 +17,6 @@ if (footerLogo) {
     footerLogo.addEventListener('error', () => console.error('Footer logo failed to load:', footerLogo.src));
 }
 
-// Note: heroLogo uses a background image, so we can't directly listen for load events
 if (heroLogo) {
     console.log('Hero logo (background image) set to:', getComputedStyle(heroLogo).backgroundImage);
 }
@@ -153,9 +152,21 @@ if (typeof THREE !== 'undefined') {
 // Holographic Logo Animation
 const holoLogo = document.getElementById('holoLogo');
 if (holoLogo) {
+    // Initial entrance animation
     gsap.fromTo(holoLogo, 
         { scale: 0, opacity: 0 }, 
-        { scale: 1, opacity: 1, duration: 2, ease: 'power2.out' }
+        { scale: 1, opacity: 1, duration: 2, ease: 'power2.out', 
+          onComplete: () => {
+              // Add repeating pulsating effect after entrance
+              gsap.to(holoLogo, {
+                  scale: 1.1,
+                  duration: 1.5,
+                  repeat: -1,
+                  yoyo: true,
+                  ease: 'sine.inOut'
+              });
+          }
+        }
     );
     console.log('Holographic logo animation started');
 } else {
