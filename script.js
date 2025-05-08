@@ -81,7 +81,7 @@ if (joinAirdropBtn && airdropModal && closeAirdropModal) {
     console.error('Airdrop modal elements not found');
 }
 
-// Cosmic Scene with Three.js
+// Cosmic Scene with Three.js (Static Starfield)
 let scene, camera, renderer;
 
 if (typeof THREE !== 'undefined') {
@@ -112,19 +112,8 @@ if (typeof THREE !== 'undefined') {
 
             camera.position.z = 50;
 
-            let mouseX = 0, mouseY = 0;
-            document.addEventListener('mousemove', (e) => {
-                mouseX = (e.clientX / window.innerWidth) * 2 - 1;
-                mouseY = -(e.clientY / window.innerHeight) * 2 + 1;
-            });
-
             function animateCosmicScene() {
                 requestAnimationFrame(animateCosmicScene);
-
-                camera.position.x += (mouseX * 20 - camera.position.x) * 0.05;
-                camera.position.y += (mouseY * 20 - camera.position.y) * 0.05;
-                camera.lookAt(scene.position);
-
                 renderer.render(scene, camera);
             }
             animateCosmicScene();
@@ -152,12 +141,10 @@ if (typeof THREE !== 'undefined') {
 // Holographic Logo Animation
 const holoLogo = document.getElementById('holoLogo');
 if (holoLogo) {
-    // Initial entrance animation
     gsap.fromTo(holoLogo, 
         { scale: 0, opacity: 0 }, 
         { scale: 1, opacity: 1, duration: 2, ease: 'power2.out', 
           onComplete: () => {
-              // Add repeating pulsating effect after entrance
               gsap.to(holoLogo, {
                   scale: 1.1,
                   duration: 1.5,
@@ -172,24 +159,6 @@ if (holoLogo) {
 } else {
     console.error('Holo logo element not found');
 }
-
-// Typewriter Effect for Tagline
-const tagline = "SymbanChain: AI-Powered Web3 Gaming Universe";
-const taglineElement = document.getElementById('heroTagline');
-let i = 0;
-
-function typeWriter() {
-    if (i < tagline.length) {
-        taglineElement.innerHTML += tagline.charAt(i);
-        i++;
-        setTimeout(typeWriter, 50);
-    }
-}
-
-window.addEventListener('load', () => {
-    setTimeout(typeWriter, 2000);
-    console.log('Typewriter effect started');
-});
 
 // GSAP Scroll Animations
 if (typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined') {
@@ -226,7 +195,6 @@ if (typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined') {
                 }
             );
 
-            // Debug hover events
             element.addEventListener('mouseenter', () => {
                 console.log(`Hover started for USP card ${index + 1}`);
             });
@@ -239,7 +207,6 @@ if (typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined') {
         console.error('No USP cards found for GSAP animation');
     }
 
-    // Debug hover events for top menu items
     const menuLinks = document.querySelectorAll('.holo-link, .holo-toggle');
     menuLinks.forEach((link, index) => {
         link.addEventListener('mouseenter', () => {
