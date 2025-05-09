@@ -126,11 +126,12 @@ header {
 @media (max-width: 768px) {
     .hamburger {
         display: block;
-        font-size: 30px;
+        font-size: 24px;
         color: #00eaff;
         cursor: pointer;
         background: none;
         border: none;
+        padding: 0.5rem;
     }
 }
 
@@ -234,26 +235,26 @@ nav ul li {
 
 @media (max-width: 768px) {
     header {
-        padding: 0.9375rem 1.25rem;
+        padding: 0.75rem 1rem;
     }
 
     .logo-img {
-        height: 40px;
+        height: 35px;
     }
 
     .ai-powered {
-        font-size: 0.75rem;
+        font-size: 0.65rem;
     }
 
     nav ul {
         display: none;
         flex-direction: column;
         position: absolute;
-        top: 70px;
+        top: 60px;
         left: 0;
         width: 100%;
         background: rgba(0, 0, 0, 0.95);
-        padding: 1.25rem 0;
+        padding: 1rem 0;
     }
 
     nav ul.active {
@@ -261,13 +262,13 @@ nav ul li {
     }
 
     nav ul li {
-        margin: 0.625rem 0;
+        margin: 0.5rem 0;
         text-align: center;
     }
 
     .holo-link, .holo-dropdown .holo-toggle {
-        font-size: 0.875rem;
-        padding: 0.625rem;
+        font-size: 0.85rem;
+        padding: 0.5rem;
     }
 
     .holo-menu {
@@ -275,7 +276,7 @@ nav ul li {
         background: rgba(0, 0, 0, 0.8);
         border: none;
         box-shadow: none;
-        padding: 0.625rem 0;
+        padding: 0.5rem 0;
     }
 
     .holo-menu a {
@@ -289,12 +290,12 @@ nav ul li {
     }
 
     nav ul li {
-        margin-left: 0.625rem;
+        margin-left: 0.5rem;
     }
 
     .holo-link, .holo-dropdown .holo-toggle {
-        font-size: 0.875rem;
-        padding: 0.5rem 0.75rem;
+        font-size: 0.8rem;
+        padding: 0.4rem 0.6rem;
     }
 }
 
@@ -398,23 +399,23 @@ nav ul li {
 }
 
 @keyframes orbit1 {
-    0% { transform: translate(-50%, -50%) rotate(0deg) translateX(98px) rotate(0deg); }
-    100% { transform: translate(-50%, -50%) rotate(360deg) translateX(98px) rotate(-360deg); }
+    0% { transform: translate(-50%, -50%) rotate(0deg) translateX(94px) rotate(0deg); }
+    100% { transform: translate(-50%, -50%) rotate(360deg) translateX(94px) rotate(-360deg); }
 }
 
 @keyframes orbit2 {
-    0% { transform: translate(-50%, -50%) rotate(0deg) translateX(99px) rotate(0deg); }
-    100% { transform: translate(-50%, -50%) rotate(360deg) translateX(99px) rotate(-360deg); }
+    0% { transform: translate(-50%, -50%) rotate(0deg) translateX(95px) rotate(0deg); }
+    100% { transform: translate(-50%, -50%) rotate(360deg) translateX(95px) rotate(-360deg); }
 }
 
 @keyframes orbit3 {
-    0% { transform: translate(-50%, -50%) rotate(0deg) translateX(100px) rotate(0deg); }
-    100% { transform: translate(-50%, -50%) rotate(360deg) translateX(100px) rotate(-360deg); }
+    0% { transform: translate(-50%, -50%) rotate(0deg) translateX(96px) rotate(0deg); }
+    100% { transform: translate(-50%, -50%) rotate(360deg) translateX(96px) rotate(-360deg); }
 }
 
 @keyframes orbit4 {
-    0% { transform: translate(-50%, -50%) rotate(0deg) translateX(101px) rotate(0deg); }
-    100% { transform: translate(-50%, -50%) rotate(360deg) translateX(101px) rotate(-360deg); }
+    0% { transform: translate(-50%, -50%) rotate(0deg) translateX(97px) rotate(0deg); }
+    100% { transform: translate(-50%, -50%) rotate(360deg) translateX(97px) rotate(-360deg); }
 }
 
 @keyframes colorChange {
@@ -533,6 +534,7 @@ nav ul li {
     .hero-content h1 {
         margin-bottom: 1.5rem;
         top: 250px;
+        font-size: clamp(1.8rem, 4vw, 3.5rem);
     }
 
     .hero-subheading {
@@ -554,11 +556,13 @@ nav ul li {
     .brand-name {
         font-size: 2.3rem;
         letter-spacing: 0.15rem;
+        margin-top: 0.1rem;
     }
 
     .holo-btn {
         padding: 0.75rem 1.5rem;
         font-size: 1rem;
+        min-width: 160px; /* Ensure tappable size on mobile */
     }
 
     .holo-actions {
@@ -570,12 +574,13 @@ nav ul li {
 @media (max-width: 768px) {
     .hero {
         min-height: auto;
-        padding: 100px 20px;
+        padding: 80px 15px;
     }
 
     .hero-content h1 {
         margin-bottom: 1rem;
         top: 220px;
+        font-size: clamp(1.5rem, 3.5vw, 3rem);
     }
 
     .hero-subheading {
@@ -597,6 +602,7 @@ nav ul li {
     .brand-name {
         font-size: 1.8rem;
         letter-spacing: 0.1rem;
+        margin-top: 0.1rem;
     }
 
     .holo-actions {
@@ -608,6 +614,7 @@ nav ul li {
     .holo-btn {
         padding: 0.625rem 1.25rem;
         font-size: 0.875rem;
+        min-width: 140px; /* Ensure tappable size on mobile */
     }
 }
 
@@ -615,6 +622,7 @@ nav ul li {
     .hero-content h1 {
         margin-bottom: 0.75rem;
         top: 200px;
+        font-size: clamp(1.2rem, 3vw, 2.5rem);
     }
 
     .hero-subheading {
@@ -627,14 +635,22 @@ nav ul li {
         font-size: 1rem;
     }
 
+    .holo-logo {
+        width: 110px;
+        height: 110px;
+        background-size: 100px 100px;
+    }
+
     .brand-name {
         font-size: 1.5rem;
         letter-spacing: 0.05rem;
+        margin-top: 0.1rem;
     }
 
     .holo-btn {
         padding: 0.5rem 1rem;
         font-size: 0.75rem;
+        min-width: 120px; /* Ensure tappable size on mobile */
     }
 }
 
@@ -805,6 +821,7 @@ nav ul li {
     #airdropForm button {
         font-size: 1rem;
         padding: 0.5rem;
+        min-width: 140px; /* Ensure tappable size on mobile */
     }
 }
 
