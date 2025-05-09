@@ -6,7 +6,7 @@
     <meta name="description" content="SymbanChain: The ultimate AI-powered Web3 platform. Experience unrivaled security, speed, and rewards in gaming, token creation, and trading. Join our $100M IDO and step into the future.">
     <meta name="keywords" content="SymbanChain, Web3, blockchain, gaming, AI, staking, token creation, IDO, airdrop, investors, crypto">
     <meta name="author" content="SYMBAN AI LTD">
-    <title>SymbanChain | The Future of Web3</title>
+    <title>SymbanChain | Powering the Web3 Universe</title>
     <link rel="icon" href="https://i.imgur.com/MzmK3ec.png" type="image/png">
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Exo+2:wght@400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
@@ -37,7 +37,7 @@
         <nav>
             <ul>
                 <li class="holo-dropdown">
-                    <a href="#" class="holo-toggle">Platform</a>
+                    <span class="holo-toggle">Platform</span>
                     <div class="holo-menu">
                         <a href="create-token.html">Create Token</a>
                         <a href="games.html">Games</a>
@@ -52,7 +52,13 @@
                 <li><a href="faq.html" class="holo-link">FAQ</a></li>
                 <li><a href="contact-us.html" class="holo-link">Contact Us</a></li>
                 <li class="holo-dropdown">
-                    <a href="#" class="holo-toggle">Policies</a>
+                    <span class="holo-toggle">Resources</span>
+                    <div class="holo-menu">
+                        <a href="#">Whitepaper</a>
+                    </div>
+                </li>
+                <li class="holo-dropdown">
+                    <span class="holo-toggle">Policies</span>
                     <div class="holo-menu">
                         <a href="terms.html">Terms</a>
                         <a href="privacy.html">Privacy</a>
@@ -66,20 +72,32 @@
     <!-- Hero Section -->
     <section class="hero">
         <div class="hero-content">
+            <div class="ai-badge">AI-Powered</div>
             <div id="holoLogo" class="holo-logo"></div>
-            <h1 id="heroTagline">SymbanChain: Powering the Web3 Universe with AI 🌌</h1>
-            <p class="hero-subheading">The Safest, Fastest, and Most Rewarding Web3 Platform – Join the Cosmic Revolution!</p>
+            <h1 id="heroTagline">SymbanChain: Powering the Web3 Universe with AI</h1>
+            <p class="hero-subheading">
+                The <span class="highlight">Safest</span>, <span class="highlight">Fastest</span>, <span class="highlight">Most Rewarding</span> & <span class="highlight">Transparent</span> Web3 Platform – Join the Cosmic Revolution!
+            </p>
             <div class="holo-actions">
-                <a href="create-token.html" class="holo-btn">Create Your Token Now</a>
-                <a href="games.html" class="holo-btn">Play to Earn</a>
-                <a href="trade.html" class="holo-btn">Trade on Symban DEX</a>
-                <a href="stake.html" class="holo-btn">Stake for Rewards</a>
-                <a href="wallet.html" class="holo-btn">Get the App</a>
-                <a href="trade.html" class="holo-btn">Explore Tokens</a>
-                <a href="https://t.me/symbanchain" class="holo-btn">Join Community</a>
-                <button id="joinAirdropBtn" class="holo-btn">Claim Airdrop (Limited)</button>
+                <a href="create-token.html" class="holo-btn holo-action-btn">Create Your Token Now</a>
+                <a href="games.html" class="holo-btn holo-action-btn">Play to Earn</a>
+                <a href="trade.html" class="holo-btn holo-action-btn">Trade Tokens Now</a>
+                <a href="stake.html" class="holo-btn holo-action-btn">Stake for Rewards</a>
+                <a href="wallet.html" class="holo-btn holo-action-btn">Get the App</a>
+                <a href="trade.html" class="holo-btn holo-action-btn">Explore Tokens</a>
+                <a href="https://t.me/symbanchain" class="holo-btn holo-action-btn">Join Community</a>
+                <button id="joinAirdropBtn" class="holo-btn holo-action-btn">Claim Airdrop (Limited)</button>
             </div>
         </div>
+        <svg class="nebula-glow" viewBox="0 0 1000 1000" preserveAspectRatio="xMidYMid slice">
+            <defs>
+                <radialGradient id="nebulaGradient" cx="50%" cy="50%" r="50%">
+                    <stop offset="0%" style="stop-color:#00eaff;stop-opacity:0.3" />
+                    <stop offset="100%" style="stop-color:#050514;stop-opacity:0" />
+                </radialGradient>
+            </defs>
+            <circle cx="500" cy="500" r="400" fill="url(#nebulaGradient)" />
+        </svg>
     </section>
 
     <!-- Airdrop Modal -->
@@ -88,10 +106,25 @@
             <span id="closeAirdropModal" class="holo-close">×</span>
             <h2>Join the SymbanChain Airdrop</h2>
             <form id="airdropForm">
-                <input type="text" id="walletAddress" name="walletAddress" placeholder="Wallet Address" required>
-                <input type="text" id="xHandle" name="xHandle" placeholder="X Handle" required>
-                <input type="text" id="telegramId" name="telegramId" placeholder="Telegram ID" required>
-                <input type="email" id="email" name="email" placeholder="Email" required>
+                <div class="form-group">
+                    <label for="walletAddress">Wallet Address <span class="required">*</span></label>
+                    <span class="info-icon">i</span>
+                    <div class="tooltip">Please provide a SymbanChain wallet address. Create one at symban.ai/wallet (available soon) or use a compatible wallet supporting SymbanChain. Do not use Solana, BNB Chain, or other chain addresses.</div>
+                    <input type="text" id="walletAddress" name="walletAddress" placeholder="Wallet Address" autocomplete="off" required>
+                </div>
+                <div class="form-group">
+                    <label for="xHandle">X Handle</label>
+                    <input type="text" id="xHandle" name="xHandle" placeholder="X Handle" autocomplete="username">
+                </div>
+                <div class="form-group">
+                    <label for="telegramId">Telegram ID</label>
+                    <input type="text" id="telegramId" name="telegramId" placeholder="Telegram ID" autocomplete="username">
+                </div>
+                <div class="form-group">
+                    <label for="email">E-mail <span class="required">*</span></label>
+                    <input type="email" id="email" name="email" placeholder="E-mail" autocomplete="email" required>
+                </div>
+                <p class="form-note">* Required. Providing X handle and Telegram ID helps verify participation but is optional.</p>
                 <button type="submit" class="holo-btn">Claim 1,000 $SYMBAN</button>
             </form>
         </div>
@@ -100,8 +133,15 @@
     <!-- Buy $SYMBAN Section -->
     <section class="holo-buy-symban">
         <h2>Get in Early – Buy $SYMBAN Now!</h2>
-        <p>$SYMBAN: The Native Token Fueling SymbanChain’s Cosmic Rise – Starting at Just $0.50 in Our $100M IDO! Altseason Is Here – Don’t Miss This Once-in-a-Lifetime Opportunity to Invest at the Ground Floor. Projected to Reach $50-$100 by 2026! 🚀</p>
-        <a href="buy-symban.html" class="holo-btn ido-btn">Buy $SYMBAN Now</a>
+        <p>$SYMBAN: The Native Token Fueling SymbanChain’s Cosmic Rise – Starting at Just $0.50 in Our $100M IDO! Altseason Ready – Position Yourself for Explosive Growth! Set for Explosive Growth Post-IDO – Don’t Miss Out!</p>
+        <div class="buy-symban-action">
+            <a href="buy-symban.html" class="holo-btn ido-btn">Buy $SYMBAN Now</a>
+            <svg class="growth-arrow" width="30" height="30" viewBox="0 0 24 24" fill="none">
+                <path d="M5 15L12 5L19 15" stroke="#ffd700" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <animate attributeName="opacity" from="0.5" to="1" dur="1.5s" repeatCount="indefinite" />
+                </path>
+            </svg>
+        </div>
     </section>
 
     <!-- USPs Section -->
@@ -109,8 +149,16 @@
         <h2>Redefining Web3</h2>
         <div class="holo-usp-grid">
             <div class="holo-usp-card" data-gsap>
-                <h3>Tired of Rug Pulls? We’re Not!</h3>
-                <p>&lt;0.1% Rug Pulls with 5-Minute AI Audits – The Safest Blockchain Ever.</p>
+                <h3>We’ve Put a Stop to Rug Pulls!</h3>
+                <p><0.1% Rug Pulls with 5-Minute AI Audits – The Safest Blockchain Ever.</p>
+            </div>
+            <div class="holo-usp-card" data-gsap>
+                <h3>Unmatched Protection</h3>
+                <p>Insurance for $NEWTOKEN – A Web3 First!</p>
+            </div>
+            <div class="holo-usp-card" data-gsap>
+                <h3>Lucrative Staking</h3>
+                <p>Earn Up to 8% APY on $SYMBAN – Plus, All Stakers Receive 5% of EVERY New Token Created!</p>
             </div>
             <div class="holo-usp-card" data-gsap>
                 <h3>Unmatched Speed</h3>
@@ -121,16 +169,8 @@
                 <p>Just $0.001 per Transaction – Cheaper Than Anywhere Else.</p>
             </div>
             <div class="holo-usp-card" data-gsap>
-                <h3>Lucrative Staking</h3>
-                <p>Earn Up to 8% APY on $SYMBAN – Plus, All Stakers Receive 5% of EVERY New Token Created!</p>
-            </div>
-            <div class="holo-usp-card" data-gsap>
                 <h3>Built-In Scarcity</h3>
                 <p>10% of All Fees Burned – Driving $SYMBAN Value Skyward for Decades!</p>
-            </div>
-            <div class="holo-usp-card" data-gsap>
-                <h3>Altseason Ready</h3>
-                <p>$SYMBAN Set to Skyrocket in 2025 – Don’t Miss Out on Exponential Growth!</p>
             </div>
             <div class="holo-usp-card" data-gsap>
                 <h3>Developer Boost</h3>
@@ -145,11 +185,16 @@
                 <p>KYC/AML and MiCA-Ready – A Platform You Can Rely On.</p>
             </div>
         </div>
+        <svg class="usp-connections" viewBox="0 0 900 600" preserveAspectRatio="xMidYMid meet">
+            <path d="M150 100 L300 100 L450 300 L600 300 L750 500 L600 500 L450 300 L300 500 L150 300 Z" stroke="#00eaff" stroke-width="2" fill="none">
+                <animate attributeName="opacity" from="0.3" to="0.7" dur="2s" repeatCount="indefinite" />
+            </path>
+        </svg>
     </section>
 
     <!-- IDO Section -->
     <section class="holo-ido">
-        <h2>Join Our $100M IDO – Starts June 15, 2025 (or Sooner if Target Reached)! $SYMBAN at $0.50 – A Once-in-a-Lifetime Opportunity! 🚀</h2>
+        <h2>Join Our $100M IDO – Ends June 29, 2025 (or Sooner if $100M Target Reached)! $SYMBAN at $0.50 – A Once-in-a-Lifetime Opportunity! 🚀</h2>
         <div class="holo-countdown-sphere">
             <div id="countdownTimer" class="holo-countdown">
                 <div><span id="days"></span> Days</div>
