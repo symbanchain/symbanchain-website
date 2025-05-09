@@ -185,29 +185,11 @@ if (typeof gsap !== 'undefined') {
                 { opacity: 1, scale: 1, duration: 0.05, stagger: 0.05, ease: 'power2.out' }, 
                 "-=0.5"
             )
-            // Subheading entrance (reverted to previous working version)
+            // Subheading entrance (reverted to previous working version, single animation)
             .fromTo(subheadingParts, 
                 { opacity: 0, scale: 1.2 }, 
-                { 
-                    opacity: 1, 
-                    scale: 1, 
-                    duration: 0.8, 
-                    stagger: 0.3, 
-                    ease: 'power2.out' 
-                }, 
+                { opacity: 1, scale: 1, duration: 0.8, stagger: 0.3, ease: 'power2.out' }, 
                 "+=0.5"
-            )
-            // Adjust white text timing specifically
-            .fromTo(subheadingParts, 
-                { opacity: 0, scale: 1.2 }, 
-                { 
-                    opacity: 1, 
-                    scale: 1, 
-                    duration: 1, 
-                    stagger: 0.6, 
-                    ease: 'power2.out' 
-                }, 
-                "-=1.5"
             )
             // Action buttons entrance
             .fromTo(actionButtons, 
