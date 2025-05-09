@@ -144,8 +144,7 @@ if (typeof THREE !== 'undefined') {
 // Hero Section Animation
 if (typeof gsap !== 'undefined') {
     const holoLogo = document.getElementById('holoLogo');
-    const particles = document.querySelectorAll('.holo-logo .particle-3, .holo-logo .particle-4');
-    const logoBeforeAfter = document.querySelectorAll('.holo-logo::before, .holo-logo::after');
+    const particles = document.querySelectorAll('.holo-logo .particle-3, .holo-logo .particle-4, .holo-logo::before, .holo-logo::after');
     const brandName = document.querySelector('.brand-name');
     const heroTagline = document.getElementById('heroTagline');
     const taglineLetters = heroTagline.querySelectorAll('span');
@@ -168,16 +167,16 @@ if (typeof gsap !== 'undefined') {
                 yoyo: true,
                 ease: 'sine.inOut'
             }, "-=0.5")
-            // Particles start circling
+            // Particles start circling after S logo is fully in
             .fromTo(particles, 
                 { opacity: 0 }, 
                 { opacity: 1, duration: 0.5, stagger: 0.1 }, 
-                "-=1.5"
+                2 // Start at 2s mark, after S logo entrance
             )
             // SymbanChain entrance with wow effect
             .fromTo(brandName, 
-                { opacity: 0, y: 20, scale: 0.9 }, 
-                { opacity: 1, y: 0, scale: 1, duration: 1.5, ease: 'power3.out' }, 
+                { opacity: 0, scale: 0.5, rotation: -10, y: 20 }, 
+                { opacity: 1, scale: 1, rotation: 0, y: 0, duration: 2, ease: 'power3.out' }, 
                 "-=1"
             )
             // Tagline entrance (letter-by-letter)
@@ -192,17 +191,17 @@ if (typeof gsap !== 'undefined') {
                 { 
                     opacity: 1, 
                     scale: 1, 
-                    duration: (part, index) => index >= 4 ? 1 : 0.8, // Slower for white text parts
-                    stagger: (part, index) => index >= 4 ? 0.4 : 0.3, // Larger stagger for white text
+                    duration: (index) => index >= 4 ? 1 : 0.8, // Slower for white text parts
+                    stagger: (index) => index >= 4 ? 0.4 : 0.3, // Larger stagger for white text
                     ease: 'power2.out' 
                 }, 
-                "+=0.5"
+                "-=0.5"
             )
             // Action buttons entrance
             .fromTo(actionButtons, 
                 { y: 20, opacity: 0 }, 
                 { y: 0, opacity: 1, duration: 0.8, stagger: 0.2, ease: 'back.out(1.7)' }, 
-                "+=0.5"
+                "-=0.5"
             );
 
         console.log('Hero section animation started');
