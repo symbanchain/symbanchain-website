@@ -28,8 +28,11 @@ const customizeCookiesBtn = document.getElementById('customizeCookies');
 
 if (cookieConsent) {
     if (!localStorage.getItem('cookiesAccepted')) {
-        cookieConsent.style.display = 'block';
-        console.log('Cookie consent popup displayed');
+        // Delay appearance until after hero animations (10 seconds total)
+        setTimeout(() => {
+            cookieConsent.style.display = 'block';
+            console.log('Cookie consent popup displayed');
+        }, 10000);
     } else {
         console.log('Cookies already accepted, popup not shown');
     }
@@ -141,13 +144,15 @@ if (typeof THREE !== 'undefined') {
 // Hero Section Animation
 if (typeof gsap !== 'undefined') {
     const holoLogo = document.getElementById('holoLogo');
+    const symbanLeft = document.querySelector('.symban-left');
+    const symbanRight = document.querySelector('.symban-right');
     const heroTagline = document.getElementById('heroTagline');
     const taglineLetters = heroTagline.querySelectorAll('span');
     const heroSubheading = document.querySelector('.hero-subheading');
-    const highlights = document.querySelectorAll('.hero-subheading .highlight');
+    const subheadingParts = heroSubheading.querySelectorAll('.subheading-part, .highlight');
     const actionButtons = document.querySelectorAll('.holo-action-btn');
 
-    if (holoLogo && heroTagline && taglineLetters.length && heroSubheading && highlights.length && actionButtons.length) {
+    if (holoLogo && symbanLeft && symbanRight && heroTagline && taglineLetters.length && heroSubheading && subheadingParts.length && actionButtons.length) {
         gsap.timeline()
             // Logo entrance
             .fromTo(holoLogo, 
@@ -164,22 +169,23 @@ if (typeof gsap !== 'undefined') {
                   }
                 }
             )
+            // Symban and Chain entrance
+            .fromTo([symbanLeft, symbanRight], 
+                { opacity: 0, y: 20 }, 
+                { opacity: 1, y: 0, duration: 1, stagger: 0.3, ease: 'power2.out' }, 
+                "-=1"
+            )
             // Tagline entrance (letter-by-letter)
             .fromTo(taglineLetters, 
                 { opacity: 0, scale: 0.8 }, 
                 { opacity: 1, scale: 1, duration: 0.05, stagger: 0.05, ease: 'power2.out' }, 
-                "-=1"
+                "-=0.5"
             )
-            // Subheading entrance (word-by-word)
-            .fromTo(heroSubheading, 
-                { opacity: 0 }, 
-                { opacity: 1, duration: 0.1 }, 
+            // Subheading entrance (sequential)
+            .fromTo(subheadingParts, 
+                { opacity: 0, scale: 1.2 }, 
+                { opacity: 1, scale: 1, duration: 1.5, stagger: 0.7, ease: 'power2.out' }, 
                 "+=0.5"
-            )
-            .fromTo(highlights, 
-                { opacity: 0, textShadow: '0 0 0 #ffd700' }, 
-                { opacity: 1, textShadow: '0 0 15px #ffd700', duration: 1, stagger: 0.5, ease: 'power2.out' }, 
-                "-=0.1"
             )
             // Action buttons entrance
             .fromTo(actionButtons, 
@@ -241,7 +247,7 @@ if (typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined') {
         });
         console.log('GSAP scroll animations initialized for USP cards');
 
-        // Dynamic USP Connections with Hexagonal Paths and Cosmic Effects
+        // Dynamic USP Connections with Neon Lines and Flashing Effects
         const uspSvg = document.querySelector('.usp-connections');
         if (uspSvg) {
             // Set SVG dimensions based on the grid
@@ -262,14 +268,14 @@ if (typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined') {
                 { from: 'usp9', to: 'usp1' },
             ];
 
-            // Function to draw hexagonal paths and particles
+            // Function to draw neon lines with flashing effects
             const drawConnections = () => {
                 uspSvg.innerHTML = ''; // Clear previous paths
 
-                // Define gradient for cosmic effect
+                // Define gradient for neon effect
                 const defs = document.createElementNS('http://www.w3.org/2000/svg', 'defs');
                 const gradient = document.createElementNS('http://www.w3.org/2000/svg', 'linearGradient');
-                gradient.setAttribute('id', 'cosmicGradient');
+                gradient.setAttribute('id', 'neonGradient');
                 gradient.setAttribute('x1', '0%');
                 gradient.setAttribute('y1', '0%');
                 gradient.setAttribute('x2', '100%');
@@ -279,7 +285,7 @@ if (typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined') {
                 stop1.setAttribute('style', 'stop-color:#00eaff;stop-opacity:1');
                 const stop2 = document.createElementNS('http://www.w3.org/2000/svg', 'stop');
                 stop2.setAttribute('offset', '100%');
-                stop2.setAttribute('style', 'stop-color:#ffd700;stop-opacity:1');
+                stop2.setAttribute('style', 'stop-color:#00eaff;stop-opacity:0.5');
                 gradient.appendChild(stop1);
                 gradient.appendChild(stop2);
                 defs.appendChild(gradient);
@@ -294,50 +300,46 @@ if (typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined') {
                         const toRect = toCard.getBoundingClientRect();
                         const gridRect = grid.getBoundingClientRect();
 
-                        // Calculate center points relative to the grid
-                        const fromX = fromRect.left + fromRect.width / 2 - gridRect.left;
-                        const fromY = fromRect.top + fromRect.height / 2 - gridRect.top;
-                        const toX = toRect.left + toRect.width / 2 - gridRect.left;
-                        const toY = toRect.top + toRect.height / 2 - gridRect.top;
-
-                        // Calculate hexagonal path points (avoiding text)
-                        const offset = 30; // Offset from card edges to avoid text
-                        const midX = (fromX + toX) / 2;
-                        const midY = (fromY + toY) / 2;
-
-                        // Hexagonal path points
-                        const hexPoints = [
-                            fromX, fromY,
-                            fromX + (toX > fromX ? offset : -offset), fromY + (toY > fromY ? offset : -offset),
-                            midX, midY - offset,
-                            midX, midY + offset,
-                            toX + (toX > fromX ? -offset : offset), toY + (toY > fromY ? -offset : offset),
-                            toX, toY
-                        ];
+                        // Calculate connection points (outside card edges)
+                        const offset = 30; // Offset to avoid text
+                        const fromX = fromRect.right - gridRect.left + offset;
+                        const fromY = fromRect.bottom - gridRect.top - offset;
+                        const toX = toRect.left - gridRect.left - offset;
+                        const toY = toRect.top - gridRect.top + offset;
 
                         // Create path
                         const path = document.createElementNS('http://www.w3.org/2000/svg', 'path');
-                        const d = `M${hexPoints[0]},${hexPoints[1]} L${hexPoints[2]},${hexPoints[3]} L${hexPoints[4]},${hexPoints[5]} L${hexPoints[6]},${hexPoints[7]} L${hexPoints[8]},${hexPoints[9]} L${hexPoints[10]},${hexPoints[11]}`;
+                        const d = `M${fromX},${fromY} L${fromX + 20},${fromY} Q${fromX + 40},${fromY} ${fromX + 40},${fromY + (toY - fromY) / 2} T${toX - 40},${toY} L${toX - 20},${toY} L${toX},${toY}`;
                         path.setAttribute('d', d);
-                        path.setAttribute('stroke', 'url(#cosmicGradient)');
+                        path.setAttribute('stroke', 'url(#neonGradient)');
                         path.setAttribute('stroke-width', '2');
-                        path.setAttribute('stroke-opacity', '0.5');
                         path.setAttribute('fill', 'none');
+                        path.setAttribute('stroke-dasharray', '1000');
+                        path.setAttribute('stroke-dashoffset', '1000');
                         path.setAttribute('id', `connection-${index}`);
 
                         uspSvg.appendChild(path);
 
-                        // Animate path opacity
+                        // Animate path drawing (flashing effect)
                         gsap.to(path, {
-                            'stroke-opacity': 0.8,
-                            duration: 1.5,
-                            repeat: -1,
-                            yoyo: true,
-                            ease: 'sine.inOut'
+                            'stroke-dashoffset': 0,
+                            duration: 2,
+                            delay: index * 0.5 + 2, // Delay to sync with card animations
+                            ease: 'power2.out',
+                            onComplete: () => {
+                                // Pulsate after drawing
+                                gsap.to(path, {
+                                    'stroke-opacity': 0.5,
+                                    duration: 1.5,
+                                    repeat: -1,
+                                    yoyo: true,
+                                    ease: 'sine.inOut'
+                                });
+                            }
                         });
 
-                        // Add particle effect along the path
-                        for (let i = 0; i < 3; i++) {
+                        // Add particles along the path
+                        for (let i = 0; i < 2; i++) {
                             const particle = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
                             particle.setAttribute('r', '2');
                             particle.setAttribute('fill', '#00eaff');
@@ -354,7 +356,7 @@ if (typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined') {
                                 duration: 3,
                                 repeat: -1,
                                 ease: 'none',
-                                delay: i * 1,
+                                delay: i * 1.5 + 2,
                                 repeatDelay: 0
                             });
                         }
@@ -369,7 +371,10 @@ if (typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined') {
             window.addEventListener('resize', drawConnections);
 
             // Redraw after scroll animations
-            ScrollTrigger.addEventListener('refresh', drawConnections);
+            ScrollTrigger.addEventListener('refresh', () => {
+                drawConnections();
+                console.log('USP connections redrawn on ScrollTrigger refresh');
+            });
 
             console.log('USP connections initialized');
         } else {
