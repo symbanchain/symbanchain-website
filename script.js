@@ -173,10 +173,10 @@ if (typeof gsap !== 'undefined') {
                 { opacity: 1, duration: 0.5, stagger: 0.1 }, 
                 2 // Start at 2s mark, after S logo entrance
             )
-            // SymbanChain entrance with wow effect
+            // SymbanChain entrance with prominent effect (no rotation)
             .fromTo(brandName, 
-                { opacity: 0, scale: 0.5, rotation: -10, y: 20 }, 
-                { opacity: 1, scale: 1, rotation: 0, y: 0, duration: 2, ease: 'power3.out' }, 
+                { opacity: 0, scale: 0.5, y: 20 }, 
+                { opacity: 1, scale: 1, y: 0, duration: 2.5, ease: 'power3.out' }, 
                 "-=1"
             )
             // Tagline entrance (letter-by-letter)
@@ -185,17 +185,17 @@ if (typeof gsap !== 'undefined') {
                 { opacity: 1, scale: 1, duration: 0.05, stagger: 0.05, ease: 'power2.out' }, 
                 "-=0.5"
             )
-            // Subheading entrance (sequential, slower for white text)
+            // Subheading entrance (reverted to first working version, adjusted white text timing)
             .fromTo(subheadingParts, 
                 { opacity: 0, scale: 1.2 }, 
-                { 
-                    opacity: 1, 
-                    scale: 1, 
-                    duration: (_, index) => index >= 4 ? 1 : 0.8, // Slower for white text parts
-                    stagger: (_, index) => index >= 4 ? 0.4 : 0.3, // Larger stagger for white text
-                    ease: 'power2.out' 
-                }, 
-                "-=0.5"
+                { opacity: 1, scale: 1, duration: 0.8, stagger: { each: 0.3, from: "start" }, ease: 'power2.out' }, 
+                "+=0.5"
+            )
+            // Adjust white text timing specifically
+            .fromTo(subheadingParts, 
+                { opacity: 0, scale: 1.2 }, 
+                { opacity: 1, scale: 1, duration: 1, stagger: { each: 0.5, from: "start" }, ease: 'power2.out' }, 
+                "-=1.5"
             )
             // Action buttons entrance
             .fromTo(actionButtons, 
