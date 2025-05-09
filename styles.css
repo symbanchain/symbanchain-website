@@ -24,6 +24,7 @@ body {
 #cosmicCanvas {
     width: 100%;
     height: 100%;
+    z-index: 1;
 }
 
 .particles {
@@ -36,6 +37,7 @@ body {
     background-size: 200px 200px;
     opacity: 0.3;
     animation: drift 100s linear infinite;
+    z-index: 2;
 }
 
 .particles::before {
@@ -49,6 +51,7 @@ body {
     background-size: 200px 200px;
     opacity: 0.5;
     animation: twinkle 3s infinite alternate;
+    z-index: 3;
 }
 
 @keyframes drift {
@@ -57,7 +60,7 @@ body {
 }
 
 @keyframes twinkle {
-    0% { opacity: 0.5; }
+    0% { opacity: 0.4; }
     100% { opacity: 0.8; }
 }
 
@@ -101,7 +104,10 @@ header {
 
 nav ul {
     display: flex;
+    align-items: center;
     list-style: none;
+    margin: 0;
+    padding: 0;
 }
 
 nav ul li {
@@ -271,7 +277,7 @@ nav ul li {
 
 .hero-content {
     position: relative;
-    z-index: 1;
+    z-index: 5;
 }
 
 .nebula-glow {
@@ -280,7 +286,7 @@ nav ul li {
     left: 0;
     width: 100%;
     height: 100%;
-    z-index: 0;
+    z-index: 4;
     animation: nebulaPulse 10s infinite;
 }
 
@@ -291,10 +297,8 @@ nav ul li {
 }
 
 .ai-badge {
-    position: absolute;
-    top: -30px;
-    left: 50%;
-    transform: translateX(-50%);
+    position: relative;
+    margin: 0 auto 10px;
     background: rgba(0, 234, 255, 0.2);
     border: 1px solid #00eaff;
     border-radius: 5px;
@@ -304,6 +308,7 @@ nav ul li {
     color: #00eaff;
     text-shadow: 0 0 5px #00eaff;
     animation: badgePulse 2s infinite;
+    z-index: 6;
 }
 
 @keyframes badgePulse {
@@ -327,7 +332,6 @@ nav ul li {
     font-weight: 700;
     text-shadow: 0 0 30px #00eaff;
     margin-bottom: 20px;
-    opacity: 0;
 }
 
 .hero-subheading {
@@ -335,13 +339,11 @@ nav ul li {
     font-size: 24px;
     text-shadow: 0 0 15px #00eaff;
     margin-bottom: 40px;
-    opacity: 0;
 }
 
 .hero-subheading .highlight {
     font-weight: 700;
     text-shadow: 0 0 10px #00eaff;
-    opacity: 0;
 }
 
 .holo-actions {
@@ -352,7 +354,7 @@ nav ul li {
 }
 
 .holo-action-btn {
-    opacity: 0;
+    opacity: 1;
 }
 
 .holo-btn {
@@ -416,7 +418,6 @@ nav ul li {
     }
 
     .ai-badge {
-        top: -25px;
         font-size: 10px;
     }
 }
@@ -453,7 +454,6 @@ nav ul li {
     }
 
     .ai-badge {
-        top: -20px;
         font-size: 8px;
     }
 }
