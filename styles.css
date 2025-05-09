@@ -357,7 +357,7 @@ nav ul li {
     background-size: 200px 200px;
     filter: drop-shadow(0 0 20px #00eaff);
     position: relative;
-    overflow: hidden; /* Prevent particles from overlapping header or SymbanChain */
+    clip-path: inset(10px 0 0 0); /* Prevent particles from overlapping header */
 }
 
 .holo-logo::before, .holo-logo::after,
@@ -398,23 +398,23 @@ nav ul li {
 }
 
 @keyframes orbit1 {
-    0% { transform: translate(-50%, -50%) rotate(0deg) translateX(102px) rotate(0deg); }
-    100% { transform: translate(-50%, -50%) rotate(360deg) translateX(102px) rotate(-360deg); }
+    0% { transform: translate(-50%, -50%) rotate(0deg) translateX(98px) rotate(0deg); }
+    100% { transform: translate(-50%, -50%) rotate(360deg) translateX(98px) rotate(-360deg); }
 }
 
 @keyframes orbit2 {
-    0% { transform: translate(-50%, -50%) rotate(0deg) translateX(103px) rotate(0deg); }
-    100% { transform: translate(-50%, -50%) rotate(360deg) translateX(103px) rotate(-360deg); }
+    0% { transform: translate(-50%, -50%) rotate(0deg) translateX(99px) rotate(0deg); }
+    100% { transform: translate(-50%, -50%) rotate(360deg) translateX(99px) rotate(-360deg); }
 }
 
 @keyframes orbit3 {
-    0% { transform: translate(-50%, -50%) rotate(0deg) translateX(104px) rotate(0deg); }
-    100% { transform: translate(-50%, -50%) rotate(360deg) translateX(104px) rotate(-360deg); }
+    0% { transform: translate(-50%, -50%) rotate(0deg) translateX(100px) rotate(0deg); }
+    100% { transform: translate(-50%, -50%) rotate(360deg) translateX(100px) rotate(-360deg); }
 }
 
 @keyframes orbit4 {
-    0% { transform: translate(-50%, -50%) rotate(0deg) translateX(105px) rotate(0deg); }
-    100% { transform: translate(-50%, -50%) rotate(360deg) translateX(105px) rotate(-360deg); }
+    0% { transform: translate(-50%, -50%) rotate(0deg) translateX(101px) rotate(0deg); }
+    100% { transform: translate(-50%, -50%) rotate(360deg) translateX(101px) rotate(-360deg); }
 }
 
 @keyframes colorChange {
@@ -454,14 +454,14 @@ nav ul li {
     position: absolute;
     left: 50%;
     transform: translateX(-50%);
-    top: 270px;
+    top: 280px;
 }
 
 .hero-subheading {
     font-family: 'Exo 2', sans-serif;
     font-size: 1.5rem;
     text-shadow: 0 0 15px #00eaff;
-    margin-top: 4rem;
+    margin-top: 4.5rem;
     margin-bottom: 3rem;
 }
 
@@ -532,12 +532,12 @@ nav ul li {
 @media (max-width: 1024px) {
     .hero-content h1 {
         margin-bottom: 1.5rem;
-        top: 240px;
+        top: 250px;
     }
 
     .hero-subheading {
         font-size: 1.25rem;
-        margin-top: 3.5rem;
+        margin-top: 4rem;
         margin-bottom: 2.5rem;
     }
 
@@ -575,12 +575,12 @@ nav ul li {
 
     .hero-content h1 {
         margin-bottom: 1rem;
-        top: 210px;
+        top: 220px;
     }
 
     .hero-subheading {
         font-size: 1rem;
-        margin-top: 3rem;
+        margin-top: 3.5rem;
         margin-bottom: 2rem;
     }
 
@@ -614,12 +614,12 @@ nav ul li {
 @media (max-width: 480px) {
     .hero-content h1 {
         margin-bottom: 0.75rem;
-        top: 190px;
+        top: 200px;
     }
 
     .hero-subheading {
         font-size: 0.875rem;
-        margin-top: 2.5rem;
+        margin-top: 3rem;
         margin-bottom: 1.5rem;
     }
 
@@ -1354,7 +1354,7 @@ footer p {
     }
 
     .cookie-btn {
-        padding: 0.5px 0.9375rem;
+        padding: 0.5rem 0.9375rem;
         font-size: 0.875rem;
     }
 }
