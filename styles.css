@@ -168,6 +168,10 @@ nav ul li {
     box-shadow: 0 0 15px #ffd700;
 }
 
+.holo-dropdown {
+    position: relative;
+}
+
 .holo-dropdown .holo-toggle {
     color: #fff;
     text-decoration: none;
@@ -196,7 +200,7 @@ nav ul li {
 .holo-menu {
     display: none;
     position: absolute;
-    top: calc(100% + 5px);
+    top: 100%;
     left: 0;
     background: rgba(0, 0, 0, 0.95);
     border: 1px solid #00eaff;
@@ -344,6 +348,73 @@ nav ul li {
     background: url('https://symbanchain-website.pages.dev/assets/logo.png') no-repeat center;
     background-size: contain;
     filter: drop-shadow(0 0 20px #00eaff);
+    position: relative;
+}
+
+.holo-logo::before, .holo-logo::after,
+.holo-logo .particle-3, .holo-logo .particle-4 {
+    content: '';
+    position: absolute;
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    box-shadow: 0 0 10px currentColor;
+}
+
+.holo-logo::before {
+    background: #00eaff;
+    color: #00eaff;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    animation: orbit1 3s infinite linear;
+}
+
+.holo-logo::after {
+    background: #ffd700;
+    color: #ffd700;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    animation: orbit2 4s infinite linear reverse;
+}
+
+.holo-logo .particle-3 {
+    background: #00eaff;
+    color: #00eaff;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    animation: orbit3 5s infinite linear;
+}
+
+.holo-logo .particle-4 {
+    background: #ffd700;
+    color: #ffd700;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    animation: orbit4 6s infinite linear reverse;
+}
+
+@keyframes orbit1 {
+    0% { transform: translate(-50%, -50%) rotate(0deg) translateX(120px) rotate(0deg); }
+    100% { transform: translate(-50%, -50%) rotate(360deg) translateX(120px) rotate(-360deg); }
+}
+
+@keyframes orbit2 {
+    0% { transform: translate(-50%, -50%) rotate(0deg) translateX(100px) rotate(0deg); }
+    100% { transform: translate(-50%, -50%) rotate(360deg) translateX(100px) rotate(-360deg); }
+}
+
+@keyframes orbit3 {
+    0% { transform: translate(-50%, -50%) rotate(0deg) translateX(140px) rotate(0deg); }
+    100% { transform: translate(-50%, -50%) rotate(360deg) translateX(140px) rotate(-360deg); }
+}
+
+@keyframes orbit4 {
+    0% { transform: translate(-50%, -50%) rotate(0deg) translateX(160px) rotate(0deg); }
+    100% { transform: translate(-50%, -50%) rotate(360deg) translateX(160px) rotate(-360deg); }
 }
 
 .brand-name {
@@ -351,55 +422,28 @@ nav ul li {
     font-size: 3rem;
     color: #00eaff;
     text-shadow: 0 0 15px #00eaff;
-    text-transform: uppercase;
     letter-spacing: 0.3rem;
     position: relative;
-    margin-bottom: 1rem;
-    animation: brandPulse 1.5s infinite;
-}
-
-.brand-name::before, .brand-name::after {
-    content: '';
-    position: absolute;
-    width: 5px;
-    height: 5px;
-    background: #00eaff;
-    border-radius: 50%;
-    box-shadow: 0 0 10px #00eaff;
-}
-
-.brand-name::before {
-    top: -10px;
-    left: 0;
-    animation: orbitLeft 4s infinite linear;
-}
-
-.brand-name::after {
-    bottom: -10px;
-    right: 0;
-    animation: orbitRight 4s infinite linear;
+    margin-bottom: 0.5rem;
+    animation: brandPulse 2s infinite;
 }
 
 @keyframes brandPulse {
-    0% { text-shadow: 0 0 15px #00eaff; transform: scale(1); }
-    50% { text-shadow: 0 0 25px #00eaff; transform: scale(1.05); }
-    100% { text-shadow: 0 0 15px #00eaff; transform: scale(1); }
-}
-
-@keyframes orbitLeft {
-    0% { transform: translate(0, 0); }
-    25% { transform: translate(100%, -50px); }
-    50% { transform: translate(200%, 0); }
-    75% { transform: translate(100%, 50px); }
-    100% { transform: translate(0, 0); }
-}
-
-@keyframes orbitRight {
-    0% { transform: translate(0, 0); }
-    25% { transform: translate(-100%, 50px); }
-    50% { transform: translate(-200%, 0); }
-    75% { transform: translate(-100%, -50px); }
-    100% { transform: translate(0, 0); }
+    0% { 
+        text-shadow: 0 0 15px #00eaff; 
+        transform: scale(1); 
+        color: #00eaff; 
+    }
+    50% { 
+        text-shadow: 0 0 25px #ffd700; 
+        transform: scale(1.05); 
+        color: #ffd700; 
+    }
+    100% { 
+        text-shadow: 0 0 15px #00eaff; 
+        transform: scale(1); 
+        color: #00eaff; 
+    }
 }
 
 .hero-content h1 {
