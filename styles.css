@@ -356,7 +356,7 @@ nav ul li {
 }
 
 .holo-logo::before, .holo-logo::after,
-.holo-logo .particle-3::before, .holo-logo .particle-4::before {
+.holo-logo .particle-3, .holo-logo .particle-4 {
     content: '';
     position: absolute;
     width: 5px;
@@ -378,14 +378,14 @@ nav ul li {
     animation: orbit2 4s infinite linear reverse, colorChange 4s infinite;
 }
 
-.holo-logo .particle-3::before {
+.holo-logo .particle-3 {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
     animation: orbit3 5s infinite linear, colorChange 5s infinite;
 }
 
-.holo-logo .particle-4::before {
+.holo-logo .particle-4 {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
@@ -424,11 +424,8 @@ nav ul li {
     color: #00eaff;
     text-shadow: 0 0 10px #00eaff, 0 0 20px #00eaff, 0 0 30px #00eaff;
     letter-spacing: 0.2rem;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    z-index: 1;
+    position: relative;
+    margin-top: 1rem;
     animation: shimmer 3s infinite linear;
 }
 
@@ -1313,7 +1310,7 @@ footer p {
 }
 
 .customize-btn {
-    background: rgba(0, 234, 255, 0.1);
+    background: rgba(0, 214, 255, 0.1);
     color: #fff;
     opacity: 0.7;
 }
