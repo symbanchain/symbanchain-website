@@ -153,26 +153,33 @@ if (typeof gsap !== 'undefined') {
 
     if (holoLogo && brandName && heroTagline && taglineLetters.length && heroSubheading && subheadingParts.length && actionButtons.length) {
         gsap.timeline()
-            // Logo and Brand Name entrance
+            // Logo entrance with zoom-in effect
             .fromTo(holoLogo, 
                 { scale: 0, opacity: 0 }, 
-                { scale: 1, opacity: 1, duration: 2, ease: 'power2.out', 
-                  onComplete: () => {
-                      gsap.to(holoLogo, {
-                          scale: 1.1,
-                          duration: 1.5,
-                          repeat: -1,
-                          yoyo: true,
-                          ease: 'sine.inOut'
-                      });
-                  }
-                }
+                { scale: 1, opacity: 1, duration: 2, ease: 'power2.out' }
             )
+            // Start logo pulsation
+            .to(holoLogo, {
+                scale: 1.1,
+                duration: 2,
+                repeat: -1,
+                yoyo: true,
+                ease: 'sine.inOut'
+            }, "-=0.5")
+            // Brand name entrance with fade-in and slide
             .fromTo(brandName, 
-                { opacity: 0, y: -20 }, 
+                { opacity: 0, y: 20 }, 
                 { opacity: 1, y: 0, duration: 1, ease: 'power2.out' }, 
                 "-=1.5"
             )
+            // Sync brand name pulsation with logo
+            .to(brandName, {
+                scale: 1.05,
+                duration: 2,
+                repeat: -1,
+                yoyo: true,
+                ease: 'sine.inOut'
+            }, "-=1")
             // Tagline entrance (letter-by-letter)
             .fromTo(taglineLetters, 
                 { opacity: 0, scale: 0.8 }, 
