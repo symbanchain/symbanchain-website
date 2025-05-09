@@ -307,6 +307,7 @@ nav ul li {
     text-align: center;
     overflow: hidden;
     padding: 2rem;
+    box-sizing: border-box;
 }
 
 .hero-content {
@@ -319,6 +320,7 @@ nav ul li {
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    box-sizing: border-box;
 }
 
 .nebula-glow {
@@ -393,23 +395,23 @@ nav ul li {
 }
 
 @keyframes orbit1 {
-    0% { transform: translate(-50%, -50%) rotate(0deg) translateX(90px) rotate(0deg); }
-    100% { transform: translate(-50%, -50%) rotate(360deg) translateX(90px) rotate(-360deg); }
+    0% { transform: translate(-50%, -50%) rotate(0deg) translateX(60px) rotate(0deg); }
+    100% { transform: translate(-50%, -50%) rotate(360deg) translateX(60px) rotate(-360deg); }
 }
 
 @keyframes orbit2 {
-    0% { transform: translate(-50%, -50%) rotate(0deg) translateX(80px) rotate(0deg); }
-    100% { transform: translate(-50%, -50%) rotate(360deg) translateX(80px) rotate(-360deg); }
+    0% { transform: translate(-50%, -50%) rotate(0deg) translateX(65px) rotate(0deg); }
+    100% { transform: translate(-50%, -50%) rotate(360deg) translateX(65px) rotate(-360deg); }
 }
 
 @keyframes orbit3 {
-    0% { transform: translate(-50%, -50%) rotate(0deg) translateX(100px) rotate(0deg); }
-    100% { transform: translate(-50%, -50%) rotate(360deg) translateX(100px) rotate(-360deg); }
+    0% { transform: translate(-50%, -50%) rotate(0deg) translateX(70px) rotate(0deg); }
+    100% { transform: translate(-50%, -50%) rotate(360deg) translateX(70px) rotate(-360deg); }
 }
 
 @keyframes orbit4 {
-    0% { transform: translate(-50%, -50%) rotate(0deg) translateX(110px) rotate(0deg); }
-    100% { transform: translate(-50%, -50%) rotate(360deg) translateX(110px) rotate(-360deg); }
+    0% { transform: translate(-50%, -50%) rotate(0deg) translateX(75px) rotate(0deg); }
+    100% { transform: translate(-50%, -50%) rotate(360deg) translateX(75px) rotate(-360deg); }
 }
 
 @keyframes colorChange {
@@ -420,7 +422,7 @@ nav ul li {
 
 .brand-name {
     font-family: 'Orbitron', sans-serif;
-    font-size: 2.5rem;
+    font-size: 2.8rem;
     color: #00eaff;
     text-shadow: 0 0 10px #00eaff, 0 0 20px #00eaff, 0 0 30px #00eaff;
     letter-spacing: 0.2rem;
@@ -431,7 +433,7 @@ nav ul li {
 
 @keyframes shimmer {
     0% { text-shadow: 0 0 10px #00eaff, 0 0 20px #00eaff, 0 0 30px #00eaff; }
-    50% { text-shadow: 0 0 20px #00eaff, 0 0 30px #00eaff, 0 0 40px #00eaff; }
+    50% { text-shadow: 0 0 15px #ffd700, 0 0 25px #ffd700, 0 0 35px #00eaff; }
     100% { text-shadow: 0 0 10px #00eaff, 0 0 20px #00eaff, 0 0 30px #00eaff; }
 }
 
@@ -441,10 +443,14 @@ nav ul li {
     font-weight: 700;
     text-shadow: 0 0 30px #00eaff;
     margin: 0 auto 2rem;
+    padding: 0;
     text-align: center;
     white-space: nowrap;
     width: 100%;
     max-width: none;
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
 }
 
 .hero-subheading {
@@ -538,7 +544,7 @@ nav ul li {
     }
 
     .brand-name {
-        font-size: 2rem;
+        font-size: 2.3rem;
         letter-spacing: 0.15rem;
     }
 
@@ -577,7 +583,7 @@ nav ul li {
     }
 
     .brand-name {
-        font-size: 1.5rem;
+        font-size: 1.8rem;
         letter-spacing: 0.1rem;
     }
 
@@ -607,7 +613,7 @@ nav ul li {
     }
 
     .brand-name {
-        font-size: 1.2rem;
+        font-size: 1.5rem;
         letter-spacing: 0.05rem;
     }
 
@@ -1310,7 +1316,7 @@ footer p {
 }
 
 .customize-btn {
-    background: rgba(0, 214, 255, 0.1);
+    background: rgba(0, 234, 255, 0.1);
     color: #fff;
     opacity: 0.7;
 }
