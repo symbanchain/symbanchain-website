@@ -191,4 +191,192 @@ if (typeof gsap !== 'undefined') {
     } else {
         console.error('Hero section elements not found');
     }
+} else {
+    console.error('GSAP not loaded');
 }
+
+// GSAP Scroll Animations and USP Connections
+if (typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined') {
+    gsap.registerPlugin(ScrollTrigger);
+
+    console.log('GSAP and ScrollTrigger loaded, initializing animations');
+
+    // USP Card Animations
+    const uspCards = document.querySelectorAll('.holo-usp-card');
+    if (uspCards.length > 0) {
+        uspCards.forEach((element, index) => {
+            console.log(`Setting up GSAP animation for USP card ${index + 1}`);
+            gsap.fromTo(element, 
+                {
+                    opacity: 0,
+                    y: 150,
+                    rotationY: 45
+                },
+                {
+                    scrollTrigger: {
+                        trigger: element,
+                        start: 'top 100%',
+                        end: 'top 30%',
+                        scrub: 2,
+                        markers: false
+                    },
+                    opacity: 1,
+                    y: -50,
+                    rotationY: -15,
+                    duration: 1.5,
+                    delay: index * 0.2,
+                    ease: 'power2.out',
+                    onStart: () => console.log(`Animation started for USP card ${index + 1}`),
+                    onComplete: () => console.log(`Animation completed for USP card ${index + 1}`)
+                }
+            );
+
+            element.addEventListener('mouseenter', () => {
+                console.log(`Hover started for USP card ${index + 1}`);
+            });
+            element.addEventListener('mouseleave', () => {
+                console.log(`Hover ended for USP card ${index + 1}`);
+            });
+        });
+        console.log('GSAP scroll animations initialized for USP cards');
+
+        // Dynamic USP Connections
+        const uspSvg = document.querySelector('.usp-connections');
+        if (uspSvg) {
+            // Set SVG dimensions based on the grid
+            const grid = document.querySelector('.holo-usp-grid');
+            const gridRect = grid.getBoundingClientRect();
+            uspSvg.setAttribute('viewBox', `0 0 ${gridRect.width} ${gridRect.height}`);
+
+            // Define connections (based on card order)
+            const connections = [
+                { from: 'usp1', to: 'usp2' },
+                { from: 'usp2', to: 'usp3' },
+                { from: 'usp3', to: 'usp4' },
+                { from: 'usp4', to: 'usp5' },
+                { from: 'usp5', to: 'usp6' },
+                { from: 'usp6', to: 'usp7' },
+                { from: 'usp7', to: 'usp8' },
+                { from: 'usp8', to: 'usp9' },
+                { from: 'usp9', to: 'usp1' },
+            ];
+
+            // Function to draw lines
+            const drawConnections = () => {
+                uspSvg.innerHTML = ''; // Clear previous lines
+                connections.forEach((connection, index) => {
+                    const fromCard = document.querySelector(`[data-id="${connection.from}"]`);
+                    const toCard = document.querySelector(`[data-id="${connection.to}"]`);
+
+                    if (fromCard && toCard) {
+                        const fromRect = fromCard.getBoundingClientRect();
+                        const toRect = toCard.getBoundingClientRect();
+                        const gridRect = grid.getBoundingClientRect();
+
+                        // Calculate center points relative to the grid
+                        const fromX = fromRect.left + fromRect.width / 2 - gridRect.left;
+                        const fromY = fromRect.top + fromRect.height / 2 - gridRect.top;
+                        const toX = toRect.left + toRect.width / 2 - gridRect.left;
+                        const toY = toRect.top + toRect.height / 2 - gridRect.top;
+
+                        // Create a line
+                        const line = document.createElementNS('http://www.w3.org/2000/svg', 'line');
+                        line.setAttribute('x1', fromX);
+                        line.setAttribute('y1', fromY);
+                        line.setAttribute('x2', toX);
+                        line.setAttribute('y2', toY);
+                        line.setAttribute('stroke', '#00eaff');
+                        line.setAttribute('stroke-width', '2');
+                        line.setAttribute('stroke-opacity', '0.5');
+                        line.setAttribute('id', `connection-${index}`);
+
+                        uspSvg.appendChild(line);
+
+                        // Animate opacity
+                        gsap.to(line, {
+                            'stroke-opacity': 0.8,
+                            duration: 1.5,
+                            repeat: -1,
+                            yoyo: true,
+                            ease: 'sine.inOut'
+                        });
+                    }
+                });
+            };
+
+            // Initial draw
+            drawConnections();
+
+            // Redraw on resize
+            window.addEventListener('resize', drawConnections);
+
+            // Redraw after scroll animations
+            ScrollTrigger.addEventListener('refresh', drawConnections);
+
+            console.log('USP connections initialized');
+        } else {
+            console.error('USP connections SVG not found');
+        }
+    } else {
+        console.error('No USP cards found for GSAP animation');
+    }
+
+    // Debug hover events for top menu items
+    const menuLinks = document.querySelectorAll('.holo-link, .holo-toggle');
+    menuLinks.forEach((link, index) => {
+        link.addEventListener('mouseenter', () => {
+            console.log(`Hover started for menu item ${index + 1}`);
+        });
+        link.addEventListener('mouseleave', () => {
+            console.log(`Hover ended for menu item ${index + 1}`);
+        });
+    });
+} else {
+    console.error('GSAP or ScrollTrigger not loaded');
+}
+
+// IDO Countdown Timer
+const idoStartDate = new Date('June 15, 2025 00:00:00').getTime();
+const countdownTimer = document.getElementById('countdownTimer');
+
+if (countdownTimer) {
+    function updateCountdown() {
+        const now = new Date().getTime();
+        const distance = idoStartDate - now;
+
+        const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+        const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+        const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+        document.getElementById('days').textContent = days;
+        document.getElementById('hours').textContent = hours;
+        document.getElementById('minutes').textContent = minutes;
+        document.getElementById('seconds').textContent = seconds;
+
+        if (distance < 0) {
+            clearInterval(countdownInterval);
+            countdownTimer.innerHTML = '<p>IDO is Live!</p>';
+            console.log('IDO countdown finished');
+        }
+    }
+
+    const countdownInterval = setInterval(updateCountdown, 1000);
+    updateCountdown();
+    console.log('IDO countdown started');
+} else {
+    console.error('Countdown timer elements not found');
+}
+
+// Hamburger Menu Toggle for Mobile
+const hamburger = document.createElement('button');
+hamburger.classList.add('hamburger');
+hamburger.innerHTML = '☰';
+document.querySelector('header').insertBefore(hamburger, document.querySelector('nav'));
+
+const navMenu = document.querySelector('nav ul');
+hamburger.addEventListener('click', () => {
+    navMenu.classList.toggle('active');
+    hamburger.innerHTML = navMenu.classList.contains('active') ? '✕' : '☰';
+    console.log('Hamburger menu toggled');
+});
