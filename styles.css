@@ -44,8 +44,28 @@ body {
     left: 0;
     width: 100%;
     height: 100%;
-    background: radial-gradient(circle, #fff 1px, transparent 1px);
-    background-size: 20px 20px;
+    background: transparent;
+    box-shadow: 
+        50px 100px 1px #fff,
+        150px 200px 1px #fff,
+        200px 300px 1px #fff,
+        300px 150px 1px #fff,
+        400px 250px 1px #fff,
+        500px 50px 1px #fff,
+        600px 350px 1px #fff,
+        700px 200px 1px #fff,
+        800px 100px 1px #fff,
+        900px 300px 1px #fff,
+        100px 400px 1px #fff,
+        250px 500px 1px #fff,
+        350px 600px 1px #fff,
+        450px 700px 1px #fff,
+        550px 800px 1px #fff,
+        650px 900px 1px #fff,
+        750px 1000px 1px #fff,
+        850px 1100px 1px #fff,
+        950px 1200px 1px #fff,
+        1050px 1300px 1px #fff;
     opacity: 0.2;
     animation: twinkle 5s infinite alternate;
     z-index: 3;
@@ -60,7 +80,7 @@ header {
     position: fixed;
     top: 0;
     width: 100%;
-    padding: 20px 50px;
+    padding: 1rem 3rem;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -71,7 +91,7 @@ header {
 .logo {
     display: flex;
     align-items: center;
-    gap: 10px;
+    gap: 1rem;
 }
 
 .logo-img {
@@ -121,11 +141,11 @@ nav ul {
     margin: 0;
     padding: 0;
     flex-wrap: wrap;
-    gap: 10px;
+    gap: 1rem;
 }
 
 nav ul li {
-    margin-left: 20px;
+    margin-left: 1rem;
     position: relative;
 }
 
@@ -133,8 +153,8 @@ nav ul li {
     color: #fff;
     text-decoration: none;
     font-family: 'Orbitron', sans-serif;
-    font-size: 16px;
-    padding: 10px 15px;
+    font-size: 1rem;
+    padding: 0.625rem 0.9375rem;
     background: rgba(0, 234, 255, 0.1);
     border: 1px solid #00eaff;
     border-radius: 5px;
@@ -152,8 +172,8 @@ nav ul li {
     color: #fff;
     text-decoration: none;
     font-family: 'Orbitron', sans-serif;
-    font-size: 16px;
-    padding: 10px 15px;
+    font-size: 1rem;
+    padding: 0.625rem 0.9375rem;
     background: rgba(0, 234, 255, 0.1);
     border: 1px solid #00eaff;
     border-radius: 5px;
@@ -164,7 +184,7 @@ nav ul li {
 
 .holo-dropdown .holo-toggle::after {
     content: ' ▼';
-    font-size: 12px;
+    font-size: 0.75rem;
 }
 
 .holo-dropdown .holo-toggle:hover {
@@ -187,11 +207,11 @@ nav ul li {
 
 .holo-menu a {
     display: block;
-    padding: 10px 20px;
+    padding: 0.625rem 1.25rem;
     color: #fff;
     text-decoration: none;
     font-family: 'Orbitron', sans-serif;
-    font-size: 14px;
+    font-size: 0.875rem;
     border-bottom: 1px solid rgba(0, 234, 255, 0.2);
 }
 
@@ -210,7 +230,7 @@ nav ul li {
 
 @media (max-width: 768px) {
     header {
-        padding: 15px 20px;
+        padding: 0.9375rem 1.25rem;
     }
 
     .logo-img {
@@ -218,7 +238,7 @@ nav ul li {
     }
 
     .ai-powered {
-        font-size: 12px;
+        font-size: 0.75rem;
     }
 
     nav ul {
@@ -229,7 +249,7 @@ nav ul li {
         left: 0;
         width: 100%;
         background: rgba(0, 0, 0, 0.95);
-        padding: 20px 0;
+        padding: 1.25rem 0;
     }
 
     nav ul.active {
@@ -237,13 +257,13 @@ nav ul li {
     }
 
     nav ul li {
-        margin: 10px 0;
+        margin: 0.625rem 0;
         text-align: center;
     }
 
     .holo-link, .holo-dropdown .holo-toggle {
-        font-size: 14px;
-        padding: 10px;
+        font-size: 0.875rem;
+        padding: 0.625rem;
     }
 
     .holo-menu {
@@ -251,42 +271,46 @@ nav ul li {
         background: rgba(0, 0, 0, 0.8);
         border: none;
         box-shadow: none;
-        padding: 10px 0;
+        padding: 0.625rem 0;
     }
 
     .holo-menu a {
-        font-size: 12px;
+        font-size: 0.75rem;
     }
 }
 
 @media (max-width: 480px) {
     nav ul {
-        gap: 5px;
+        gap: 0.5rem;
     }
 
     nav ul li {
-        margin-left: 10px;
+        margin-left: 0.625rem;
     }
 
     .holo-link, .holo-dropdown .holo-toggle {
-        font-size: 14px;
-        padding: 8px 12px;
+        font-size: 0.875rem;
+        padding: 0.5rem 0.75rem;
     }
 }
 
 .hero {
-    height: 100vh;
+    min-height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
     position: relative;
     text-align: center;
     overflow: hidden;
+    padding: 2rem;
 }
 
 .hero-content {
     position: relative;
     z-index: 5;
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
 }
 
 .nebula-glow {
@@ -310,7 +334,7 @@ nav ul li {
     display: flex;
     align-items: center;
     justify-content: center;
-    margin-bottom: 20px;
+    margin-bottom: 2rem;
 }
 
 .holo-logo {
@@ -327,16 +351,16 @@ nav ul li {
     font-size: 2.5rem;
     color: #00eaff;
     text-shadow: 0 0 10px #00eaff;
-    opacity: 0;
+    display: block;
 }
 
 .symban-left {
-    left: -150px;
+    left: -15vw;
     transform: rotate(-15deg);
 }
 
 .symban-right {
-    right: -150px;
+    right: -15vw;
     transform: rotate(15deg);
 }
 
@@ -378,7 +402,8 @@ nav ul li {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    gap: 1.5vw;
+    gap: 1.5rem;
+    margin-top: 2rem;
 }
 
 .holo-action-btn {
@@ -389,10 +414,10 @@ nav ul li {
     background: rgba(0, 234, 255, 0.1);
     border: 1px solid #00eaff;
     color: #fff;
-    padding: 1vw 2vw;
+    padding: 1rem 2rem;
     text-decoration: none;
     font-family: 'Orbitron', sans-serif;
-    font-size: 1.2vw;
+    font-size: 1.2rem;
     position: relative;
     border-radius: 5px;
     transition: all 0.3s;
@@ -449,26 +474,26 @@ nav ul li {
     }
 
     .symban-left {
-        left: -120px;
+        left: -12vw;
     }
 
     .symban-right {
-        right: -120px;
+        right: -12vw;
     }
 
     .holo-btn {
-        padding: 1.5vw 2.5vw;
-        font-size: 1.5vw;
+        padding: 0.75rem 1.5rem;
+        font-size: 1rem;
     }
 
     .holo-actions {
-        gap: 1vw;
+        gap: 1rem;
     }
 }
 
 @media (max-width: 768px) {
     .hero {
-        height: auto;
+        min-height: auto;
         padding: 100px 20px;
     }
 
@@ -496,21 +521,21 @@ nav ul li {
     }
 
     .symban-left {
-        left: -90px;
+        left: -9vw;
     }
 
     .symban-right {
-        right: -90px;
+        right: -9vw;
     }
 
     .holo-actions {
         flex-direction: column;
-        gap: 2vw;
+        gap: 1rem;
     }
 
     .holo-btn {
-        padding: 2vw 3vw;
-        font-size: 2vw;
+        padding: 0.625rem 1.25rem;
+        font-size: 0.875rem;
     }
 }
 
@@ -534,16 +559,16 @@ nav ul li {
     }
 
     .symban-left {
-        left: -70px;
+        left: -7vw;
     }
 
     .symban-right {
-        right: -70px;
+        right: -7vw;
     }
 
     .holo-btn {
-        padding: 3vw 4vw;
-        font-size: 3vw;
+        padding: 0.5rem 1rem;
+        font-size: 0.75rem;
     }
 }
 
@@ -562,7 +587,7 @@ nav ul li {
 
 .holo-modal-content {
     background: rgba(0, 0, 0, 0.95);
-    padding: 30px;
+    padding: 1.875rem;
     border: 2px solid #00eaff;
     border-radius: 10px;
     text-align: center;
@@ -574,10 +599,10 @@ nav ul li {
 
 .holo-close {
     position: absolute;
-    top: 10px;
-    right: 15px;
+    top: 0.625rem;
+    right: 0.9375rem;
     color: #00eaff;
-    font-size: 24px;
+    font-size: 1.5rem;
     cursor: pointer;
     transition: all 0.3s;
 }
@@ -589,15 +614,15 @@ nav ul li {
 
 .holo-modal-content h2 {
     font-family: 'Orbitron', sans-serif;
-    font-size: 28px;
-    margin-bottom: 20px;
+    font-size: 1.75rem;
+    margin-bottom: 1.25rem;
     text-shadow: 0 0 10px #00eaff;
 }
 
 #airdropForm {
     display: flex;
     flex-direction: column;
-    gap: 15px;
+    gap: 0.9375rem;
 }
 
 .form-group {
@@ -607,8 +632,8 @@ nav ul li {
 
 .form-group label {
     font-family: 'Exo 2', sans-serif;
-    font-size: 14px;
-    margin-bottom: 5px;
+    font-size: 0.875rem;
+    margin-bottom: 0.3125rem;
     display: block;
 }
 
@@ -640,9 +665,9 @@ nav ul li {
     background: rgba(0, 0, 0, 0.95);
     border: 1px solid #00eaff;
     border-radius: 5px;
-    padding: 10px;
+    padding: 0.625rem;
     font-family: 'Exo 2', sans-serif;
-    font-size: 12px;
+    font-size: 0.75rem;
     width: 200px;
     z-index: 100;
     opacity: 0;
@@ -655,13 +680,13 @@ nav ul li {
 }
 
 #airdropForm input {
-    padding: 10px;
+    padding: 0.625rem;
     border: 2px solid #00eaff;
     border-radius: 5px;
     background: rgba(0, 0, 0, 0.7);
     color: #fff;
     font-family: 'Exo 2', sans-serif;
-    font-size: 16px;
+    font-size: 1rem;
     transition: all 0.3s;
     width: 100%;
 }
@@ -673,19 +698,19 @@ nav ul li {
 
 .form-note {
     font-family: 'Exo 2', sans-serif;
-    font-size: 12px;
+    font-size: 0.75rem;
     opacity: 0.7;
-    margin-top: 10px;
+    margin-top: 0.625rem;
 }
 
 #airdropForm button {
     background: #ffd700;
     color: #000;
-    padding: 10px;
+    padding: 0.625rem;
     border: none;
     border-radius: 5px;
     font-family: 'Orbitron', sans-serif;
-    font-size: 18px;
+    font-size: 1.125rem;
     cursor: pointer;
     transition: all 0.3s;
     box-shadow: 0 0 10px #ffd700;
@@ -698,42 +723,42 @@ nav ul li {
 
 @media (max-width: 768px) {
     .holo-modal-content {
-        padding: 20px;
+        padding: 1.25rem;
         max-width: 90%;
     }
 
     .holo-modal-content h2 {
-        font-size: 24px;
-        margin-bottom: 15px;
+        font-size: 1.5rem;
+        margin-bottom: 0.9375rem;
     }
 
     #airdropForm input {
-        font-size: 14px;
+        font-size: 0.875rem;
     }
 
     #airdropForm button {
-        font-size: 16px;
-        padding: 8px;
+        font-size: 1rem;
+        padding: 0.5rem;
     }
 }
 
 .holo-buy-symban {
-    padding: 80px 50px;
+    padding: 5rem 3.125rem;
     text-align: center;
     background: rgba(0, 0, 0, 0.6);
 }
 
 .holo-buy-symban h2 {
     font-family: 'Orbitron', sans-serif;
-    font-size: 48px;
-    margin-bottom: 30px;
+    font-size: 3rem;
+    margin-bottom: 1.875rem;
     text-shadow: 0 0 20px #00eaff;
 }
 
 .holo-buy-symban p {
     font-family: 'Exo 2', sans-serif;
-    font-size: 20px;
-    margin-bottom: 40px;
+    font-size: 1.25rem;
+    margin-bottom: 2.5rem;
     text-shadow: 0 0 10px #00eaff;
     opacity: 0.9;
 }
@@ -742,60 +767,60 @@ nav ul li {
     display: flex;
     justify-content: center;
     align-items: center;
-    gap: 10px;
+    gap: 0.625rem;
 }
 
 .holo-buy-symban .ido-btn {
     background: #ffd700;
     color: #000;
-    padding: 15px 40px;
-    font-size: 20px;
+    padding: 0.9375rem 2.5rem;
+    font-size: 1.25rem;
 }
 
 @media (max-width: 1024px) {
     .holo-buy-symban {
-        padding: 60px 30px;
+        padding: 3.75rem 1.875rem;
     }
 
     .holo-buy-symban h2 {
-        font-size: 40px;
-        margin-bottom: 25px;
+        font-size: 2.5rem;
+        margin-bottom: 1.5625rem;
     }
 
     .holo-buy-symban p {
-        font-size: 18px;
-        margin-bottom: 30px;
+        font-size: 1.125rem;
+        margin-bottom: 1.875rem;
     }
 
     .holo-buy-symban .ido-btn {
-        padding: 12px 30px;
-        font-size: 18px;
+        padding: 0.75rem 1.875rem;
+        font-size: 1.125rem;
     }
 }
 
 @media (max-width: 768px) {
     .holo-buy-symban {
-        padding: 40px 20px;
+        padding: 2.5rem 1.25rem;
     }
 
     .holo-buy-symban h2 {
-        font-size: 32px;
-        margin-bottom: 20px;
+        font-size: 2rem;
+        margin-bottom: 1.25rem;
     }
 
     .holo-buy-symban p {
-        font-size: 16px;
-        margin-bottom: 20px;
+        font-size: 1rem;
+        margin-bottom: 1.25rem;
     }
 
     .holo-buy-symban .ido-btn {
-        padding: 10px 20px;
-        font-size: 16px;
+        padding: 0.625rem 1.25rem;
+        font-size: 1rem;
     }
 }
 
 .holo-usps {
-    padding: 100px 50px;
+    padding: 6.25rem 3.125rem;
     text-align: center;
     position: relative;
     background: rgba(0, 0, 0, 0.5);
@@ -803,15 +828,15 @@ nav ul li {
 
 .holo-usps h2 {
     font-family: 'Orbitron', sans-serif;
-    font-size: 48px;
-    margin-bottom: 100px;
+    font-size: 3rem;
+    margin-bottom: 6.25rem;
     text-shadow: 0 0 20px #00eaff;
 }
 
 .holo-usp-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    gap: 30px;
+    gap: 1.875rem;
     justify-items: center;
     position: relative;
 }
@@ -819,7 +844,7 @@ nav ul li {
 .holo-usp-card {
     background: rgba(0, 234, 255, 0.05);
     border: 2px solid #00eaff;
-    padding: 20px;
+    padding: 1.25rem;
     width: 200px;
     border-radius: 10px;
     box-shadow: 0 0 15px #00eaff;
@@ -855,13 +880,13 @@ nav ul li {
 
 .holo-usp-card h3 {
     font-family: 'Orbitron', sans-serif;
-    font-size: 20px;
-    margin-bottom: 10px;
+    font-size: 1.25rem;
+    margin-bottom: 0.625rem;
     text-shadow: 0 0 10px #00eaff;
 }
 
 .holo-usp-card p {
-    font-size: 14px;
+    font-size: 0.875rem;
     opacity: 0.8;
 }
 
@@ -876,80 +901,80 @@ nav ul li {
 
 @media (max-width: 1024px) {
     .holo-usps {
-        padding: 80px 30px;
+        padding: 5rem 1.875rem;
     }
 
     .holo-usps h2 {
-        font-size: 40px;
-        margin-bottom: 80px;
+        font-size: 2.5rem;
+        margin-bottom: 5rem;
     }
 
     .holo-usp-grid {
         grid-template-columns: repeat(2, 1fr);
-        gap: 20px;
+        gap: 1.25rem;
     }
 
     .holo-usp-card {
         width: 180px;
-        padding: 15px;
+        padding: 0.9375rem;
     }
 
     .holo-usp-card h3 {
-        font-size: 18px;
+        font-size: 1.125rem;
     }
 
     .holo-usp-card p {
-        font-size: 13px;
+        font-size: 0.8125rem;
     }
 }
 
 @media (max-width: 768px) {
     .holo-usps {
-        padding: 60px 20px;
+        padding: 3.75rem 1.25rem;
     }
 
     .holo-usps h2 {
-        font-size: 32px;
-        margin-bottom: 60px;
+        font-size: 2rem;
+        margin-bottom: 3.75rem;
     }
 
     .holo-usp-grid {
         grid-template-columns: 1fr;
-        gap: 15px;
+        gap: 0.9375rem;
     }
 
     .holo-usp-card {
         width: 100%;
         max-width: 300px;
-        padding: 15px;
+        padding: 0.9375rem;
     }
 
     .holo-usp-card h3 {
-        font-size: 18px;
+        font-size: 1.125rem;
     }
 
     .holo-usp-card p {
-        font-size: 13px;
+        font-size: 0.8125rem;
     }
 }
 
 .holo-ido {
-    padding: 100px 50px;
+    padding: 6.25rem 3.125rem;
     text-align: center;
     background: rgba(0, 0, 0, 0.7);
 }
 
 .holo-ido h2 {
     font-family: 'Orbitron', sans-serif;
-    font-size: 48px;
-    margin-bottom: 40px;
+    font-size: 3rem;
+    margin-bottom: 2.5rem;
     text-shadow: 0 0 20px #00eaff;
 }
 
 .holo-countdown-sphere {
     width: 300px;
     height: 300px;
-    margin: 0 auto 40px;
+    margin: 0 auto 2.5rem;
     background: radial-gradient(circle, rgba(0, 234, 255, 0.3), transparent);
     border: 2px solid #00eaff;
     border-radius: 50%;
@@ -970,22 +995,22 @@ nav ul li {
 .holo-countdown {
     display: flex;
     justify-content: center;
-    gap: 20px;
+    gap: 1.25rem;
 }
 
 .holo-countdown div {
     background: rgba(0, 0, 0, 0.8);
-    padding: 15px;
+    padding: 0.9375rem;
     border: 2px solid #00eaff;
     border-radius: 5px;
     font-family: 'Orbitron', sans-serif;
-    font-size: 20px;
+    font-size: 1.25rem;
     box-shadow: 0 0 10px #00eaff;
 }
 
 .holo-countdown span {
     display: block;
-    font-size: 32px;
+    font-size: 2rem;
     color: #ffd700;
     text-shadow: 0 0 10px #ffd700;
 }
@@ -993,18 +1018,18 @@ nav ul li {
 .ido-btn {
     background: #ffd700;
     color: #000;
-    padding: 15px 40px;
-    font-size: 20px;
+    padding: 0.9375rem 2.5rem;
+    font-size: 1.25rem;
 }
 
 @media (max-width: 1024px) {
     .holo-ido {
-        padding: 80px 30px;
+        padding: 5rem 1.875rem;
     }
 
     .holo-ido h2 {
-        font-size: 40px;
-        margin-bottom: 30px;
+        font-size: 2.5rem;
+        margin-bottom: 1.875rem;
     }
 
     .holo-countdown-sphere {
@@ -1013,28 +1038,28 @@ nav ul li {
     }
 
     .holo-countdown div {
-        padding: 10px;
-        font-size: 18px;
+        padding: 0.625rem;
+        font-size: 1.125rem;
     }
 
     .holo-countdown span {
-        font-size: 28px;
+        font-size: 1.75rem;
     }
 
     .ido-btn {
-        padding: 12px 30px;
-        font-size: 18px;
+        padding: 0.75rem 1.875rem;
+        font-size: 1.125rem;
     }
 }
 
 @media (max-width: 768px) {
     .holo-ido {
-        padding: 60px 20px;
+        padding: 3.75rem 1.25rem;
     }
 
     .holo-ido h2 {
-        font-size: 32px;
-        margin-bottom: 20px;
+        font-size: 2rem;
+        margin-bottom: 1.25rem;
     }
 
     .holo-countdown-sphere {
@@ -1044,26 +1069,26 @@ nav ul li {
 
     .holo-countdown {
         flex-direction: column;
-        gap: 10px;
+        gap: 0.625rem;
     }
 
     .holo-countdown div {
-        padding: 8px;
-        font-size: 16px;
+        padding: 0.5rem;
+        font-size: 1rem;
     }
 
     .holo-countdown span {
-        font-size: 24px;
+        font-size: 1.5rem;
     }
 
     .ido-btn {
-        padding: 10px 20px;
-        font-size: 16px;
+        padding: 0.625rem 1.25rem;
+        font-size: 1rem;
     }
 }
 
 .holo-footer {
-    padding: 50px;
+    padding: 3.125rem;
     text-align: center;
     background: rgba(0, 0, 0, 0.9);
     position: relative;
@@ -1084,16 +1109,16 @@ nav ul li {
 
 .footer-logo {
     height: 40px;
-    margin-bottom: 20px;
+    margin-bottom: 1.25rem;
     filter: drop-shadow(0 0 15px #00eaff);
 }
 
 .footer-links a {
     color: #00eaff;
-    margin: 0 15px;
+    margin: 0 0.9375rem;
     text-decoration: none;
     font-family: 'Orbitron', sans-serif;
-    font-size: 14px;
+    font-size: 0.875rem;
     transition: all 0.3s;
 }
 
@@ -1102,15 +1127,15 @@ nav ul li {
 }
 
 .social-links {
-    margin: 20px 0;
+    margin: 1.25rem 0;
 }
 
 .social-links a {
     color: #00eaff;
-    margin: 0 15px;
+    margin: 0 0.9375rem;
     text-decoration: none;
     font-family: 'Orbitron', sans-serif;
-    font-size: 16px;
+    font-size: 1rem;
     transition: all 0.3s;
 }
 
@@ -1119,51 +1144,51 @@ nav ul li {
 }
 
 footer p {
-    font-size: 14px;
-    margin-top: 20px;
+    font-size: 0.875rem;
+    margin-top: 1.25rem;
     opacity: 0.7;
 }
 
 @media (max-width: 768px) {
     .holo-footer {
-        padding: 30px 20px;
+        padding: 1.875rem 1.25rem;
     }
 
     .footer-logo {
         height: 30px;
-        margin-bottom: 15px;
+        margin-bottom: 0.9375rem;
     }
 
     .footer-links {
         display: flex;
         flex-wrap: wrap;
         justify-content: center;
-        gap: 10px;
+        gap: 0.625rem;
     }
 
     .footer-links a {
-        margin: 5px 10px;
-        font-size: 12px;
+        margin: 0.3125rem 0.625rem;
+        font-size: 0.75rem;
     }
 
     .social-links a {
-        margin: 5px 10px;
-        font-size: 14px;
+        margin: 0.3125rem 0.625rem;
+        font-size: 0.875rem;
     }
 
     footer p {
-        font-size: 12px;
+        font-size: 0.75rem;
     }
 }
 
 .cookie-consent {
     display: none;
     position: fixed;
-    bottom: 20px;
+    bottom: 1.25rem;
     left: 50%;
     transform: translateX(-50%);
     background: rgba(0, 0, 0, 0.95);
-    padding: 20px;
+    padding: 1.25rem;
     border: 2px solid #00eaff;
     border-radius: 10px;
     box-shadow: 0 0 20px #00eaff;
@@ -1187,8 +1212,8 @@ footer p {
 
 .cookie-content p {
     font-family: 'Exo 2', sans-serif;
-    font-size: 16px;
-    margin-bottom: 20px;
+    font-size: 1rem;
+    margin-bottom: 1.25rem;
 }
 
 .cookie-content a {
@@ -1204,15 +1229,15 @@ footer p {
 .cookie-buttons {
     display: flex;
     justify-content: center;
-    gap: 15px;
+    gap: 0.9375rem;
 }
 
 .cookie-btn {
-    padding: 10px 20px;
+    padding: 0.625rem 1.25rem;
     border: 2px solid #00eaff;
     border-radius: 5px;
     font-family: 'Orbitron', sans-serif;
-    font-size: 16px;
+    font-size: 1rem;
     cursor: pointer;
     transition: all 0.3s;
 }
@@ -1262,17 +1287,17 @@ footer p {
 
 @media (max-width: 768px) {
     .cookie-consent {
-        padding: 15px;
+        padding: 0.9375rem;
         max-width: 90%;
     }
 
     .cookie-content p {
-        font-size: 14px;
-        margin-bottom: 15px;
+        font-size: 0.875rem;
+        margin-bottom: 0.9375rem;
     }
 
     .cookie-btn {
-        padding: 8px 15px;
-        font-size: 14px;
+        padding: 0.5rem 0.9375rem;
+        font-size: 0.875rem;
     }
 }
