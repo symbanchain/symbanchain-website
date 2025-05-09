@@ -48,7 +48,7 @@ body {
     background: url('/assets/stars.webp') repeat;
     background-size: 200px 200px;
     opacity: 0.5;
-    animation: twinkle 3s infinite;
+    animation: twinkle 3s infinite alternate;
 }
 
 @keyframes drift {
@@ -58,8 +58,7 @@ body {
 
 @keyframes twinkle {
     0% { opacity: 0.5; }
-    50% { opacity: 0.8; }
-    100% { opacity: 0.5; }
+    100% { opacity: 0.8; }
 }
 
 header {
@@ -77,6 +76,27 @@ header {
 .logo-img {
     height: 50px;
     filter: drop-shadow(0 0 15px #00eaff);
+}
+
+.hamburger {
+    display: none;
+}
+
+@media (min-width: 769px) {
+    .hamburger {
+        display: none !important;
+    }
+}
+
+@media (max-width: 768px) {
+    .hamburger {
+        display: block;
+        font-size: 30px;
+        color: #00eaff;
+        cursor: pointer;
+        background: none;
+        border: none;
+    }
 }
 
 nav ul {
@@ -131,6 +151,7 @@ nav ul li {
     border-radius: 5px;
     transition: all 0.3s;
     position: relative;
+    display: inline-block;
 }
 
 .holo-dropdown .holo-toggle::after {
@@ -159,7 +180,7 @@ nav ul li {
 .holo-menu {
     display: none;
     position: absolute;
-    top: 100%;
+    top: calc(100% + 5px);
     left: 0;
     background: rgba(0, 0, 0, 0.95);
     border: 1px solid #00eaff;
@@ -191,6 +212,53 @@ nav ul li {
     display: block;
 }
 
+@media (max-width: 768px) {
+    header {
+        padding: 15px 20px;
+    }
+
+    .logo-img {
+        height: 40px;
+    }
+
+    nav ul {
+        display: none;
+        flex-direction: column;
+        position: absolute;
+        top: 70px;
+        left: 0;
+        width: 100%;
+        background: rgba(0, 0, 0, 0.95);
+        padding: 20px 0;
+    }
+
+    nav ul.active {
+        display: flex;
+    }
+
+    nav ul li {
+        margin: 10px 0;
+        text-align: center;
+    }
+
+    .holo-link, .holo-dropdown .holo-toggle {
+        font-size: 14px;
+        padding: 10px;
+    }
+
+    .holo-menu {
+        position: static;
+        background: rgba(0, 0, 0, 0.8);
+        border: none;
+        box-shadow: none;
+        padding: 10px 0;
+    }
+
+    .holo-menu a {
+        font-size: 12px;
+    }
+}
+
 .hero {
     height: 100vh;
     display: flex;
@@ -198,11 +266,50 @@ nav ul li {
     align-items: center;
     position: relative;
     text-align: center;
+    overflow: hidden;
 }
 
 .hero-content {
     position: relative;
     z-index: 1;
+}
+
+.nebula-glow {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+    animation: nebulaPulse 10s infinite;
+}
+
+@keyframes nebulaPulse {
+    0% { opacity: 0.6; }
+    50% { opacity: 0.8; }
+    100% { opacity: 0.6; }
+}
+
+.ai-badge {
+    position: absolute;
+    top: -30px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba(0, 234, 255, 0.2);
+    border: 1px solid #00eaff;
+    border-radius: 5px;
+    padding: 5px 10px;
+    font-family: 'Orbitron', sans-serif;
+    font-size: 12px;
+    color: #00eaff;
+    text-shadow: 0 0 5px #00eaff;
+    animation: badgePulse 2s infinite;
+}
+
+@keyframes badgePulse {
+    0% { box-shadow: 0 0 5px #00eaff; }
+    50% { box-shadow: 0 0 15px #00eaff; }
+    100% { box-shadow: 0 0 5px #00eaff; }
 }
 
 .holo-logo {
@@ -217,8 +324,10 @@ nav ul li {
 .hero-content h1 {
     font-family: 'Orbitron', sans-serif;
     font-size: 72px;
+    font-weight: 700;
     text-shadow: 0 0 30px #00eaff;
     margin-bottom: 20px;
+    opacity: 0;
 }
 
 .hero-subheading {
@@ -226,7 +335,13 @@ nav ul li {
     font-size: 24px;
     text-shadow: 0 0 15px #00eaff;
     margin-bottom: 40px;
-    opacity: 0.9;
+    opacity: 0;
+}
+
+.hero-subheading .highlight {
+    font-weight: 700;
+    text-shadow: 0 0 10px #00eaff;
+    opacity: 0;
 }
 
 .holo-actions {
@@ -234,6 +349,10 @@ nav ul li {
     flex-wrap: wrap;
     justify-content: center;
     gap: 20px;
+}
+
+.holo-action-btn {
+    opacity: 0;
 }
 
 .holo-btn {
@@ -295,6 +414,11 @@ nav ul li {
         padding: 12px 25px;
         font-size: 16px;
     }
+
+    .ai-badge {
+        top: -25px;
+        font-size: 10px;
+    }
 }
 
 @media (max-width: 768px) {
@@ -326,6 +450,11 @@ nav ul li {
     .holo-btn {
         padding: 10px 20px;
         font-size: 14px;
+    }
+
+    .ai-badge {
+        top: -20px;
+        font-size: 8px;
     }
 }
 
@@ -382,6 +511,58 @@ nav ul li {
     gap: 15px;
 }
 
+.form-group {
+    position: relative;
+    text-align: left;
+}
+
+.form-group label {
+    font-family: 'Exo 2', sans-serif;
+    font-size: 14px;
+    margin-bottom: 5px;
+    display: block;
+}
+
+.required {
+    color: #ffd700;
+}
+
+.info-icon {
+    display: inline-block;
+    width: 16px;
+    height: 16px;
+    background: #00eaff;
+    color: #000;
+    border-radius: 50%;
+    text-align: center;
+    font-size: 12px;
+    line-height: 16px;
+    margin-left: 5px;
+    cursor: help;
+}
+
+.tooltip {
+    visibility: hidden;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background: rgba(0, 0, 0, 0.95);
+    border: 1px solid #00eaff;
+    border-radius: 5px;
+    padding: 10px;
+    font-family: 'Exo 2', sans-serif;
+    font-size: 12px;
+    width: 200px;
+    z-index: 100;
+    opacity: 0;
+    transition: opacity 0.3s;
+}
+
+.form-group:hover .tooltip {
+    visibility: visible;
+    opacity: 1;
+}
+
 #airdropForm input {
     padding: 10px;
     border: 2px solid #00eaff;
@@ -391,11 +572,19 @@ nav ul li {
     font-family: 'Exo 2', sans-serif;
     font-size: 16px;
     transition: all 0.3s;
+    width: 100%;
 }
 
 #airdropForm input:focus {
     border-color: #ffd700;
     box-shadow: 0 0 10px #ffd700;
+}
+
+.form-note {
+    font-family: 'Exo 2', sans-serif;
+    font-size: 12px;
+    opacity: 0.7;
+    margin-top: 10px;
 }
 
 #airdropForm button {
@@ -458,11 +647,22 @@ nav ul li {
     opacity: 0.9;
 }
 
+.buy-symban-action {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
+
 .holo-buy-symban .ido-btn {
     background: #ffd700;
     color: #000;
     padding: 15px 40px;
     font-size: 20px;
+}
+
+.growth-arrow {
+    margin-left: 10px;
 }
 
 @media (max-width: 1024px) {
@@ -517,7 +717,7 @@ nav ul li {
 .holo-usps h2 {
     font-family: 'Orbitron', sans-serif;
     font-size: 48px;
-    margin-bottom: 100px; /* Increased spacing */
+    margin-bottom: 100px;
     text-shadow: 0 0 20px #00eaff;
 }
 
@@ -526,6 +726,7 @@ nav ul li {
     grid-template-columns: repeat(3, 1fr);
     gap: 30px;
     justify-items: center;
+    position: relative;
 }
 
 .holo-usp-card {
@@ -538,6 +739,7 @@ nav ul li {
     transform: rotateY(0deg);
     transition: all 0.5s;
     position: relative;
+    z-index: 1;
 }
 
 .holo-usp-card:hover {
@@ -574,6 +776,15 @@ nav ul li {
 .holo-usp-card p {
     font-size: 14px;
     opacity: 0.8;
+}
+
+.usp-connections {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
 }
 
 @media (max-width: 1024px) {
