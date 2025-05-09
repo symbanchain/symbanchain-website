@@ -357,6 +357,7 @@ nav ul li {
     background-size: contain;
     filter: drop-shadow(0 0 20px #00eaff);
     position: relative;
+    clip-path: inset(0 0 0 0); /* Restrict particles to logo area */
 }
 
 .holo-logo::before, .holo-logo::after,
@@ -397,23 +398,23 @@ nav ul li {
 }
 
 @keyframes orbit1 {
-    0% { transform: translate(-50%, -50%) rotate(0deg) translateX(122px) rotate(0deg); }
-    100% { transform: translate(-50%, -50%) rotate(360deg) translateX(122px) rotate(-360deg); }
+    0% { transform: translate(-50%, -50%) rotate(0deg) translateX(115px) rotate(0deg); }
+    100% { transform: translate(-50%, -50%) rotate(360deg) translateX(115px) rotate(-360deg); }
 }
 
 @keyframes orbit2 {
-    0% { transform: translate(-50%, -50%) rotate(0deg) translateX(124px) rotate(0deg); }
-    100% { transform: translate(-50%, -50%) rotate(360deg) translateX(124px) rotate(-360deg); }
+    0% { transform: translate(-50%, -50%) rotate(0deg) translateX(116px) rotate(0deg); }
+    100% { transform: translate(-50%, -50%) rotate(360deg) translateX(116px) rotate(-360deg); }
 }
 
 @keyframes orbit3 {
-    0% { transform: translate(-50%, -50%) rotate(0deg) translateX(126px) rotate(0deg); }
-    100% { transform: translate(-50%, -50%) rotate(360deg) translateX(126px) rotate(-360deg); }
+    0% { transform: translate(-50%, -50%) rotate(0deg) translateX(117px) rotate(0deg); }
+    100% { transform: translate(-50%, -50%) rotate(360deg) translateX(117px) rotate(-360deg); }
 }
 
 @keyframes orbit4 {
-    0% { transform: translate(-50%, -50%) rotate(0deg) translateX(128px) rotate(0deg); }
-    100% { transform: translate(-50%, -50%) rotate(360deg) translateX(128px) rotate(-360deg); }
+    0% { transform: translate(-50%, -50%) rotate(0deg) translateX(118px) rotate(0deg); }
+    100% { transform: translate(-50%, -50%) rotate(360deg) translateX(118px) rotate(-360deg); }
 }
 
 @keyframes colorChange {
@@ -429,7 +430,7 @@ nav ul li {
     text-shadow: 0 0 10px #00eaff, 0 0 20px #00eaff, 0 0 30px #00eaff;
     letter-spacing: 0.2rem;
     position: relative;
-    margin-top: 0.5rem;
+    margin-top: 0.2rem;
     animation: shimmer 3s infinite linear;
 }
 
@@ -452,13 +453,14 @@ nav ul li {
     position: absolute;
     left: 50%;
     transform: translateX(-50%);
-    top: 260px;
+    top: 270px;
 }
 
 .hero-subheading {
     font-family: 'Exo 2', sans-serif;
     font-size: 1.5rem;
     text-shadow: 0 0 15px #00eaff;
+    margin-top: 4rem;
     margin-bottom: 3rem;
 }
 
@@ -529,11 +531,12 @@ nav ul li {
 @media (max-width: 1024px) {
     .hero-content h1 {
         margin-bottom: 1.5rem;
-        top: 230px;
+        top: 240px;
     }
 
     .hero-subheading {
         font-size: 1.25rem;
+        margin-top: 3.5rem;
         margin-bottom: 2.5rem;
     }
 
@@ -570,11 +573,12 @@ nav ul li {
 
     .hero-content h1 {
         margin-bottom: 1rem;
-        top: 200px;
+        top: 210px;
     }
 
     .hero-subheading {
         font-size: 1rem;
+        margin-top: 3rem;
         margin-bottom: 2rem;
     }
 
@@ -607,11 +611,12 @@ nav ul li {
 @media (max-width: 480px) {
     .hero-content h1 {
         margin-bottom: 0.75rem;
-        top: 180px;
+        top: 190px;
     }
 
     .hero-subheading {
         font-size: 0.875rem;
+        margin-top: 2.5rem;
         margin-bottom: 1.5rem;
     }
 
