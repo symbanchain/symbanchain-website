@@ -28,11 +28,11 @@ const customizeCookiesBtn = document.getElementById('customizeCookies');
 
 if (cookieConsent) {
     if (!localStorage.getItem('cookiesAccepted')) {
-        // Delay appearance until after hero animations (10 seconds total)
+        // Delay appearance until after hero animations (12 seconds total)
         setTimeout(() => {
             cookieConsent.style.display = 'block';
             console.log('Cookie consent popup displayed');
-        }, 10000);
+        }, 12000);
     } else {
         console.log('Cookies already accepted, popup not shown');
     }
@@ -144,17 +144,16 @@ if (typeof THREE !== 'undefined') {
 // Hero Section Animation
 if (typeof gsap !== 'undefined') {
     const holoLogo = document.getElementById('holoLogo');
-    const symbanLeft = document.querySelector('.symban-left');
-    const symbanRight = document.querySelector('.symban-right');
+    const brandName = document.querySelector('.brand-name');
     const heroTagline = document.getElementById('heroTagline');
     const taglineLetters = heroTagline.querySelectorAll('span');
     const heroSubheading = document.querySelector('.hero-subheading');
     const subheadingParts = heroSubheading.querySelectorAll('.subheading-part, .highlight');
     const actionButtons = document.querySelectorAll('.holo-action-btn');
 
-    if (holoLogo && symbanLeft && symbanRight && heroTagline && taglineLetters.length && heroSubheading && subheadingParts.length && actionButtons.length) {
+    if (holoLogo && brandName && heroTagline && taglineLetters.length && heroSubheading && subheadingParts.length && actionButtons.length) {
         gsap.timeline()
-            // Logo entrance
+            // Logo and Brand Name entrance
             .fromTo(holoLogo, 
                 { scale: 0, opacity: 0 }, 
                 { scale: 1, opacity: 1, duration: 2, ease: 'power2.out', 
@@ -169,11 +168,10 @@ if (typeof gsap !== 'undefined') {
                   }
                 }
             )
-            // Symban and Chain entrance
-            .fromTo([symbanLeft, symbanRight], 
-                { opacity: 0, y: 20 }, 
-                { opacity: 1, y: 0, duration: 1, stagger: 0.3, ease: 'power2.out' }, 
-                "-=1"
+            .fromTo(brandName, 
+                { opacity: 0, y: -20 }, 
+                { opacity: 1, y: 0, duration: 1, ease: 'power2.out' }, 
+                "-=1.5"
             )
             // Tagline entrance (letter-by-letter)
             .fromTo(taglineLetters, 
@@ -181,10 +179,10 @@ if (typeof gsap !== 'undefined') {
                 { opacity: 1, scale: 1, duration: 0.05, stagger: 0.05, ease: 'power2.out' }, 
                 "-=0.5"
             )
-            // Subheading entrance (sequential)
+            // Subheading entrance (sequential, faster)
             .fromTo(subheadingParts, 
                 { opacity: 0, scale: 1.2 }, 
-                { opacity: 1, scale: 1, duration: 1.5, stagger: 0.7, ease: 'power2.out' }, 
+                { opacity: 1, scale: 1, duration: 0.8, stagger: 0.3, ease: 'power2.out' }, 
                 "+=0.5"
             )
             // Action buttons entrance
@@ -202,7 +200,7 @@ if (typeof gsap !== 'undefined') {
     console.error('GSAP not loaded');
 }
 
-// GSAP Scroll Animations and USP Connections
+// GSAP Scroll Animations for USP Cards
 if (typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined') {
     gsap.registerPlugin(ScrollTrigger);
 
@@ -246,140 +244,6 @@ if (typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined') {
             });
         });
         console.log('GSAP scroll animations initialized for USP cards');
-
-        // Dynamic USP Connections with Neon Lines and Flashing Effects
-        const uspSvg = document.querySelector('.usp-connections');
-        if (uspSvg) {
-            // Set SVG dimensions based on the grid
-            const grid = document.querySelector('.holo-usp-grid');
-            const gridRect = grid.getBoundingClientRect();
-            uspSvg.setAttribute('viewBox', `0 0 ${gridRect.width} ${gridRect.height}`);
-
-            // Define connections (based on card order)
-            const connections = [
-                { from: 'usp1', to: 'usp2' },
-                { from: 'usp2', to: 'usp3' },
-                { from: 'usp3', to: 'usp4' },
-                { from: 'usp4', to: 'usp5' },
-                { from: 'usp5', to: 'usp6' },
-                { from: 'usp6', to: 'usp7' },
-                { from: 'usp7', to: 'usp8' },
-                { from: 'usp8', to: 'usp9' },
-                { from: 'usp9', to: 'usp1' },
-            ];
-
-            // Function to draw neon lines with flashing effects
-            const drawConnections = () => {
-                uspSvg.innerHTML = ''; // Clear previous paths
-
-                // Define gradient for neon effect
-                const defs = document.createElementNS('http://www.w3.org/2000/svg', 'defs');
-                const gradient = document.createElementNS('http://www.w3.org/2000/svg', 'linearGradient');
-                gradient.setAttribute('id', 'neonGradient');
-                gradient.setAttribute('x1', '0%');
-                gradient.setAttribute('y1', '0%');
-                gradient.setAttribute('x2', '100%');
-                gradient.setAttribute('y2', '100%');
-                const stop1 = document.createElementNS('http://www.w3.org/2000/svg', 'stop');
-                stop1.setAttribute('offset', '0%');
-                stop1.setAttribute('style', 'stop-color:#00eaff;stop-opacity:1');
-                const stop2 = document.createElementNS('http://www.w3.org/2000/svg', 'stop');
-                stop2.setAttribute('offset', '100%');
-                stop2.setAttribute('style', 'stop-color:#00eaff;stop-opacity:0.5');
-                gradient.appendChild(stop1);
-                gradient.appendChild(stop2);
-                defs.appendChild(gradient);
-                uspSvg.appendChild(defs);
-
-                connections.forEach((connection, index) => {
-                    const fromCard = document.querySelector(`[data-id="${connection.from}"]`);
-                    const toCard = document.querySelector(`[data-id="${connection.to}"]`);
-
-                    if (fromCard && toCard) {
-                        const fromRect = fromCard.getBoundingClientRect();
-                        const toRect = toCard.getBoundingClientRect();
-                        const gridRect = grid.getBoundingClientRect();
-
-                        // Calculate connection points (outside card edges)
-                        const offset = 30; // Offset to avoid text
-                        const fromX = fromRect.right - gridRect.left + offset;
-                        const fromY = fromRect.bottom - gridRect.top - offset;
-                        const toX = toRect.left - gridRect.left - offset;
-                        const toY = toRect.top - gridRect.top + offset;
-
-                        // Create path
-                        const path = document.createElementNS('http://www.w3.org/2000/svg', 'path');
-                        const d = `M${fromX},${fromY} L${fromX + 20},${fromY} Q${fromX + 40},${fromY} ${fromX + 40},${fromY + (toY - fromY) / 2} T${toX - 40},${toY} L${toX - 20},${toY} L${toX},${toY}`;
-                        path.setAttribute('d', d);
-                        path.setAttribute('stroke', 'url(#neonGradient)');
-                        path.setAttribute('stroke-width', '2');
-                        path.setAttribute('fill', 'none');
-                        path.setAttribute('stroke-dasharray', '1000');
-                        path.setAttribute('stroke-dashoffset', '1000');
-                        path.setAttribute('id', `connection-${index}`);
-
-                        uspSvg.appendChild(path);
-
-                        // Animate path drawing (flashing effect)
-                        gsap.to(path, {
-                            'stroke-dashoffset': 0,
-                            duration: 2,
-                            delay: index * 0.5 + 2, // Delay to sync with card animations
-                            ease: 'power2.out',
-                            onComplete: () => {
-                                // Pulsate after drawing
-                                gsap.to(path, {
-                                    'stroke-opacity': 0.5,
-                                    duration: 1.5,
-                                    repeat: -1,
-                                    yoyo: true,
-                                    ease: 'sine.inOut'
-                                });
-                            }
-                        });
-
-                        // Add particles along the path
-                        for (let i = 0; i < 2; i++) {
-                            const particle = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
-                            particle.setAttribute('r', '2');
-                            particle.setAttribute('fill', '#00eaff');
-                            particle.setAttribute('id', `particle-${index}-${i}`);
-                            uspSvg.appendChild(particle);
-
-                            gsap.to(particle, {
-                                motionPath: {
-                                    path: path,
-                                    align: path,
-                                    alignOrigin: [0.5, 0.5],
-                                    autoRotate: true
-                                },
-                                duration: 3,
-                                repeat: -1,
-                                ease: 'none',
-                                delay: i * 1.5 + 2,
-                                repeatDelay: 0
-                            });
-                        }
-                    }
-                });
-            };
-
-            // Initial draw
-            drawConnections();
-
-            // Redraw on resize
-            window.addEventListener('resize', drawConnections);
-
-            // Redraw after scroll animations
-            ScrollTrigger.addEventListener('refresh', () => {
-                drawConnections();
-                console.log('USP connections redrawn on ScrollTrigger refresh');
-            });
-
-            console.log('USP connections initialized');
-        } else {
-            console.error('USP connections SVG not found');
-        }
     } else {
         console.error('No USP cards found for GSAP animation');
     }
