@@ -191,8 +191,8 @@ if (typeof gsap !== 'undefined') {
                 { 
                     opacity: 1, 
                     scale: 1, 
-                    duration: (index) => index >= 4 ? 1 : 0.8, // Slower for white text parts
-                    stagger: (index) => index >= 4 ? 0.4 : 0.3, // Larger stagger for white text
+                    duration: (_, index) => index >= 4 ? 1 : 0.8, // Slower for white text parts
+                    stagger: (_, index) => index >= 4 ? 0.4 : 0.3, // Larger stagger for white text
                     ease: 'power2.out' 
                 }, 
                 "-=0.5"
