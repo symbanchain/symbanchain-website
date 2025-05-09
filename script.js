@@ -150,8 +150,9 @@ if (typeof gsap !== 'undefined') {
     const taglineLetters = heroTagline.querySelectorAll('span');
     const heroSubheading = document.querySelector('.hero-subheading');
     const subheadingParts = heroSubheading.querySelectorAll('.subheading-part, .highlight');
+    const actionButtons = document.querySelectorAll('.holo-action-btn');
 
-    if (holoLogo && particles.length && brandName && heroTagline && taglineLetters.length && heroSubheading && subheadingParts.length) {
+    if (holoLogo && particles.length && brandName && heroTagline && taglineLetters.length && heroSubheading && subheadingParts.length && actionButtons.length) {
         gsap.timeline()
             // S Logo entrance with zoom-in effect
             .fromTo(holoLogo, 
@@ -184,20 +185,32 @@ if (typeof gsap !== 'undefined') {
                 { opacity: 1, scale: 1, duration: 0.05, stagger: 0.05, ease: 'power2.out' }, 
                 "-=0.5"
             )
-            // Subheading entrance (single animation with adjusted timing)
+            // Subheading entrance (reverted to previous working version)
             .fromTo(subheadingParts, 
                 { opacity: 0, scale: 1.2 }, 
                 { 
                     opacity: 1, 
                     scale: 1, 
-                    duration: (index) => index >= 4 ? 1 : 0.8, // Slower for white text parts
-                    stagger: (index) => index >= 4 ? 0.5 : 0.3, // Larger stagger for white text
+                    duration: 0.8, 
+                    stagger: 0.3, 
                     ease: 'power2.out' 
                 }, 
                 "+=0.5"
             )
+            // Adjust white text timing specifically
+            .fromTo(subheadingParts, 
+                { opacity: 0, scale: 1.2 }, 
+                { 
+                    opacity: 1, 
+                    scale: 1, 
+                    duration: 1, 
+                    stagger: 0.6, 
+                    ease: 'power2.out' 
+                }, 
+                "-=1.5"
+            )
             // Action buttons entrance
-            .fromTo(document.querySelectorAll('.holo-action-btn'), 
+            .fromTo(actionButtons, 
                 { y: 20, opacity: 0 }, 
                 { y: 0, opacity: 1, duration: 0.8, stagger: 0.2, ease: 'back.out(1.7)' }, 
                 "-=0.5"
