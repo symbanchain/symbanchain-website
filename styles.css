@@ -315,6 +315,10 @@ nav ul li {
     width: 100%;
     max-width: 1200px;
     margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 
 .nebula-glow {
@@ -352,98 +356,86 @@ nav ul li {
 }
 
 .holo-logo::before, .holo-logo::after,
-.holo-logo .particle-3, .holo-logo .particle-4 {
+.holo-logo .particle-3::before, .holo-logo .particle-4::before {
     content: '';
     position: absolute;
     width: 5px;
     height: 5px;
     border-radius: 50%;
-    box-shadow: 0 0 10px currentColor;
 }
 
 .holo-logo::before {
-    background: #00eaff;
-    color: #00eaff;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    animation: orbit1 3s infinite linear;
+    animation: orbit1 3s infinite linear, colorChange 3s infinite;
 }
 
 .holo-logo::after {
-    background: #ffd700;
-    color: #ffd700;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    animation: orbit2 4s infinite linear reverse;
+    animation: orbit2 4s infinite linear reverse, colorChange 4s infinite;
 }
 
-.holo-logo .particle-3 {
-    background: #00eaff;
-    color: #00eaff;
+.holo-logo .particle-3::before {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    animation: orbit3 5s infinite linear;
+    animation: orbit3 5s infinite linear, colorChange 5s infinite;
 }
 
-.holo-logo .particle-4 {
-    background: #ffd700;
-    color: #ffd700;
+.holo-logo .particle-4::before {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    animation: orbit4 6s infinite linear reverse;
+    animation: orbit4 6s infinite linear reverse, colorChange 6s infinite;
 }
 
 @keyframes orbit1 {
-    0% { transform: translate(-50%, -50%) rotate(0deg) translateX(120px) rotate(0deg); }
-    100% { transform: translate(-50%, -50%) rotate(360deg) translateX(120px) rotate(-360deg); }
+    0% { transform: translate(-50%, -50%) rotate(0deg) translateX(90px) rotate(0deg); }
+    100% { transform: translate(-50%, -50%) rotate(360deg) translateX(90px) rotate(-360deg); }
 }
 
 @keyframes orbit2 {
+    0% { transform: translate(-50%, -50%) rotate(0deg) translateX(80px) rotate(0deg); }
+    100% { transform: translate(-50%, -50%) rotate(360deg) translateX(80px) rotate(-360deg); }
+}
+
+@keyframes orbit3 {
     0% { transform: translate(-50%, -50%) rotate(0deg) translateX(100px) rotate(0deg); }
     100% { transform: translate(-50%, -50%) rotate(360deg) translateX(100px) rotate(-360deg); }
 }
 
-@keyframes orbit3 {
-    0% { transform: translate(-50%, -50%) rotate(0deg) translateX(140px) rotate(0deg); }
-    100% { transform: translate(-50%, -50%) rotate(360deg) translateX(140px) rotate(-360deg); }
+@keyframes orbit4 {
+    0% { transform: translate(-50%, -50%) rotate(0deg) translateX(110px) rotate(0deg); }
+    100% { transform: translate(-50%, -50%) rotate(360deg) translateX(110px) rotate(-360deg); }
 }
 
-@keyframes orbit4 {
-    0% { transform: translate(-50%, -50%) rotate(0deg) translateX(160px) rotate(0deg); }
-    100% { transform: translate(-50%, -50%) rotate(360deg) translateX(160px) rotate(-360deg); }
+@keyframes colorChange {
+    0% { background: #00eaff; box-shadow: 0 0 10px #00eaff; }
+    50% { background: #ffd700; box-shadow: 0 0 10px #ffd700; }
+    100% { background: #00eaff; box-shadow: 0 0 10px #00eaff; }
 }
 
 .brand-name {
     font-family: 'Orbitron', sans-serif;
-    font-size: 3rem;
+    font-size: 2.5rem;
     color: #00eaff;
-    text-shadow: 0 0 15px #00eaff;
-    letter-spacing: 0.3rem;
-    position: relative;
-    margin-bottom: 0.5rem;
-    animation: brandPulse 2s infinite;
+    text-shadow: 0 0 10px #00eaff, 0 0 20px #00eaff, 0 0 30px #00eaff;
+    letter-spacing: 0.2rem;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 1;
+    animation: shimmer 3s infinite linear;
 }
 
-@keyframes brandPulse {
-    0% { 
-        text-shadow: 0 0 15px #00eaff; 
-        transform: scale(1); 
-        color: #00eaff; 
-    }
-    50% { 
-        text-shadow: 0 0 25px #ffd700; 
-        transform: scale(1.05); 
-        color: #ffd700; 
-    }
-    100% { 
-        text-shadow: 0 0 15px #00eaff; 
-        transform: scale(1); 
-        color: #00eaff; 
-    }
+@keyframes shimmer {
+    0% { text-shadow: 0 0 10px #00eaff, 0 0 20px #00eaff, 0 0 30px #00eaff; }
+    50% { text-shadow: 0 0 20px #00eaff, 0 0 30px #00eaff, 0 0 40px #00eaff; }
+    100% { text-shadow: 0 0 10px #00eaff, 0 0 20px #00eaff, 0 0 30px #00eaff; }
 }
 
 .hero-content h1 {
@@ -455,11 +447,7 @@ nav ul li {
     text-align: center;
     white-space: nowrap;
     width: 100%;
-}
-
-.hero-content h1 span {
-    opacity: 0;
-    display: inline-block;
+    max-width: none;
 }
 
 .hero-subheading {
@@ -553,8 +541,8 @@ nav ul li {
     }
 
     .brand-name {
-        font-size: 2.5rem;
-        letter-spacing: 0.2rem;
+        font-size: 2rem;
+        letter-spacing: 0.15rem;
     }
 
     .holo-btn {
@@ -592,8 +580,8 @@ nav ul li {
     }
 
     .brand-name {
-        font-size: 2rem;
-        letter-spacing: 0.15rem;
+        font-size: 1.5rem;
+        letter-spacing: 0.1rem;
     }
 
     .holo-actions {
@@ -622,8 +610,8 @@ nav ul li {
     }
 
     .brand-name {
-        font-size: 1.5rem;
-        letter-spacing: 0.1rem;
+        font-size: 1.2rem;
+        letter-spacing: 0.05rem;
     }
 
     .holo-btn {
