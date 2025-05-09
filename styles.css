@@ -357,7 +357,7 @@ nav ul li {
     background-size: contain;
     filter: drop-shadow(0 0 20px #00eaff);
     position: relative;
-    clip-path: inset(0 0 0 0); /* Restrict particles to logo area */
+    overflow: hidden; /* Prevent particles from overlapping header or SymbanChain */
 }
 
 .holo-logo::before, .holo-logo::after,
@@ -398,23 +398,23 @@ nav ul li {
 }
 
 @keyframes orbit1 {
-    0% { transform: translate(-50%, -50%) rotate(0deg) translateX(115px) rotate(0deg); }
-    100% { transform: translate(-50%, -50%) rotate(360deg) translateX(115px) rotate(-360deg); }
+    0% { transform: translate(-50%, -50%) rotate(0deg) translateX(105px) rotate(0deg); }
+    100% { transform: translate(-50%, -50%) rotate(360deg) translateX(105px) rotate(-360deg); }
 }
 
 @keyframes orbit2 {
-    0% { transform: translate(-50%, -50%) rotate(0deg) translateX(116px) rotate(0deg); }
-    100% { transform: translate(-50%, -50%) rotate(360deg) translateX(116px) rotate(-360deg); }
+    0% { transform: translate(-50%, -50%) rotate(0deg) translateX(106px) rotate(0deg); }
+    100% { transform: translate(-50%, -50%) rotate(360deg) translateX(106px) rotate(-360deg); }
 }
 
 @keyframes orbit3 {
-    0% { transform: translate(-50%, -50%) rotate(0deg) translateX(117px) rotate(0deg); }
-    100% { transform: translate(-50%, -50%) rotate(360deg) translateX(117px) rotate(-360deg); }
+    0% { transform: translate(-50%, -50%) rotate(0deg) translateX(107px) rotate(0deg); }
+    100% { transform: translate(-50%, -50%) rotate(360deg) translateX(107px) rotate(-360deg); }
 }
 
 @keyframes orbit4 {
-    0% { transform: translate(-50%, -50%) rotate(0deg) translateX(118px) rotate(0deg); }
-    100% { transform: translate(-50%, -50%) rotate(360deg) translateX(118px) rotate(-360deg); }
+    0% { transform: translate(-50%, -50%) rotate(0deg) translateX(108px) rotate(0deg); }
+    100% { transform: translate(-50%, -50%) rotate(360deg) translateX(108px) rotate(-360deg); }
 }
 
 @keyframes colorChange {
@@ -426,8 +426,9 @@ nav ul li {
 .brand-name {
     font-family: 'Orbitron', sans-serif;
     font-size: 2.8rem;
+    font-weight: 700;
     color: #00eaff;
-    text-shadow: 0 0 10px #00eaff, 0 0 20px #00eaff, 0 0 30px #00eaff;
+    text-shadow: 0 0 15px #00eaff, 0 0 25px #00eaff, 0 0 35px #00eaff;
     letter-spacing: 0.2rem;
     position: relative;
     margin-top: 0.2rem;
@@ -435,9 +436,9 @@ nav ul li {
 }
 
 @keyframes shimmer {
-    0% { text-shadow: 0 0 10px #00eaff, 0 0 20px #00eaff, 0 0 30px #00eaff; }
-    50% { text-shadow: 0 0 5px #ffd700, 0 0 15px #00eaff, 0 0 25px #00eaff; }
-    100% { text-shadow: 0 0 10px #00eaff, 0 0 20px #00eaff, 0 0 30px #00eaff; }
+    0% { text-shadow: 0 0 15px #00eaff, 0 0 25px #00eaff, 0 0 35px #00eaff; }
+    50% { text-shadow: 0 0 10px #ffd700, 0 0 20px #00eaff, 0 0 30px #00eaff; }
+    100% { text-shadow: 0 0 15px #00eaff, 0 0 25px #00eaff, 0 0 35px #00eaff; }
 }
 
 .hero-content h1 {
