@@ -351,10 +351,10 @@ nav ul li {
 }
 
 .holo-logo {
-    width: 200px;
-    height: 200px;
+    width: 220px;
+    height: 220px;
     background: url('https://symbanchain-website.pages.dev/assets/logo.png') no-repeat center;
-    background-size: contain;
+    background-size: 200px 200px;
     filter: drop-shadow(0 0 20px #00eaff);
     position: relative;
     overflow: hidden; /* Prevent particles from overlapping header or SymbanChain */
@@ -398,23 +398,23 @@ nav ul li {
 }
 
 @keyframes orbit1 {
-    0% { transform: translate(-50%, -50%) rotate(0deg) translateX(105px) rotate(0deg); }
-    100% { transform: translate(-50%, -50%) rotate(360deg) translateX(105px) rotate(-360deg); }
+    0% { transform: translate(-50%, -50%) rotate(0deg) translateX(102px) rotate(0deg); }
+    100% { transform: translate(-50%, -50%) rotate(360deg) translateX(102px) rotate(-360deg); }
 }
 
 @keyframes orbit2 {
-    0% { transform: translate(-50%, -50%) rotate(0deg) translateX(106px) rotate(0deg); }
-    100% { transform: translate(-50%, -50%) rotate(360deg) translateX(106px) rotate(-360deg); }
+    0% { transform: translate(-50%, -50%) rotate(0deg) translateX(103px) rotate(0deg); }
+    100% { transform: translate(-50%, -50%) rotate(360deg) translateX(103px) rotate(-360deg); }
 }
 
 @keyframes orbit3 {
-    0% { transform: translate(-50%, -50%) rotate(0deg) translateX(107px) rotate(0deg); }
-    100% { transform: translate(-50%, -50%) rotate(360deg) translateX(107px) rotate(-360deg); }
+    0% { transform: translate(-50%, -50%) rotate(0deg) translateX(104px) rotate(0deg); }
+    100% { transform: translate(-50%, -50%) rotate(360deg) translateX(104px) rotate(-360deg); }
 }
 
 @keyframes orbit4 {
-    0% { transform: translate(-50%, -50%) rotate(0deg) translateX(108px) rotate(0deg); }
-    100% { transform: translate(-50%, -50%) rotate(360deg) translateX(108px) rotate(-360deg); }
+    0% { transform: translate(-50%, -50%) rotate(0deg) translateX(105px) rotate(0deg); }
+    100% { transform: translate(-50%, -50%) rotate(360deg) translateX(105px) rotate(-360deg); }
 }
 
 @keyframes colorChange {
@@ -546,8 +546,9 @@ nav ul li {
     }
 
     .holo-logo {
-        width: 150px;
-        height: 150px;
+        width: 165px;
+        height: 165px;
+        background-size: 150px 150px;
     }
 
     .brand-name {
@@ -588,8 +589,9 @@ nav ul li {
     }
 
     .holo-logo {
-        width: 120px;
-        height: 120px;
+        width: 135px;
+        height: 135px;
+        background-size: 120px 120px;
     }
 
     .brand-name {
@@ -1352,7 +1354,7 @@ footer p {
     }
 
     .cookie-btn {
-        padding: 0.5rem 0.9375rem;
+        padding: 0.5px 0.9375rem;
         font-size: 0.875rem;
     }
 }
