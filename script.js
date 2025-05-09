@@ -28,7 +28,7 @@ const customizeCookiesBtn = document.getElementById('customizeCookies');
 
 if (cookieConsent) {
     if (!localStorage.getItem('cookiesAccepted')) {
-        // Delay appearance until after hero animations (13 seconds total)
+        // Delay appearance until 2 seconds after final animation (13 seconds total)
         setTimeout(() => {
             cookieConsent.style.display = 'block';
             console.log('Cookie consent popup displayed');
@@ -144,6 +144,8 @@ if (typeof THREE !== 'undefined') {
 // Hero Section Animation
 if (typeof gsap !== 'undefined') {
     const holoLogo = document.getElementById('holoLogo');
+    const particles = document.querySelectorAll('.holo-logo .particle-3, .holo-logo .particle-4');
+    const logoBeforeAfter = document.querySelectorAll('.holo-logo::before, .holo-logo::after');
     const brandName = document.querySelector('.brand-name');
     const heroTagline = document.getElementById('heroTagline');
     const taglineLetters = heroTagline.querySelectorAll('span');
@@ -151,9 +153,9 @@ if (typeof gsap !== 'undefined') {
     const subheadingParts = heroSubheading.querySelectorAll('.subheading-part, .highlight');
     const actionButtons = document.querySelectorAll('.holo-action-btn');
 
-    if (holoLogo && brandName && heroTagline && taglineLetters.length && heroSubheading && subheadingParts.length && actionButtons.length) {
+    if (holoLogo && particles.length && brandName && heroTagline && taglineLetters.length && heroSubheading && subheadingParts.length && actionButtons.length) {
         gsap.timeline()
-            // Logo entrance with zoom-in effect
+            // S Logo entrance with zoom-in effect
             .fromTo(holoLogo, 
                 { scale: 0, opacity: 0 }, 
                 { scale: 1, opacity: 1, duration: 2, ease: 'power2.out' }
@@ -166,11 +168,17 @@ if (typeof gsap !== 'undefined') {
                 yoyo: true,
                 ease: 'sine.inOut'
             }, "-=0.5")
-            // Brand name entrance with fade-in
-            .fromTo(brandName, 
+            // Particles start circling
+            .fromTo(particles, 
                 { opacity: 0 }, 
-                { opacity: 1, duration: 1, ease: 'power2.out' }, 
+                { opacity: 1, duration: 0.5, stagger: 0.1 }, 
                 "-=1.5"
+            )
+            // SymbanChain entrance with wow effect
+            .fromTo(brandName, 
+                { opacity: 0, y: 20, scale: 0.9 }, 
+                { opacity: 1, y: 0, scale: 1, duration: 1.5, ease: 'power3.out' }, 
+                "-=1"
             )
             // Tagline entrance (letter-by-letter)
             .fromTo(taglineLetters, 
