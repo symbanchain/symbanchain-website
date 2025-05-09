@@ -306,7 +306,8 @@ nav ul li {
     position: relative;
     text-align: center;
     overflow: hidden;
-    padding: 2rem;
+    padding: 0;
+    margin: 0;
     box-sizing: border-box;
 }
 
@@ -315,7 +316,8 @@ nav ul li {
     z-index: 5;
     width: 100%;
     max-width: 1200px;
-    margin: 0 auto;
+    margin: 0;
+    padding: 0;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -395,23 +397,23 @@ nav ul li {
 }
 
 @keyframes orbit1 {
-    0% { transform: translate(-50%, -50%) rotate(0deg) translateX(60px) rotate(0deg); }
-    100% { transform: translate(-50%, -50%) rotate(360deg) translateX(60px) rotate(-360deg); }
+    0% { transform: translate(-50%, -50%) rotate(0deg) translateX(130px) rotate(0deg); }
+    100% { transform: translate(-50%, -50%) rotate(360deg) translateX(130px) rotate(-360deg); }
 }
 
 @keyframes orbit2 {
-    0% { transform: translate(-50%, -50%) rotate(0deg) translateX(65px) rotate(0deg); }
-    100% { transform: translate(-50%, -50%) rotate(360deg) translateX(65px) rotate(-360deg); }
+    0% { transform: translate(-50%, -50%) rotate(0deg) translateX(135px) rotate(0deg); }
+    100% { transform: translate(-50%, -50%) rotate(360deg) translateX(135px) rotate(-360deg); }
 }
 
 @keyframes orbit3 {
-    0% { transform: translate(-50%, -50%) rotate(0deg) translateX(70px) rotate(0deg); }
-    100% { transform: translate(-50%, -50%) rotate(360deg) translateX(70px) rotate(-360deg); }
+    0% { transform: translate(-50%, -50%) rotate(0deg) translateX(140px) rotate(0deg); }
+    100% { transform: translate(-50%, -50%) rotate(360deg) translateX(140px) rotate(-360deg); }
 }
 
 @keyframes orbit4 {
-    0% { transform: translate(-50%, -50%) rotate(0deg) translateX(75px) rotate(0deg); }
-    100% { transform: translate(-50%, -50%) rotate(360deg) translateX(75px) rotate(-360deg); }
+    0% { transform: translate(-50%, -50%) rotate(0deg) translateX(145px) rotate(0deg); }
+    100% { transform: translate(-50%, -50%) rotate(360deg) translateX(145px) rotate(-360deg); }
 }
 
 @keyframes colorChange {
@@ -433,7 +435,7 @@ nav ul li {
 
 @keyframes shimmer {
     0% { text-shadow: 0 0 10px #00eaff, 0 0 20px #00eaff, 0 0 30px #00eaff; }
-    50% { text-shadow: 0 0 15px #ffd700, 0 0 25px #ffd700, 0 0 35px #00eaff; }
+    50% { text-shadow: 0 0 5px #ffd700, 0 0 15px #00eaff, 0 0 25px #00eaff; }
     100% { text-shadow: 0 0 10px #00eaff, 0 0 20px #00eaff, 0 0 30px #00eaff; }
 }
 
@@ -442,13 +444,12 @@ nav ul li {
     font-size: clamp(2rem, 5vw, 4rem);
     font-weight: 700;
     text-shadow: 0 0 30px #00eaff;
-    margin: 0 auto 2rem;
+    margin: 0;
     padding: 0;
     text-align: center;
     white-space: nowrap;
-    width: 100%;
-    max-width: none;
-    position: relative;
+    width: fit-content;
+    position: absolute;
     left: 50%;
     transform: translateX(-50%);
 }
