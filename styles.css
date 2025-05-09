@@ -49,8 +49,8 @@ body {
     height: 100%;
     background: url('/assets/stars.webp') repeat;
     background-size: 200px 200px;
-    opacity: 0.5;
-    animation: twinkle 3s infinite alternate;
+    opacity: 0.3;
+    animation: twinkle 5s infinite alternate;
     z-index: 3;
 }
 
@@ -60,8 +60,8 @@ body {
 }
 
 @keyframes twinkle {
-    0% { opacity: 0.4; }
-    100% { opacity: 0.8; }
+    0% { opacity: 0.3; }
+    100% { opacity: 0.9; }
 }
 
 header {
@@ -76,9 +76,29 @@ header {
     background: rgba(0, 0, 0, 0.5);
 }
 
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
 .logo-img {
     height: 50px;
     filter: drop-shadow(0 0 15px #00eaff);
+}
+
+.ai-powered {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 14px;
+    color: #00eaff;
+    text-shadow: 0 0 5px #00eaff;
+    animation: aiPulse 2s infinite;
+}
+
+@keyframes aiPulse {
+    0% { text-shadow: 0 0 5px #00eaff; }
+    50% { text-shadow: 0 0 15px #00eaff; }
+    100% { text-shadow: 0 0 5px #00eaff; }
 }
 
 .hamburger {
@@ -129,21 +149,9 @@ nav ul li {
 }
 
 .holo-link:hover {
-    background: #00eaff;
+    background: #ffd700;
     color: #000;
-    box-shadow: 0 0 15px #00eaff;
-}
-
-.holo-link:hover::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    border: 2px solid #ffd700;
-    border-radius: 5px;
-    animation: cardGlow 1.5s infinite;
+    box-shadow: 0 0 15px #ffd700;
 }
 
 .holo-dropdown .holo-toggle {
@@ -166,21 +174,9 @@ nav ul li {
 }
 
 .holo-dropdown .holo-toggle:hover {
-    background: #00eaff;
+    background: #ffd700;
     color: #000;
-    box-shadow: 0 0 15px #00eaff;
-}
-
-.holo-dropdown .holo-toggle:hover::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    border: 2px solid #ffd700;
-    border-radius: 5px;
-    animation: cardGlow 1.5s infinite;
+    box-shadow: 0 0 15px #ffd700;
 }
 
 .holo-menu {
@@ -225,6 +221,10 @@ nav ul li {
 
     .logo-img {
         height: 40px;
+    }
+
+    .ai-powered {
+        font-size: 12px;
     }
 
     nav ul {
@@ -296,27 +296,6 @@ nav ul li {
     100% { opacity: 0.6; }
 }
 
-.ai-badge {
-    position: relative;
-    margin: 0 auto 10px;
-    background: rgba(0, 234, 255, 0.2);
-    border: 1px solid #00eaff;
-    border-radius: 5px;
-    padding: 5px 10px;
-    font-family: 'Orbitron', sans-serif;
-    font-size: 12px;
-    color: #00eaff;
-    text-shadow: 0 0 5px #00eaff;
-    animation: badgePulse 2s infinite;
-    z-index: 6;
-}
-
-@keyframes badgePulse {
-    0% { box-shadow: 0 0 5px #00eaff; }
-    50% { box-shadow: 0 0 15px #00eaff; }
-    100% { box-shadow: 0 0 5px #00eaff; }
-}
-
 .holo-logo {
     width: 200px;
     height: 200px;
@@ -334,6 +313,11 @@ nav ul li {
     margin-bottom: 20px;
 }
 
+.hero-content h1 span {
+    opacity: 0;
+    display: inline-block;
+}
+
 .hero-subheading {
     font-family: 'Exo 2', sans-serif;
     font-size: 24px;
@@ -343,7 +327,11 @@ nav ul li {
 
 .hero-subheading .highlight {
     font-weight: 700;
-    text-shadow: 0 0 10px #00eaff;
+    color: #ffd700;
+    text-shadow: 0 0 10px #ffd700;
+    letter-spacing: 1px;
+    font-size: 26px;
+    opacity: 0;
 }
 
 .holo-actions {
@@ -354,12 +342,12 @@ nav ul li {
 }
 
 .holo-action-btn {
-    opacity: 1;
+    opacity: 0;
 }
 
 .holo-btn {
     background: rgba(0, 234, 255, 0.1);
-    border: 2px solid #00eaff;
+    border: 1px solid #00eaff;
     color: #fff;
     padding: 15px 30px;
     text-decoration: none;
@@ -391,9 +379,9 @@ nav ul li {
 }
 
 .holo-btn:hover {
-    background: #00eaff;
+    background: #ffd700;
     color: #000;
-    box-shadow: 0 0 20px #00eaff;
+    box-shadow: 0 0 20px #ffd700;
 }
 
 @media (max-width: 1024px) {
@@ -407,6 +395,10 @@ nav ul li {
         margin-bottom: 30px;
     }
 
+    .hero-subheading .highlight {
+        font-size: 22px;
+    }
+
     .holo-logo {
         width: 150px;
         height: 150px;
@@ -415,10 +407,6 @@ nav ul li {
     .holo-btn {
         padding: 12px 25px;
         font-size: 16px;
-    }
-
-    .ai-badge {
-        font-size: 10px;
     }
 }
 
@@ -438,6 +426,10 @@ nav ul li {
         margin-bottom: 20px;
     }
 
+    .hero-subheading .highlight {
+        font-size: 18px;
+    }
+
     .holo-logo {
         width: 120px;
         height: 120px;
@@ -451,10 +443,6 @@ nav ul li {
     .holo-btn {
         padding: 10px 20px;
         font-size: 14px;
-    }
-
-    .ai-badge {
-        font-size: 8px;
     }
 }
 
@@ -661,10 +649,6 @@ nav ul li {
     font-size: 20px;
 }
 
-.growth-arrow {
-    margin-left: 10px;
-}
-
 @media (max-width: 1024px) {
     .holo-buy-symban {
         padding: 60px 30px;
@@ -739,7 +723,7 @@ nav ul li {
     transform: rotateY(0deg);
     transition: all 0.5s;
     position: relative;
-    z-index: 1;
+    z-index: 2;
 }
 
 .holo-usp-card:hover {
@@ -784,7 +768,7 @@ nav ul li {
     left: 0;
     width: 100%;
     height: 100%;
-    z-index: 0;
+    z-index: 1;
 }
 
 @media (max-width: 1024px) {
