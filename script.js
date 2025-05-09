@@ -28,11 +28,11 @@ const customizeCookiesBtn = document.getElementById('customizeCookies');
 
 if (cookieConsent) {
     if (!localStorage.getItem('cookiesAccepted')) {
-        // Delay appearance until after hero animations (12 seconds total)
+        // Delay appearance until after hero animations (13 seconds total)
         setTimeout(() => {
             cookieConsent.style.display = 'block';
             console.log('Cookie consent popup displayed');
-        }, 12000);
+        }, 13000);
     } else {
         console.log('Cookies already accepted, popup not shown');
     }
@@ -166,30 +166,28 @@ if (typeof gsap !== 'undefined') {
                 yoyo: true,
                 ease: 'sine.inOut'
             }, "-=0.5")
-            // Brand name entrance with fade-in and slide
+            // Brand name entrance with fade-in
             .fromTo(brandName, 
-                { opacity: 0, y: 20 }, 
-                { opacity: 1, y: 0, duration: 1, ease: 'power2.out' }, 
+                { opacity: 0 }, 
+                { opacity: 1, duration: 1, ease: 'power2.out' }, 
                 "-=1.5"
             )
-            // Sync brand name pulsation with logo
-            .to(brandName, {
-                scale: 1.05,
-                duration: 2,
-                repeat: -1,
-                yoyo: true,
-                ease: 'sine.inOut'
-            }, "-=1")
             // Tagline entrance (letter-by-letter)
             .fromTo(taglineLetters, 
                 { opacity: 0, scale: 0.8 }, 
                 { opacity: 1, scale: 1, duration: 0.05, stagger: 0.05, ease: 'power2.out' }, 
                 "-=0.5"
             )
-            // Subheading entrance (sequential, faster)
+            // Subheading entrance (sequential, slower for white text)
             .fromTo(subheadingParts, 
                 { opacity: 0, scale: 1.2 }, 
-                { opacity: 1, scale: 1, duration: 0.8, stagger: 0.3, ease: 'power2.out' }, 
+                { 
+                    opacity: 1, 
+                    scale: 1, 
+                    duration: (part, index) => index >= 4 ? 1 : 0.8, // Slower for white text parts
+                    stagger: (part, index) => index >= 4 ? 0.4 : 0.3, // Larger stagger for white text
+                    ease: 'power2.out' 
+                }, 
                 "+=0.5"
             )
             // Action buttons entrance
