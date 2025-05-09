@@ -142,11 +142,12 @@ if (typeof THREE !== 'undefined') {
 if (typeof gsap !== 'undefined') {
     const holoLogo = document.getElementById('holoLogo');
     const heroTagline = document.getElementById('heroTagline');
+    const taglineLetters = heroTagline.querySelectorAll('span');
     const heroSubheading = document.querySelector('.hero-subheading');
     const highlights = document.querySelectorAll('.hero-subheading .highlight');
     const actionButtons = document.querySelectorAll('.holo-action-btn');
 
-    if (holoLogo && heroTagline && heroSubheading && highlights.length && actionButtons.length) {
+    if (holoLogo && heroTagline && taglineLetters.length && heroSubheading && highlights.length && actionButtons.length) {
         gsap.timeline()
             // Logo entrance
             .fromTo(holoLogo, 
@@ -163,28 +164,28 @@ if (typeof gsap !== 'undefined') {
                   }
                 }
             )
-            // Tagline entrance
-            .fromTo(heroTagline, 
-                { y: 20, opacity: 0 }, 
-                { y: 0, opacity: 1, duration: 1, ease: 'power2.out' }, 
+            // Tagline entrance (letter-by-letter)
+            .fromTo(taglineLetters, 
+                { opacity: 0, scale: 0.8 }, 
+                { opacity: 1, scale: 1, duration: 0.05, stagger: 0.05, ease: 'power2.out' }, 
                 "-=1"
             )
             // Subheading entrance (word-by-word)
             .fromTo(heroSubheading, 
                 { opacity: 0 }, 
                 { opacity: 1, duration: 0.1 }, 
-                "-=0.5"
+                "+=0.5"
             )
             .fromTo(highlights, 
-                { opacity: 0, textShadow: '0 0 0 #00eaff' }, 
-                { opacity: 1, textShadow: '0 0 15px #00eaff', duration: 0.5, stagger: 0.3, ease: 'power2.out' }, 
-                "-=0.4"
+                { opacity: 0, textShadow: '0 0 0 #ffd700' }, 
+                { opacity: 1, textShadow: '0 0 15px #ffd700', duration: 1, stagger: 0.5, ease: 'power2.out' }, 
+                "-=0.1"
             )
             // Action buttons entrance
             .fromTo(actionButtons, 
                 { y: 20, opacity: 0 }, 
-                { y: 0, opacity: 1, duration: 0.5, stagger: 0.1, ease: 'back.out(1.7)' }, 
-                "-=0.2"
+                { y: 0, opacity: 1, duration: 0.8, stagger: 0.2, ease: 'back.out(1.7)' }, 
+                "+=0.5"
             );
 
         console.log('Hero section animation started');
@@ -240,7 +241,7 @@ if (typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined') {
         });
         console.log('GSAP scroll animations initialized for USP cards');
 
-        // Dynamic USP Connections
+        // Dynamic USP Connections with Hexagonal Paths and Cosmic Effects
         const uspSvg = document.querySelector('.usp-connections');
         if (uspSvg) {
             // Set SVG dimensions based on the grid
@@ -261,9 +262,29 @@ if (typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined') {
                 { from: 'usp9', to: 'usp1' },
             ];
 
-            // Function to draw lines
+            // Function to draw hexagonal paths and particles
             const drawConnections = () => {
-                uspSvg.innerHTML = ''; // Clear previous lines
+                uspSvg.innerHTML = ''; // Clear previous paths
+
+                // Define gradient for cosmic effect
+                const defs = document.createElementNS('http://www.w3.org/2000/svg', 'defs');
+                const gradient = document.createElementNS('http://www.w3.org/2000/svg', 'linearGradient');
+                gradient.setAttribute('id', 'cosmicGradient');
+                gradient.setAttribute('x1', '0%');
+                gradient.setAttribute('y1', '0%');
+                gradient.setAttribute('x2', '100%');
+                gradient.setAttribute('y2', '100%');
+                const stop1 = document.createElementNS('http://www.w3.org/2000/svg', 'stop');
+                stop1.setAttribute('offset', '0%');
+                stop1.setAttribute('style', 'stop-color:#00eaff;stop-opacity:1');
+                const stop2 = document.createElementNS('http://www.w3.org/2000/svg', 'stop');
+                stop2.setAttribute('offset', '100%');
+                stop2.setAttribute('style', 'stop-color:#ffd700;stop-opacity:1');
+                gradient.appendChild(stop1);
+                gradient.appendChild(stop2);
+                defs.appendChild(gradient);
+                uspSvg.appendChild(defs);
+
                 connections.forEach((connection, index) => {
                     const fromCard = document.querySelector(`[data-id="${connection.from}"]`);
                     const toCard = document.querySelector(`[data-id="${connection.to}"]`);
@@ -279,27 +300,64 @@ if (typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined') {
                         const toX = toRect.left + toRect.width / 2 - gridRect.left;
                         const toY = toRect.top + toRect.height / 2 - gridRect.top;
 
-                        // Create a line
-                        const line = document.createElementNS('http://www.w3.org/2000/svg', 'line');
-                        line.setAttribute('x1', fromX);
-                        line.setAttribute('y1', fromY);
-                        line.setAttribute('x2', toX);
-                        line.setAttribute('y2', toY);
-                        line.setAttribute('stroke', '#00eaff');
-                        line.setAttribute('stroke-width', '2');
-                        line.setAttribute('stroke-opacity', '0.5');
-                        line.setAttribute('id', `connection-${index}`);
+                        // Calculate hexagonal path points (avoiding text)
+                        const offset = 30; // Offset from card edges to avoid text
+                        const midX = (fromX + toX) / 2;
+                        const midY = (fromY + toY) / 2;
 
-                        uspSvg.appendChild(line);
+                        // Hexagonal path points
+                        const hexPoints = [
+                            fromX, fromY,
+                            fromX + (toX > fromX ? offset : -offset), fromY + (toY > fromY ? offset : -offset),
+                            midX, midY - offset,
+                            midX, midY + offset,
+                            toX + (toX > fromX ? -offset : offset), toY + (toY > fromY ? -offset : offset),
+                            toX, toY
+                        ];
 
-                        // Animate opacity
-                        gsap.to(line, {
+                        // Create path
+                        const path = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+                        const d = `M${hexPoints[0]},${hexPoints[1]} L${hexPoints[2]},${hexPoints[3]} L${hexPoints[4]},${hexPoints[5]} L${hexPoints[6]},${hexPoints[7]} L${hexPoints[8]},${hexPoints[9]} L${hexPoints[10]},${hexPoints[11]}`;
+                        path.setAttribute('d', d);
+                        path.setAttribute('stroke', 'url(#cosmicGradient)');
+                        path.setAttribute('stroke-width', '2');
+                        path.setAttribute('stroke-opacity', '0.5');
+                        path.setAttribute('fill', 'none');
+                        path.setAttribute('id', `connection-${index}`);
+
+                        uspSvg.appendChild(path);
+
+                        // Animate path opacity
+                        gsap.to(path, {
                             'stroke-opacity': 0.8,
                             duration: 1.5,
                             repeat: -1,
                             yoyo: true,
                             ease: 'sine.inOut'
                         });
+
+                        // Add particle effect along the path
+                        for (let i = 0; i < 3; i++) {
+                            const particle = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+                            particle.setAttribute('r', '2');
+                            particle.setAttribute('fill', '#00eaff');
+                            particle.setAttribute('id', `particle-${index}-${i}`);
+                            uspSvg.appendChild(particle);
+
+                            gsap.to(particle, {
+                                motionPath: {
+                                    path: path,
+                                    align: path,
+                                    alignOrigin: [0.5, 0.5],
+                                    autoRotate: true
+                                },
+                                duration: 3,
+                                repeat: -1,
+                                ease: 'none',
+                                delay: i * 1,
+                                repeatDelay: 0
+                            });
+                        }
                     }
                 });
             };
