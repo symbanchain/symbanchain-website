@@ -76,19 +76,6 @@ body {
   100% { opacity: 1; }
 }
 
-.holo-video {
-  width: 100%;
-  max-width: 800px;
-  margin: 2rem auto;
-}
-
-.holo-video video {
-  width: 100%;
-  border: 2px solid #00eaff;
-  border-radius: 10px;
-  box-shadow: 0 0 20px #00eaff;
-}
-
 header {
   position: fixed;
   top: 0;
@@ -898,6 +885,8 @@ nav ul li {
   gap: 1.875rem;
   justify-items: center;
   position: relative;
+  margin: 0 auto;
+  max-width: 1000px;
 }
 
 .holo-usp-card {
@@ -914,7 +903,7 @@ nav ul li {
 }
 
 .holo-usp-card:hover {
-  transform: rotateY(10deg) scale(1.05) !important;
+  transform: rotateY(10deg) scale(1.05);
   border-color: #ffd700;
   box-shadow: 0 0 25px #ffd700;
 }
@@ -929,65 +918,6 @@ nav ul li {
   border: 2px solid #ffd700;
   border-radius: 10px;
   animation: cardGlow 1.5s infinite;
-}
-
-.holo-usp-card::before {
-  content: '';
-  display: none;
-  width: 40px;
-  height: 40px;
-  position: absolute;
-  top: -20px;
-  left: 50%;
-  transform: translateX(-50%);
-}
-
-.holo-usp-card[data-id="usp1"]::before {
-  background: url('https://symbanchain-website.pages.dev/public/assets/icon-rugpull.png') no-repeat center;
-}
-
-.holo-usp-card[data-id="usp2"]::before {
-  background: url('https://symbanchain-website.pages.dev/public/assets/icon-shield.png') no-repeat center;
-}
-
-.holo-usp-card[data-id="usp3"]::before {
-  background: url('https://symbanchain-website.pages.dev/public/assets/icon-staking.png') no-repeat center;
-}
-
-.holo-usp-card[data-id="usp4"]::before {
-  background: url('https://symbanchain-website.pages.dev/public/assets/icon-speed.png') no-repeat center;
-}
-
-.holo-usp-card[data-id="usp5"]::before {
-  background: url('https://symbanchain-website.pages.dev/public/assets/icon-fees.png') no-repeat center;
-}
-
-.holo-usp-card[data-id="usp6"]::before {
-  background: url('https://symbanchain-website.pages.dev/public/assets/icon-burn.png') no-repeat center;
-}
-
-.holo-usp-card[data-id="usp7"]::before {
-  background: url('https://symbanchain-website.pages.dev/public/assets/icon-developer.png') no-repeat center;
-}
-
-.holo-usp-card[data-id="usp8"]::before {
-  background: url('https://symbanchain-website.pages.dev/public/assets/icon-transparency.png') no-repeat center;
-}
-
-.holo-usp-card[data-id="usp9"]::before {
-  background: url('https://symbanchain-website.pages.dev/public/assets/icon-compliance.png') no-repeat center;
-}
-
-.holo-usp-card[data-id="usp10"]::before {
-  background: url('https://symbanchain-website.pages.dev/public/assets/icon-quality.png') no-repeat center;
-}
-
-.holo-usp-card[data-id="usp11"]::before {
-  background: url('https://symbanchain-website.pages.dev/public/assets/icon-symban.png') no-repeat center;
-}
-
-.holo-usp-card:hover::before {
-  display: block;
 }
 
 @keyframes cardGlow {
@@ -1019,6 +949,7 @@ nav ul li {
   .holo-usp-grid {
     grid-template-columns: repeat(2, 1fr);
     gap: 1.25rem;
+    max-width: 600px;
   }
   .holo-usp-card {
     width: 180px;
@@ -1043,6 +974,7 @@ nav ul li {
   .holo-usp-grid {
     grid-template-columns: 1fr;
     gap: 0.9375rem;
+    max-width: 300px;
   }
   .holo-usp-card {
     width: 100%;
@@ -1070,27 +1002,29 @@ nav ul li {
   text-shadow: 0 0 20px #00eaff;
 }
 
-.holo-progress-bar {
-  width: 300px;
-  height: 10px;
-  border: 2px solid #00eaff;
-  border-radius: 5px;
+.ido-stats {
   margin: 2rem auto;
-  overflow: hidden;
+  max-width: 600px;
 }
 
-.progress-fill {
-  width: 0%;
-  height: 100%;
-  background: #ffd700;
-  transition: width 1s ease;
-}
-
-#idoStatus {
+.ido-stats p {
   font-family: 'Orbitron', sans-serif;
   font-size: 1.25rem;
+  margin: 0.5rem 0;
   text-shadow: 0 0 10px #00eaff;
-  margin-top: 1rem;
+}
+
+.ido-stats p#idoTokens {
+  color: #ffd700;
+}
+
+.ido-stats p#idoFunds {
+  color: #00eaff;
+}
+
+.ido-stats p#idoTime {
+  font-size: 1.125rem;
+  opacity: 0.9;
 }
 
 .ido-btn {
@@ -1108,8 +1042,11 @@ nav ul li {
     font-size: 2.5rem;
     margin-bottom: 1.875rem;
   }
-  .holo-progress-bar {
-    width: 250px;
+  .ido-stats p {
+    font-size: 1.125rem;
+  }
+  .ido-stats p#idoTime {
+    font-size: 1rem;
   }
   .ido-btn {
     padding: 0.75rem 1.875rem;
@@ -1125,8 +1062,11 @@ nav ul li {
     font-size: 2rem;
     margin-bottom: 1.25rem;
   }
-  .holo-progress-bar {
-    width: 200px;
+  .ido-stats p {
+    font-size: 1rem;
+  }
+  .ido-stats p#idoTime {
+    font-size: 0.875rem;
   }
   .ido-btn {
     padding: 0.625rem 1.25rem;
