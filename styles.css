@@ -1,1377 +1,1343 @@
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
 body {
-    font-family: 'Exo 2', sans-serif;
-    color: #fff;
-    overflow-x: hidden;
-    position: relative;
-    background: #050514;
+  font-family: 'Exo 2', sans-serif;
+  color: #fff;
+  overflow-x: hidden;
+  position: relative;
+  background: #050514;
 }
 
 .cosmic-scene {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    z-index: -1;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
 }
 
 #cosmicCanvas {
-    width: 100%;
-    height: 100%;
-    z-index: 1;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
 }
 
 .particles {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: transparent;
-    z-index: 2;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: transparent;
+  z-index: 2;
 }
 
 .particles::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: transparent;
-    box-shadow: 
-        50px 100px 1px #fff,
-        150px 200px 1px #fff,
-        200px 300px 1px #fff,
-        300px 150px 1px #fff,
-        400px 250px 1px #fff,
-        500px 50px 1px #fff,
-        600px 350px 1px #fff,
-        700px 200px 1px #fff,
-        800px 100px 1px #fff,
-        900px 300px 1px #fff,
-        100px 400px 1px #fff,
-        250px 500px 1px #fff,
-        350px 600px 1px #fff,
-        450px 700px 1px #fff,
-        550px 800px 1px #fff,
-        650px 900px 1px #fff,
-        750px 1000px 1px #fff,
-        850px 1100px 1px #fff,
-        950px 1200px 1px #fff,
-        1050px 1300px 1px #fff;
-    opacity: 0.2;
-    animation: twinkle 5s infinite alternate;
-    z-index: 3;
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: transparent;
+  box-shadow: 
+    50px 100px 1px #fff,
+    150px 200px 1px #fff,
+    200px 300px 1px #fff,
+    300px 150px 1px #fff,
+    400px 250px 1px #fff,
+    500px 50px 1px #fff,
+    600px 350px 1px #fff,
+    700px 200px 1px #fff,
+    800px 100px 1px #fff,
+    900px 300px 1px #fff,
+    100px 400px 1px #fff,
+    250px 500px 1px #fff,
+    350px 600px 1px #fff,
+    450px 700px 1px #fff,
+    550px 800px 1px #fff,
+    650px 900px 1px #fff,
+    750px 1000px 1px #fff,
+    850px 1100px 1px #fff,
+    950px 1200px 1px #fff,
+    1050px 1300px 1px #fff;
+  opacity: 0.2;
+  animation: twinkle 5s infinite alternate;
+  z-index: 3;
 }
 
 @keyframes twinkle {
-    0% { opacity: 0.2; }
-    100% { opacity: 1; }
+  0% { opacity: 0.2; }
+  100% { opacity: 1; }
+}
+
+.holo-video {
+  width: 100%;
+  max-width: 800px;
+  margin: 2rem auto;
+}
+
+.holo-video video {
+  width: 100%;
+  border: 2px solid #00eaff;
+  border-radius: 10px;
+  box-shadow: 0 0 20px #00eaff;
 }
 
 header {
-    position: fixed;
-    top: 0;
-    width: 100%;
-    padding: 1rem 3rem;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    z-index: 1000;
-    background: rgba(0, 0, 0, 0.5);
+  position: fixed;
+  top: 0;
+  width: 100%;
+  padding: 1rem 3rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  z-index: 1000;
+  background: rgba(0, 0, 0, 0.5);
 }
 
 .logo {
-    display: flex;
-    align-items: center;
-    gap: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
 }
 
 .logo-img {
-    height: 50px;
-    filter: drop-shadow(0 0 15px #00eaff);
+  height: 50px;
+  filter: drop-shadow(0 0 15px #00eaff);
 }
 
 .ai-powered {
-    font-family: 'Orbitron', sans-serif;
-    font-size: 14px;
-    color: #00eaff;
-    text-shadow: 0 0 5px #00eaff;
-    animation: aiPulse 2s infinite;
+  font-family: 'Orbitron', sans-serif;
+  font-size: 14px;
+  color: #00eaff;
+  text-shadow: 0 0 5px #00eaff;
+  animation: aiPulse 2s infinite;
 }
 
 @keyframes aiPulse {
-    0% { text-shadow: 0 0 5px #00eaff; }
-    50% { text-shadow: 0 0 15px #00eaff; }
-    100% { text-shadow: 0 0 5px #00eaff; }
+  0% { text-shadow: 0 0 5px #00eaff; }
+  50% { text-shadow: 0 0 15px #00eaff; }
+  100% { text-shadow: 0 0 5px #00eaff; }
 }
 
 .hamburger {
-    display: none;
+  display: none;
 }
 
 @media (min-width: 769px) {
-    .hamburger {
-        display: none !important;
-    }
+  .hamburger {
+    display: none !important;
+  }
 }
 
 @media (max-width: 768px) {
-    .hamburger {
-        display: block;
-        font-size: 24px;
-        color: #00eaff;
-        cursor: pointer;
-        background: none;
-        border: none;
-        padding: 0.5rem;
-    }
+  .hamburger {
+    display: block;
+    font-size: 24px;
+    color: #00eaff;
+    cursor: pointer;
+    background: none;
+    border: none;
+    padding: 0.5rem;
+  }
 }
 
 nav ul {
-    display: flex;
-    align-items: center;
-    list-style: none;
-    margin: 0;
-    padding: 0;
-    flex-wrap: wrap;
-    gap: 1rem;
+  display: flex;
+  align-items: center;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  flex-wrap: wrap;
+  gap: 1rem;
 }
 
 nav ul li {
-    margin-left: 1rem;
-    position: relative;
+  margin-left: 1rem;
+  position: relative;
 }
 
 .holo-link {
-    color: #fff;
-    text-decoration: none;
-    font-family: 'Orbitron', sans-serif;
-    font-size: 1rem;
-    padding: 0.625rem 0.9375rem;
-    background: rgba(0, 234, 255, 0.1);
-    border: 1px solid #00eaff;
-    border-radius: 5px;
-    transition: all 0.3s;
-    position: relative;
+  color: #fff;
+  text-decoration: none;
+  font-family: 'Orbitron', sans-serif;
+  font-size: 1rem;
+  padding: 0.625rem 0.9375rem;
+  background: rgba(0, 234, 255, 0.1);
+  border: 1px solid #00eaff;
+  border-radius: 5px;
+  transition: all 0.3s;
+  position: relative;
 }
 
 .holo-link:hover {
-    background: #ffd700;
-    color: #000;
-    box-shadow: 0 0 15px #ffd700;
+  background: #ffd700;
+  color: #000;
+  box-shadow: 0 0 15px #ffd700;
 }
 
 .holo-dropdown {
-    position: relative;
+  position: relative;
 }
 
 .holo-dropdown .holo-toggle {
-    color: #fff;
-    text-decoration: none;
-    font-family: 'Orbitron', sans-serif;
-    font-size: 1rem;
-    padding: 0.625rem 0.9375rem;
-    background: rgba(0, 234, 255, 0.1);
-    border: 1px solid #00eaff;
-    border-radius: 5px;
-    transition: all 0.3s;
-    position: relative;
-    display: inline-block;
+  color: #fff;
+  text-decoration: none;
+  font-family: 'Orbitron', sans-serif;
+  font-size: 1rem;
+  padding: 0.625rem 0.9375rem;
+  background: rgba(0, 234, 255, 0.1);
+  border: 1px solid #00eaff;
+  border-radius: 5px;
+  transition: all 0.3s;
+  position: relative;
+  display: inline-block;
 }
 
 .holo-dropdown .holo-toggle::after {
-    content: ' ▼';
-    font-size: 0.75rem;
+  content: ' ▼';
+  font-size: 0.75rem;
 }
 
 .holo-dropdown .holo-toggle:hover {
-    background: #ffd700;
-    color: #000;
-    box-shadow: 0 0 15px #ffd700;
+  background: #ffd700;
+  color: #000;
+  box-shadow: 0 0 15px #ffd700;
 }
 
 .holo-menu {
-    display: none;
-    position: absolute;
-    top: 100%;
-    left: 0;
-    background: rgba(0, 0, 0, 0.95);
-    border: 1px solid #00eaff;
-    border-radius: 5px;
-    box-shadow: 0 0 15px #00eaff;
-    z-index: 1000;
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background: rgba(0, 0, 0, 0.95);
+  border: 1px solid #00eaff;
+  border-radius: 5px;
+  box-shadow: 0 0 15px #00eaff;
+  z-index: 1000;
 }
 
 .holo-menu a {
-    display: block;
-    padding: 0.625rem 1.25rem;
-    color: #fff;
-    text-decoration: none;
-    font-family: 'Orbitron', sans-serif;
-    font-size: 0.875rem;
-    border-bottom: 1px solid rgba(0, 234, 255, 0.2);
+  display: block;
+  padding: 0.625rem 1.25rem;
+  color: #fff;
+  text-decoration: none;
+  font-family: 'Orbitron', sans-serif;
+  font-size: 0.875rem;
+  border-bottom: 1px solid rgba(0, 234, 255, 0.2);
 }
 
 .holo-menu a:last-child {
-    border-bottom: none;
+  border-bottom: none;
 }
 
 .holo-menu a:hover {
-    background: rgba(0, 234, 255, 0.3);
-    color: #ffd700;
+  background: rgba(0, 234, 255, 0.3);
+  color: #ffd700;
 }
 
 .holo-dropdown:hover .holo-menu {
-    display: block;
+  display: block;
 }
 
 @media (max-width: 768px) {
-    header {
-        padding: 0.75rem 1rem;
-    }
-
-    .logo-img {
-        height: 35px;
-    }
-
-    .ai-powered {
-        font-size: 0.65rem;
-    }
-
-    nav ul {
-        display: none;
-        flex-direction: column;
-        position: absolute;
-        top: 60px;
-        left: 0;
-        width: 100%;
-        background: rgba(0, 0, 0, 0.95);
-        padding: 1rem 0;
-    }
-
-    nav ul.active {
-        display: flex;
-    }
-
-    nav ul li {
-        margin: 0.5rem 0;
-        text-align: center;
-    }
-
-    .holo-link, .holo-dropdown .holo-toggle {
-        font-size: 0.85rem;
-        padding: 0.5rem;
-    }
-
-    .holo-menu {
-        position: static;
-        background: rgba(0, 0, 0, 0.8);
-        border: none;
-        box-shadow: none;
-        padding: 0.5rem 0;
-    }
-
-    .holo-menu a {
-        font-size: 0.75rem;
-    }
+  header {
+    padding: 0.75rem 1rem;
+  }
+  .logo-img {
+    height: 35px;
+  }
+  .ai-powered {
+    font-size: 0.65rem;
+  }
+  nav ul {
+    display: none;
+    flex-direction: column;
+    position: absolute;
+    top: 60px;
+    left: 0;
+    width: 100%;
+    background: rgba(0, 0, 0, 0.95);
+    padding: 1rem 0;
+  }
+  nav ul.active {
+    display: flex;
+  }
+  nav ul li {
+    margin: 0.5rem 0;
+    text-align: center;
+  }
+  .holo-link, .holo-dropdown .holo-toggle {
+    font-size: 0.85rem;
+    padding: 0.5rem;
+  }
+  .holo-menu {
+    position: static;
+    background: rgba(0, 0, 0, 0.8);
+    border: none;
+    box-shadow: none;
+    padding: 0.5rem 0;
+  }
+  .holo-menu a {
+    font-size: 0.75rem;
+  }
 }
 
 @media (max-width: 480px) {
-    nav ul {
-        gap: 0.5rem;
-    }
-
-    nav ul li {
-        margin-left: 0.5rem;
-    }
-
-    .holo-link, .holo-dropdown .holo-toggle {
-        font-size: 0.8rem;
-        padding: 0.4rem 0.6rem;
-    }
+  nav ul {
+    gap: 0.5rem;
+  }
+  nav ul li {
+    margin-left: 0.5rem;
+  }
+  .holo-link, .holo-dropdown .holo-toggle {
+    font-size: 0.8rem;
+    padding: 0.4rem 0.6rem;
+  }
 }
 
 .hero {
-    min-height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    position: relative;
-    text-align: center;
-    overflow: hidden;
-    padding: 0;
-    margin: 0;
-    box-sizing: border-box;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  text-align: center;
+  overflow: hidden;
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
 }
 
 .hero-content {
-    position: relative;
-    z-index: 5;
-    width: 100%;
-    max-width: 1200px;
-    margin: 0;
-    padding: 0;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    box-sizing: border-box;
+  position: relative;
+  z-index: 5;
+  width: 100%;
+  max-width: 1200px;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  box-sizing: border-box;
 }
 
 .nebula-glow {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    z-index: 4;
-    animation: nebulaPulse 10s infinite;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 4;
+  animation: nebulaPulse 10s infinite;
 }
 
 @keyframes nebulaPulse {
-    0% { opacity: 0.6; }
-    50% { opacity: 0.8; }
-    100% { opacity: 0.6; }
+  0% { opacity: 0.6; }
+  50% { opacity: 0.8; }
+  100% { opacity: 0.6; }
 }
 
 .logo-wrapper {
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    margin-bottom: 3rem;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 3rem;
 }
 
 .holo-logo {
-    width: 220px;
-    height: 220px;
-    background: url('https://symbanchain-website.pages.dev/assets/logo.png') no-repeat center;
-    background-size: 200px 200px;
-    filter: drop-shadow(0 0 20px #00eaff);
-    position: relative;
-    clip-path: inset(10px 0 0 0); /* Prevent particles from overlapping header */
+  width: 220px;
+  height: 220px;
+  background: url('https://symbanchain-website.pages.dev/assets/logo.png') no-repeat center;
+  background-size: 200px 200px;
+  filter: drop-shadow(0 0 20px #00eaff);
+  position: relative;
+  clip-path: inset(10px 0 0 0);
 }
 
 .holo-logo::before, .holo-logo::after,
 .holo-logo .particle-3, .holo-logo .particle-4 {
-    content: '';
-    position: absolute;
-    width: 5px;
-    height: 5px;
-    border-radius: 50%;
+  content: '';
+  position: absolute;
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
 }
 
 .holo-logo::before {
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    animation: orbit1 3s infinite linear, colorChange 3s infinite;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  animation: orbit1 3s infinite linear, colorChange 3s infinite;
 }
 
 .holo-logo::after {
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    animation: orbit2 4s infinite linear reverse, colorChange 4s infinite;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  animation: orbit2 4s infinite linear reverse, colorChange 4s infinite;
 }
 
 .holo-logo .particle-3 {
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    animation: orbit3 5s infinite linear, colorChange 5s infinite;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  animation: orbit3 5s infinite linear, colorChange 5s infinite;
 }
 
 .holo-logo .particle-4 {
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    animation: orbit4 6s infinite linear reverse, colorChange 6s infinite;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  animation: orbit4 6s infinite linear reverse, colorChange 6s infinite;
 }
 
 @keyframes orbit1 {
-    0% { transform: translate(-50%, -50%) rotate(0deg) translateX(94px) rotate(0deg); }
-    100% { transform: translate(-50%, -50%) rotate(360deg) translateX(94px) rotate(-360deg); }
+  0% { transform: translate(-50%, -50%) rotate(0deg) translateX(94px) rotate(0deg); }
+  100% { transform: translate(-50%, -50%) rotate(360deg) translateX(94px) rotate(-360deg); }
 }
 
 @keyframes orbit2 {
-    0% { transform: translate(-50%, -50%) rotate(0deg) translateX(95px) rotate(0deg); }
-    100% { transform: translate(-50%, -50%) rotate(360deg) translateX(95px) rotate(-360deg); }
+  0% { transform: translate(-50%, -50%) rotate(0deg) translateX(95px) rotate(0deg); }
+  100% { transform: translate(-50%, -50%) rotate(360deg) translateX(95px) rotate(-360deg); }
 }
 
 @keyframes orbit3 {
-    0% { transform: translate(-50%, -50%) rotate(0deg) translateX(96px) rotate(0deg); }
-    100% { transform: translate(-50%, -50%) rotate(360deg) translateX(96px) rotate(-360deg); }
+  0% { transform: translate(-50%, -50%) rotate(0deg) translateX(96px) rotate(0deg); }
+  100% { transform: translate(-50%, -50%) rotate(360deg) translateX(96px) rotate(-360deg); }
 }
 
 @keyframes orbit4 {
-    0% { transform: translate(-50%, -50%) rotate(0deg) translateX(97px) rotate(0deg); }
-    100% { transform: translate(-50%, -50%) rotate(360deg) translateX(97px) rotate(-360deg); }
+  0% { transform: translate(-50%, -50%) rotate(0deg) translateX(97px) rotate(0deg); }
+  100% { transform: translate(-50%, -50%) rotate(360deg) translateX(97px) rotate(-360deg); }
 }
 
 @keyframes colorChange {
-    0% { background: #00eaff; box-shadow: 0 0 10px #00eaff; }
-    50% { background: #ffd700; box-shadow: 0 0 10px #ffd700; }
-    100% { background: #00eaff; box-shadow: 0 0 10px #00eaff; }
+  0% { background: #00eaff; box-shadow: 0 0 10px #00eaff; }
+  50% { background: #ffd700; box-shadow: 0 0 10px #ffd700; }
+  100% { background: #00eaff; box-shadow: 0 0 10px #00eaff; }
 }
 
 .brand-name {
-    font-family: 'Orbitron', sans-serif;
-    font-size: 2.8rem;
-    font-weight: 700;
-    color: #00eaff;
-    text-shadow: 0 0 15px #00eaff, 0 0 25px #00eaff, 0 0 35px #00eaff;
-    letter-spacing: 0.2rem;
-    position: relative;
-    margin-top: 0.2rem;
-    animation: shimmer 3s infinite linear;
+  font-family: 'Orbitron', sans-serif;
+  font-size: 2.8rem;
+  font-weight: 700;
+  color: #00eaff;
+  text-shadow: 0 0 15px #00eaff, 0 0 25px #00eaff, 0 0 35px #00eaff;
+  letter-spacing: 0.2rem;
+  position: relative;
+  margin-top: 0.2rem;
+  animation: shimmer 3s infinite linear;
 }
 
 @keyframes shimmer {
-    0% { text-shadow: 0 0 15px #00eaff, 0 0 25px #00eaff, 0 0 35px #00eaff; }
-    50% { text-shadow: 0 0 10px #ffd700, 0 0 20px #00eaff, 0 0 30px #00eaff; }
-    100% { text-shadow: 0 0 15px #00eaff, 0 0 25px #00eaff, 0 0 35px #00eaff; }
+  0% { text-shadow: 0 0 15px #00eaff, 0 0 25px #00eaff, 0 0 35px #00eaff; }
+  50% { text-shadow: 0 0 10px #ffd700, 0 0 20px #00eaff, 0 0 30px #00eaff; }
+  100% { text-shadow: 0 0 15px #00eaff, 0 0 25px #00eaff, 0 0 35px #00eaff; }
 }
 
 .hero-content h1 {
-    font-family: 'Orbitron', sans-serif;
-    font-size: clamp(2rem, 5vw, 4rem);
-    font-weight: 700;
-    text-shadow: 0 0 30px #00eaff;
-    margin: 0;
-    padding: 0;
-    text-align: center;
-    white-space: nowrap;
-    width: fit-content;
-    position: absolute;
-    left: 50%;
-    transform: translateX(-50%);
-    top: 280px;
+  font-family: 'Orbitron', sans-serif;
+  font-size: clamp(2rem, 5vw, 4rem);
+  font-weight: 700;
+  text-shadow: 0 0 30px #00eaff;
+  margin: 0;
+  padding: 0;
+  text-align: center;
+  white-space: nowrap;
+  width: fit-content;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  top: 280px;
 }
 
 .hero-subheading {
-    font-family: 'Exo 2', sans-serif;
-    font-size: 1.5rem;
-    text-shadow: 0 0 15px #00eaff;
-    margin-top: 4.5rem;
-    margin-bottom: 3rem;
+  font-family: 'Exo 2', sans-serif;
+  font-size: 1.5rem;
+  text-shadow: 0 0 15px #00eaff;
+  margin-top: 4.5rem;
+  margin-bottom: 3rem;
 }
 
 .hero-subheading .highlight {
-    font-weight: 700;
-    color: #ffd700;
-    text-shadow: 0 0 10px #ffd700;
-    letter-spacing: 1px;
-    font-size: 1.7rem;
-    opacity: 0;
+  font-weight: 700;
+  color: #ffd700;
+  text-shadow: 0 0 10px #ffd700;
+  letter-spacing: 1px;
+  font-size: 1.7rem;
+  opacity: 0;
 }
 
 .hero-subheading .subheading-part {
-    opacity: 0;
+  opacity: 0;
 }
 
 .holo-actions {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 1.5rem;
-    margin-top: 3rem;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1.5rem;
+  margin-top: 3rem;
 }
 
 .holo-action-btn {
-    opacity: 0;
+  opacity: 0;
 }
 
 .holo-btn {
-    background: rgba(0, 234, 255, 0.1);
-    border: 1px solid #00eaff;
-    color: #fff;
-    padding: 1rem 2rem;
-    text-decoration: none;
-    font-family: 'Orbitron', sans-serif;
-    font-size: 1.2rem;
-    position: relative;
-    border-radius: 5px;
-    transition: all 0.3s;
-    box-shadow: 0 0 10px #00eaff;
+  background: rgba(0, 234, 255, 0.1);
+  border: 1px solid #00eaff;
+  color: #fff;
+  padding: 1rem 2rem;
+  text-decoration: none;
+  font-family: 'Orbitron', sans-serif;
+  font-size: 1.2rem;
+  position: relative;
+  border-radius: 5px;
+  transition: all 0.3s;
+  box-shadow: 0 0 10px #00eaff;
 }
 
 .holo-btn::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    border: 2px solid transparent;
-    border-radius: 5px;
-    box-sizing: border-box;
-    animation: energyPulse 2s infinite;
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border: 2px solid transparent;
+  border-radius: 5px;
+  box-sizing: border-box;
+  animation: energyPulse 2s infinite;
 }
 
 @keyframes energyPulse {
-    0% { border-color: transparent; }
-    50% { border-color: #ffd700; }
-    100% { border-color: transparent; }
+  0% { border-color: transparent; }
+  50% { border-color: #ffd700; }
+  100% { border-color: transparent; }
 }
 
 .holo-btn:hover {
-    background: #ffd700;
-    color: #000;
-    box-shadow: 0 0 20px #ffd700;
+  background: #ffd700;
+  color: #000;
+  box-shadow: 0 0 20px #ffd700;
 }
 
 @media (max-width: 1024px) {
-    .hero-content h1 {
-        margin-bottom: 1.5rem;
-        top: 250px;
-        font-size: clamp(1.8rem, 4vw, 3.5rem);
-    }
-
-    .hero-subheading {
-        font-size: 1.25rem;
-        margin-top: 4rem;
-        margin-bottom: 2.5rem;
-    }
-
-    .hero-subheading .highlight {
-        font-size: 1.5rem;
-    }
-
-    .holo-logo {
-        width: 165px;
-        height: 165px;
-        background-size: 150px 150px;
-    }
-
-    .brand-name {
-        font-size: 2.3rem;
-        letter-spacing: 0.15rem;
-        margin-top: 0.1rem;
-    }
-
-    .holo-btn {
-        padding: 0.75rem 1.5rem;
-        font-size: 1rem;
-        min-width: 160px; /* Ensure tappable size on mobile */
-    }
-
-    .holo-actions {
-        gap: 1rem;
-        margin-top: 2.5rem;
-    }
+  .hero-content h1 {
+    margin-bottom: 1.5rem;
+    top: 250px;
+    font-size: clamp(1.8rem, 4vw, 3.5rem);
+  }
+  .hero-subheading {
+    font-size: 1.25rem;
+    margin-top: 4rem;
+    margin-bottom: 2.5rem;
+  }
+  .hero-subheading .highlight {
+    font-size: 1.5rem;
+  }
+  .holo-logo {
+    width: 165px;
+    height: 165px;
+    background-size: 150px 150px;
+  }
+  .brand-name {
+    font-size: 2.3rem;
+    letter-spacing: 0.15rem;
+    margin-top: 0.1rem;
+  }
+  .holo-btn {
+    padding: 0.75rem 1.5rem;
+    font-size: 1rem;
+    min-width: 160px;
+  }
+  .holo-actions {
+    gap: 1rem;
+    margin-top: 2.5rem;
+  }
 }
 
 @media (max-width: 768px) {
-    .hero {
-        min-height: auto;
-        padding: 80px 15px;
-    }
-
-    .hero-content h1 {
-        margin-bottom: 1rem;
-        top: 220px;
-        font-size: clamp(1.5rem, 3.5vw, 3rem);
-    }
-
-    .hero-subheading {
-        font-size: 1rem;
-        margin-top: 3.5rem;
-        margin-bottom: 2rem;
-    }
-
-    .hero-subheading .highlight {
-        font-size: 1.2rem;
-    }
-
-    .holo-logo {
-        width: 135px;
-        height: 135px;
-        background-size: 120px 120px;
-    }
-
-    .brand-name {
-        font-size: 1.8rem;
-        letter-spacing: 0.1rem;
-        margin-top: 0.1rem;
-    }
-
-    .holo-actions {
-        flex-direction: column;
-        gap: 1rem;
-        margin-top: 2rem;
-    }
-
-    .holo-btn {
-        padding: 0.625rem 1.25rem;
-        font-size: 0.875rem;
-        min-width: 140px; /* Ensure tappable size on mobile */
-    }
+  .hero {
+    min-height: auto;
+    padding: 80px 15px;
+  }
+  .hero-content h1 {
+    margin-bottom: 1rem;
+    top: 220px;
+    font-size: clamp(1.5rem, 3.5vw, 3rem);
+  }
+  .hero-subheading {
+    font-size: 1rem;
+    margin-top: 3.5rem;
+    margin-bottom: 2rem;
+  }
+  .hero-subheading .highlight {
+    font-size: 1.2rem;
+  }
+  .holo-logo {
+    width: 135px;
+    height: 135px;
+    background-size: 120px 120px;
+  }
+  .brand-name {
+    font-size: 1.8rem;
+    letter-spacing: 0.1rem;
+    margin-top: 0.1rem;
+  }
+  .holo-actions {
+    flex-direction: column;
+    gap: 1rem;
+    margin-top: 2rem;
+  }
+  .holo-btn {
+    padding: 0.625rem 1.25rem;
+    font-size: 0.875rem;
+    min-width: 140px;
+  }
 }
 
 @media (max-width: 480px) {
-    .hero-content h1 {
-        margin-bottom: 0.75rem;
-        top: 200px;
-        font-size: clamp(1.2rem, 3vw, 2.5rem);
-    }
-
-    .hero-subheading {
-        font-size: 0.875rem;
-        margin-top: 3rem;
-        margin-bottom: 1.5rem;
-    }
-
-    .hero-subheading .highlight {
-        font-size: 1rem;
-    }
-
-    .holo-logo {
-        width: 110px;
-        height: 110px;
-        background-size: 100px 100px;
-    }
-
-    .brand-name {
-        font-size: 1.5rem;
-        letter-spacing: 0.05rem;
-        margin-top: 0.1rem;
-    }
-
-    .holo-btn {
-        padding: 0.5rem 1rem;
-        font-size: 0.75rem;
-        min-width: 120px; /* Ensure tappable size on mobile */
-    }
+  .hero-content h1 {
+    margin-bottom: 0.75rem;
+    top: 200px;
+    font-size: clamp(1.2rem, 3vw, 2.5rem);
+  }
+  .hero-subheading {
+    font-size: 0.875rem;
+    margin-top: 3rem;
+    margin-bottom: 1.5rem;
+  }
+  .hero-subheading .highlight {
+    font-size: 1rem;
+  }
+  .holo-logo {
+    width: 110px;
+    height: 110px;
+    background-size: 100px 100px;
+  }
+  .brand-name {
+    font-size: 1.5rem;
+    letter-spacing: 0.05rem;
+    margin-top: 0.1rem;
+  }
+  .holo-btn {
+    padding: 0.5rem 1rem;
+    font-size: 0.75rem;
+    min-width: 120px;
+  }
 }
 
 .holo-modal {
-    display: none;
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.9);
-    z-index: 2000;
-    justify-content: center;
-    align-items: center;
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.9);
+  z-index: 2000;
+  justify-content: center;
+  align-items: center;
 }
 
 .holo-modal-content {
-    background: rgba(0, 0, 0, 0.95);
-    padding: 1.875rem;
-    border: 2px solid #00eaff;
-    border-radius: 10px;
-    text-align: center;
-    box-shadow: 0 0 30px #00eaff;
-    position: relative;
-    width: 90%;
-    max-width: 400px;
+  background: rgba(0, 0, 0, 0.95);
+  padding: 1.875rem;
+  border: 2px solid #00eaff;
+  border-radius: 10px;
+  text-align: center;
+  box-shadow: 0 0 30px #00eaff;
+  position: relative;
+  width: 90%;
+  max-width: 400px;
 }
 
 .holo-close {
-    position: absolute;
-    top: 0.625rem;
-    right: 0.9375rem;
-    color: #00eaff;
-    font-size: 1.5rem;
-    cursor: pointer;
-    transition: all 0.3s;
+  position: absolute;
+  top: 0.625rem;
+  right: 0.9375rem;
+  color: #00eaff;
+  font-size: 1.5rem;
+  cursor: pointer;
+  transition: all 0.3s;
 }
 
 .holo-close:hover {
-    color: #ffd700;
-    text-shadow: 0 0 10px #ffd700;
+  color: #ffd700;
+  text-shadow: 0 0 10px #ffd700;
 }
 
 .holo-modal-content h2 {
-    font-family: 'Orbitron', sans-serif;
-    font-size: 1.75rem;
-    margin-bottom: 1.25rem;
-    text-shadow: 0 0 10px #00eaff;
+  font-family: 'Orbitron', sans-serif;
+  font-size: 1.75rem;
+  margin-bottom: 1.25rem;
+  text-shadow: 0 0 10px #00eaff;
 }
 
 #airdropForm {
-    display: flex;
-    flex-direction: column;
-    gap: 0.9375rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.9375rem;
 }
 
 .form-group {
-    position: relative;
-    text-align: left;
+  position: relative;
+  text-align: left;
 }
 
 .form-group label {
-    font-family: 'Exo 2', sans-serif;
-    font-size: 0.875rem;
-    margin-bottom: 0.3125rem;
-    display: block;
+  font-family: 'Exo 2', sans-serif;
+  font-size: 0.875rem;
+  margin-bottom: 0.3125rem;
+  display: block;
 }
 
 .required {
-    color: #ffd700;
+  color: #ffd700;
 }
 
 .info-icon {
-    display: inline-block;
-    width: 16px;
-    height: 16px;
-    background: #00eaff;
-    color: #000;
-    border-radius: 50%;
-    text-align: center;
-    font-size: 12px;
-    line-height: 16px;
-    margin-left: 5px;
-    margin-bottom: 2px;
-    vertical-align: middle;
-    cursor: help;
+  display: inline-block;
+  width: 16px;
+  height: 16px;
+  background: #00eaff;
+  color: #000;
+  border-radius: 50%;
+  text-align: center;
+  font-size: 12px;
+  line-height: 16px;
+  margin-left: 5px;
+  margin-bottom: 2px;
+  vertical-align: middle;
+  cursor: help;
 }
 
 .tooltip {
-    visibility: hidden;
-    position: absolute;
-    top: 100%;
-    left: 0;
-    background: rgba(0, 0, 0, 0.95);
-    border: 1px solid #00eaff;
-    border-radius: 5px;
-    padding: 0.625rem;
-    font-family: 'Exo 2', sans-serif;
-    font-size: 0.75rem;
-    width: 200px;
-    z-index: 100;
-    opacity: 0;
-    transition: opacity 0.3s;
+  visibility: hidden;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background: rgba(0, 0, 0, 0.95);
+  border: 1px solid #00eaff;
+  border-radius: 5px;
+  padding: 0.625rem;
+  font-family: 'Exo 2', sans-serif;
+  font-size: 0.75rem;
+  width: 200px;
+  z-index: 100;
+  opacity: 0;
+  transition: opacity 0.3s;
 }
 
 .form-group:hover .tooltip {
-    visibility: visible;
-    opacity: 1;
+  visibility: visible;
+  opacity: 1;
 }
 
 #airdropForm input {
-    padding: 0.625rem;
-    border: 2px solid #00eaff;
-    border-radius: 5px;
-    background: rgba(0, 0, 0, 0.7);
-    color: #fff;
-    font-family: 'Exo 2', sans-serif;
-    font-size: 1rem;
-    transition: all 0.3s;
-    width: 100%;
+  padding: 0.625rem;
+  border: 2px solid #00eaff;
+  border-radius: 5px;
+  background: rgba(0, 0, 0, 0.7);
+  color: #fff;
+  font-family: 'Exo 2', sans-serif;
+  font-size: 1rem;
+  transition: all 0.3s;
+  width: 100%;
 }
 
 #airdropForm input:focus {
-    border-color: #ffd700;
-    box-shadow: 0 0 10px #ffd700;
+  border-color: #ffd700;
+  box-shadow: 0 0 10px #ffd700;
 }
 
 .form-note {
-    font-family: 'Exo 2', sans-serif;
-    font-size: 0.75rem;
-    opacity: 0.7;
-    margin-top: 0.625rem;
+  font-family: 'Exo 2', sans-serif;
+  font-size: 0.75rem;
+  opacity: 0.7;
+  margin-top: 0.625rem;
 }
 
 #airdropForm button {
-    background: #ffd700;
-    color: #000;
-    padding: 0.625rem;
-    border: none;
-    border-radius: 5px;
-    font-family: 'Orbitron', sans-serif;
-    font-size: 1.125rem;
-    cursor: pointer;
-    transition: all 0.3s;
-    box-shadow: 0 0 10px #ffd700;
+  background: #ffd700;
+  color: #000;
+  padding: 0.625rem;
+  border: none;
+  border-radius: 5px;
+  font-family: 'Orbitron', sans-serif;
+  font-size: 1.125rem;
+  cursor: pointer;
+  transition: all 0.3s;
+  box-shadow: 0 0 10px #ffd700;
 }
 
 #airdropForm button:hover {
-    background: #00eaff;
-    box-shadow: 0 0 20px #00eaff;
+  background: #00eaff;
+  box-shadow: 0 0 20px #00eaff;
 }
 
 @media (max-width: 768px) {
-    .holo-modal-content {
-        padding: 1.25rem;
-        max-width: 90%;
-    }
-
-    .holo-modal-content h2 {
-        font-size: 1.5rem;
-        margin-bottom: 0.9375rem;
-    }
-
-    #airdropForm input {
-        font-size: 0.875rem;
-    }
-
-    #airdropForm button {
-        font-size: 1rem;
-        padding: 0.5rem;
-        min-width: 140px; /* Ensure tappable size on mobile */
-    }
+  .holo-modal-content {
+    padding: 1.25rem;
+    max-width: 90%;
+  }
+  .holo-modal-content h2 {
+    font-size: 1.5rem;
+    margin-bottom: 0.9375rem;
+  }
+  #airdropForm input {
+    font-size: 0.875rem;
+  }
+  #airdropForm button {
+    font-size: 1rem;
+    padding: 0.5rem;
+    min-width: 140px;
+  }
 }
 
 .holo-buy-symban {
-    padding: 5rem 3.125rem;
-    text-align: center;
-    background: rgba(0, 0, 0, 0.6);
+  padding: 5rem 3.125rem;
+  text-align: center;
+  background: rgba(0, 0, 0, 0.6);
 }
 
 .holo-buy-symban h2 {
-    font-family: 'Orbitron', sans-serif;
-    font-size: 3rem;
-    margin-bottom: 1.875rem;
-    text-shadow: 0 0 20px #00eaff;
+  font-family: 'Orbitron', sans-serif;
+  font-size: 3rem;
+  margin-bottom: 1.875rem;
+  text-shadow: 0 0 20px #00eaff;
 }
 
 .holo-buy-symban p {
-    font-family: 'Exo 2', sans-serif;
-    font-size: 1.25rem;
-    margin-bottom: 2.5rem;
-    text-shadow: 0 0 10px #00eaff;
-    opacity: 0.9;
+  font-family: 'Exo 2', sans-serif;
+  font-size: 1.25rem;
+  margin-bottom: 2.5rem;
+  text-shadow: 0 0 10px #00eaff;
+  opacity: 0.9;
 }
 
 .buy-symban-action {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 0.625rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.625rem;
 }
 
 .holo-buy-symban .ido-btn {
-    background: #ffd700;
-    color: #000;
-    padding: 0.9375rem 2.5rem;
-    font-size: 1.25rem;
+  background: #ffd700;
+  color: #000;
+  padding: 0.9375rem 2.5rem;
+  font-size: 1.25rem;
 }
 
 @media (max-width: 1024px) {
-    .holo-buy-symban {
-        padding: 3.75rem 1.875rem;
-    }
-
-    .holo-buy-symban h2 {
-        font-size: 2.5rem;
-        margin-bottom: 1.5625rem;
-    }
-
-    .holo-buy-symban p {
-        font-size: 1.125rem;
-        margin-bottom: 1.875rem;
-    }
-
-    .holo-buy-symban .ido-btn {
-        padding: 0.75rem 1.875rem;
-        font-size: 1.125rem;
-    }
+  .holo-buy-symban {
+    padding: 3.75rem 1.875rem;
+  }
+  .holo-buy-symban h2 {
+    font-size: 2.5rem;
+    margin-bottom: 1.5625rem;
+  }
+  .holo-buy-symban p {
+    font-size: 1.125rem;
+    margin-bottom: 1.875rem;
+  }
+  .holo-buy-symban .ido-btn {
+    padding: 0.75rem 1.875rem;
+    font-size: 1.125rem;
+  }
 }
 
 @media (max-width: 768px) {
-    .holo-buy-symban {
-        padding: 2.5rem 1.25rem;
-    }
-
-    .holo-buy-symban h2 {
-        font-size: 2rem;
-        margin-bottom: 1.25rem;
-    }
-
-    .holo-buy-symban p {
-        font-size: 1rem;
-        margin-bottom: 1.25rem;
-    }
-
-    .holo-buy-symban .ido-btn {
-        padding: 0.625rem 1.25rem;
-        font-size: 1rem;
-    }
+  .holo-buy-symban {
+    padding: 2.5rem 1.25rem;
+  }
+  .holo-buy-symban h2 {
+    font-size: 2rem;
+    margin-bottom: 1.25rem;
+  }
+  .holo-buy-symban p {
+    font-size: 1rem;
+    margin-bottom: 1.25rem;
+  }
+  .holo-buy-symban .ido-btn {
+    padding: 0.625rem 1.25rem;
+    font-size: 1rem;
+  }
 }
 
 .holo-usps {
-    padding: 6.25rem 3.125rem;
-    text-align: center;
-    position: relative;
-    background: rgba(0, 0, 0, 0.5);
+  padding: 6.25rem 3.125rem;
+  text-align: center;
+  position: relative;
+  background: rgba(0, 0, 0, 0.5);
 }
 
 .holo-usps h2 {
-    font-family: 'Orbitron', sans-serif;
-    font-size: 3rem;
-    margin-bottom: 6.25rem;
-    text-shadow: 0 0 20px #00eaff;
+  font-family: 'Orbitron', sans-serif;
+  font-size: 3rem;
+  margin-bottom: 6.25rem;
+  text-shadow: 0 0 20px #00eaff;
 }
 
 .holo-usp-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 1.875rem;
-    justify-items: center;
-    position: relative;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.875rem;
+  justify-items: center;
+  position: relative;
 }
 
 .holo-usp-card {
-    background: rgba(0, 234, 255, 0.05);
-    border: 2px solid #00eaff;
-    padding: 1.25rem;
-    width: 200px;
-    border-radius: 10px;
-    box-shadow: 0 0 15px #00eaff;
-    transform: rotateY(0deg);
-    transition: all 0.5s;
-    position: relative;
-    z-index: 2;
+  background: rgba(0, 234, 255, 0.05);
+  border: 2px solid #00eaff;
+  padding: 1.25rem;
+  width: 200px;
+  border-radius: 10px;
+  box-shadow: 0 0 15px #00eaff;
+  transform: rotateY(0deg);
+  transition: all 0.5s;
+  position: relative;
+  z-index: 2;
 }
 
 .holo-usp-card:hover {
-    transform: rotateY(10deg) scale(1.05) !important;
-    border-color: #ffd700;
-    box-shadow: 0 0 25px #ffd700;
+  transform: rotateY(10deg) scale(1.05) !important;
+  border-color: #ffd700;
+  box-shadow: 0 0 25px #ffd700;
 }
 
 .holo-usp-card:hover::before {
-    content: '';
-    position: absolute;
-    top: -2px;
-    left: -2px;
-    width: calc(100% + 4px);
-    height: calc(100% + 4px);
-    border: 2px solid #ffd700;
-    border-radius: 10px;
-    animation: cardGlow 1.5s infinite;
+  content: '';
+  position: absolute;
+  top: -2px;
+  left: -2px;
+  width: calc(100% + 4px);
+  height: calc(100% + 4px);
+  border: 2px solid #ffd700;
+  border-radius: 10px;
+  animation: cardGlow 1.5s infinite;
+}
+
+.holo-usp-card::before {
+  content: '';
+  display: none;
+  width: 40px;
+  height: 40px;
+  position: absolute;
+  top: -20px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.holo-usp-card[data-id="usp1"]::before {
+  background: url('https://symbanchain-website.pages.dev/assets/icon-rugpull.png') no-repeat center;
+}
+
+.holo-usp-card[data-id="usp2"]::before {
+  background: url('https://symbanchain-website.pages.dev/assets/icon-shield.png') no-repeat center;
+}
+
+.holo-usp-card[data-id="usp3"]::before {
+  background: url('https://symbanchain-website.pages.dev/assets/icon-staking.png') no-repeat center;
+}
+
+.holo-usp-card[data-id="usp4"]::before {
+  background: url('https://symbanchain-website.pages.dev/assets/icon-speed.png') no-repeat center;
+}
+
+.holo-usp-card[data-id="usp5"]::before {
+  background: url('https://symbanchain-website.pages.dev/assets/icon-fees.png') no-repeat center;
+}
+
+.holo-usp-card[data-id="usp6"]::before {
+  background: url('https://symbanchain-website.pages.dev/assets/icon-burn.png') no-repeat center;
+}
+
+.holo-usp-card[data-id="usp7"]::before {
+  background: url('https://symbanchain-website.pages.dev/assets/icon-developer.png') no-repeat center;
+}
+
+.holo-usp-card[data-id="usp8"]::before {
+  background: url('https://symbanchain-website.pages.dev/assets/icon-transparency.png') no-repeat center;
+}
+
+.holo-usp-card[data-id="usp9"]::before {
+  background: url('https://symbanchain-website.pages.dev/assets/icon-compliance.png') no-repeat center;
+}
+
+.holo-usp-card[data-id="usp10"]::before {
+  background: url('https://symbanchain-website.pages.dev/assets/icon-quality.png') no-repeat center;
+}
+
+.holo-usp-card[data-id="usp11"]::before {
+  background: url('https://symbanchain-website.pages.dev/assets/icon-symban.png') no-repeat center;
+}
+
+.holo-usp-card:hover::before {
+  display: block;
 }
 
 @keyframes cardGlow {
-    0% { border-color: #ffd700; opacity: 0.5; }
-    50% { border-color: #00eaff; opacity: 1; }
-    100% { border-color: #ffd700; opacity: 0.5; }
+  0% { border-color: #ffd700; opacity: 0.5; }
+  50% { border-color: #00eaff; opacity: 1; }
+  100% { border-color: #ffd700; opacity: 0.5; }
 }
 
 .holo-usp-card h3 {
-    font-family: 'Orbitron', sans-serif;
-    font-size: 1.25rem;
-    margin-bottom: 0.625rem;
-    text-shadow: 0 0 10px #00eaff;
+  font-family: 'Orbitron', sans-serif;
+  font-size: 1.25rem;
+  margin-bottom: 0.625rem;
+  text-shadow: 0 0 10px #00eaff;
 }
 
 .holo-usp-card p {
-    font-size: 0.875rem;
-    opacity: 0.8;
+  font-size: 0.875rem;
+  opacity: 0.8;
 }
 
 @media (max-width: 1024px) {
-    .holo-usps {
-        padding: 5rem 1.875rem;
-    }
-
-    .holo-usps h2 {
-        font-size: 2.5rem;
-        margin-bottom: 5rem;
-    }
-
-    .holo-usp-grid {
-        grid-template-columns: repeat(2, 1fr);
-        gap: 1.25rem;
-    }
-
-    .holo-usp-card {
-        width: 180px;
-        padding: 0.9375rem;
-    }
-
-    .holo-usp-card h3 {
-        font-size: 1.125rem;
-    }
-
-    .holo-usp-card p {
-        font-size: 0.8125rem;
-    }
+  .holo-usps {
+    padding: 5rem 1.875rem;
+  }
+  .holo-usps h2 {
+    font-size: 2.5rem;
+    margin-bottom: 5rem;
+  }
+  .holo-usp-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.25rem;
+  }
+  .holo-usp-card {
+    width: 180px;
+    padding: 0.9375rem;
+  }
+  .holo-usp-card h3 {
+    font-size: 1.125rem;
+  }
+  .holo-usp-card p {
+    font-size: 0.8125rem;
+  }
 }
 
 @media (max-width: 768px) {
-    .holo-usps {
-        padding: 3.75rem 1.25rem;
-    }
-
-    .holo-usps h2 {
-        font-size: 2rem;
-        margin-bottom: 3.75rem;
-    }
-
-    .holo-usp-grid {
-        grid-template-columns: 1fr;
-        gap: 0.9375rem;
-    }
-
-    .holo-usp-card {
-        width: 100%;
-        max-width: 300px;
-        padding: 0.9375rem;
-    }
-
-    .holo-usp-card h3 {
-        font-size: 1.125rem;
-    }
-
-    .holo-usp-card p {
-        font-size: 0.8125rem;
-    }
+  .holo-usps {
+    padding: 3.75rem 1.25rem;
+  }
+  .holo-usps h2 {
+    font-size: 2rem;
+    margin-bottom: 3.75rem;
+  }
+  .holo-usp-grid {
+    grid-template-columns: 1fr;
+    gap: 0.9375rem;
+  }
+  .holo-usp-card {
+    width: 100%;
+    max-width: 300px;
+    padding: 0.9375rem;
+  }
+  .holo-usp-card h3 {
+    font-size: 1.125rem;
+  }
+  .holo-usp-card p {
+    font-size: 0.8125rem;
+  }
 }
 
 .holo-ido {
-    padding: 6.25rem 3.125rem;
-    text-align: center;
-    background: rgba(0, 0, 0, 0.7);
+  padding: 6.25rem 3.125rem;
+  text-align: center;
+  background: rgba(0, 0, 0, 0.7);
 }
 
 .holo-ido h2 {
-    font-family: 'Orbitron', sans-serif;
-    font-size: 3rem;
-    margin-bottom: 2.5rem;
-    text-shadow: 0 0 20px #00eaff;
+  font-family: 'Orbitron', sans-serif;
+  font-size: 3rem;
+  margin-bottom: 2.5rem;
+  text-shadow: 0 0 20px #00eaff;
 }
 
-.holo-countdown-sphere {
-    width: 300px;
-    height: 300px;
-    margin: 0 auto 2.5rem;
-    background: radial-gradient(circle, rgba(0, 234, 255, 0.3), transparent);
-    border: 2px solid #00eaff;
-    border-radius: 50%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    box-shadow: 0 0 30px #00eaff;
-    position: relative;
-    animation: sphereGlow 3s infinite;
+.holo-progress-bar {
+  width: 300px;
+  height: 10px;
+  border: 2px solid #00eaff;
+  border-radius: 5px;
+  margin: 2rem auto;
+  overflow: hidden;
 }
 
-@keyframes sphereGlow {
-    0% { box-shadow: 0 0 30px #00eaff; }
-    50% { box-shadow: 0 0 50px #00eaff; }
-    100% { box-shadow: 0 0 30px #00eaff; }
+.progress-fill {
+  width: 0%;
+  height: 100%;
+  background: #ffd700;
+  transition: width 1s ease;
 }
 
-.holo-countdown {
-    display: flex;
-    justify-content: center;
-    gap: 1.25rem;
-}
-
-.holo-countdown div {
-    background: rgba(0, 0, 0, 0.8);
-    padding: 0.9375rem;
-    border: 2px solid #00eaff;
-    border-radius: 5px;
-    font-family: 'Orbitron', sans-serif;
-    font-size: 1.25rem;
-    box-shadow: 0 0 10px #00eaff;
-}
-
-.holo-countdown span {
-    display: block;
-    font-size: 2rem;
-    color: #ffd700;
-    text-shadow: 0 0 10px #ffd700;
+#idoStatus {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 1.25rem;
+  text-shadow: 0 0 10px #00eaff;
+  margin-top: 1rem;
 }
 
 .ido-btn {
-    background: #ffd700;
-    color: #000;
-    padding: 0.9375rem 2.5rem;
-    font-size: 1.25rem;
+  background: #ffd700;
+  color: #000;
+  padding: 0.9375rem 2.5rem;
+  font-size: 1.25rem;
 }
 
 @media (max-width: 1024px) {
-    .holo-ido {
-        padding: 5rem 1.875rem;
-    }
-
-    .holo-ido h2 {
-        font-size: 2.5rem;
-        margin-bottom: 1.875rem;
-    }
-
-    .holo-countdown-sphere {
-        width: 250px;
-        height: 250px;
-    }
-
-    .holo-countdown div {
-        padding: 0.625rem;
-        font-size: 1.125rem;
-    }
-
-    .holo-countdown span {
-        font-size: 1.75rem;
-    }
-
-    .ido-btn {
-        padding: 0.75rem 1.875rem;
-        font-size: 1.125rem;
-    }
+  .holo-ido {
+    padding: 5rem 1.875rem;
+  }
+  .holo-ido h2 {
+    font-size: 2.5rem;
+    margin-bottom: 1.875rem;
+  }
+  .holo-progress-bar {
+    width: 250px;
+  }
+  .ido-btn {
+    padding: 0.75rem 1.875rem;
+    font-size: 1.125rem;
+  }
 }
 
 @media (max-width: 768px) {
-    .holo-ido {
-        padding: 3.75rem 1.25rem;
-    }
-
-    .holo-ido h2 {
-        font-size: 2rem;
-        margin-bottom: 1.25rem;
-    }
-
-    .holo-countdown-sphere {
-        width: 200px;
-        height: 200px;
-    }
-
-    .holo-countdown {
-        flex-direction: column;
-        gap: 0.625rem;
-    }
-
-    .holo-countdown div {
-        padding: 0.5rem;
-        font-size: 1rem;
-    }
-
-    .holo-countdown span {
-        font-size: 1.5rem;
-    }
-
-    .ido-btn {
-        padding: 0.625rem 1.25rem;
-        font-size: 1rem;
-    }
+  .holo-ido {
+    padding: 3.75rem 1.25rem;
+  }
+  .holo-ido h2 {
+    font-size: 2rem;
+    margin-bottom: 1.25rem;
+  }
+  .holo-progress-bar {
+    width: 200px;
+  }
+  .ido-btn {
+    padding: 0.625rem 1.25rem;
+    font-size: 1rem;
+  }
 }
 
 .holo-footer {
-    padding: 3.125rem;
-    text-align: center;
-    background: rgba(0, 0, 0, 0.9);
-    position: relative;
+  padding: 3.125rem;
+  text-align: center;
+  background: rgba(0, 0, 0, 0.9);
+  position: relative;
 }
 
 .holo-footer::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: url('/assets/stars.webp') repeat;
-    background-size: 200px 200px;
-    opacity: 0.2;
-    animation: drift 100s linear infinite;
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: url('/assets/stars.webp') repeat;
+  background-size: 200px 200px;
+  opacity: 0.2;
+  animation: drift 100s linear infinite;
 }
 
 .footer-logo {
-    height: 40px;
-    margin-bottom: 1.25rem;
-    filter: drop-shadow(0 0 15px #00eaff);
+  height: 40px;
+  margin-bottom: 1.25rem;
+  filter: drop-shadow(0 0 15px #00eaff);
 }
 
 .footer-links a {
-    color: #00eaff;
-    margin: 0 0.9375rem;
-    text-decoration: none;
-    font-family: 'Orbitron', sans-serif;
-    font-size: 0.875rem;
-    transition: all 0.3s;
+  color: #00eaff;
+  margin: 0 0.9375rem;
+  text-decoration: none;
+  font-family: 'Orbitron', sans-serif;
+  font-size: 0.875rem;
+  transition: all 0.3s;
 }
 
 .footer-links a:hover {
-    text-shadow: 0 0 10px #00eaff;
+  text-shadow: 0 0 10px #00eaff;
 }
 
 .social-links {
-    margin: 1.25rem 0;
+  margin: 1.25rem 0;
 }
 
 .social-links a {
-    color: #00eaff;
-    margin: 0 0.9375rem;
-    text-decoration: none;
-    font-family: 'Orbitron', sans-serif;
-    font-size: 1rem;
-    transition: all 0.3s;
+  color: #00eaff;
+  margin: 0 0.9375rem;
+  text-decoration: none;
+  font-family: 'Orbitron', sans-serif;
+  font-size: 1rem;
+  transition: all 0.3s;
 }
 
 .social-links a:hover {
-    text-shadow: 0 0 10px #00eaff;
+  text-shadow: 0 0 10px #00eaff;
 }
 
 footer p {
-    font-size: 0.875rem;
-    margin-top: 1.25rem;
-    opacity: 0.7;
+  font-size: 0.875rem;
+  margin-top: 1.25rem;
+  opacity: 0.7;
 }
 
 @media (max-width: 768px) {
-    .holo-footer {
-        padding: 1.875rem 1.25rem;
-    }
-
-    .footer-logo {
-        height: 30px;
-        margin-bottom: 0.9375rem;
-    }
-
-    .footer-links {
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: center;
-        gap: 0.625rem;
-    }
-
-    .footer-links a {
-        margin: 0.3125rem 0.625rem;
-        font-size: 0.75rem;
-    }
-
-    .social-links a {
-        margin: 0.3125rem 0.625rem;
-        font-size: 0.875rem;
-    }
-
-    footer p {
-        font-size: 0.75rem;
-    }
+  .holo-footer {
+    padding: 1.875rem 1.25rem;
+  }
+  .footer-logo {
+    height: 30px;
+    margin-bottom: 0.9375rem;
+  }
+  .footer-links {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.625rem;
+  }
+  .footer-links a {
+    margin: 0.3125rem 0.625rem;
+    font-size: 0.75rem;
+  }
+  .social-links a {
+    margin: 0.3125rem 0.625rem;
+    font-size: 0.875rem;
+  }
+  footer p {
+    font-size: 0.75rem;
+  }
 }
 
 .cookie-consent {
-    display: none;
-    position: fixed;
-    bottom: 1.25rem;
-    left: 50%;
-    transform: translateX(-50%);
-    background: rgba(0, 0, 0, 0.95);
-    padding: 1.25rem;
-    border: 2px solid #00eaff;
-    border-radius: 10px;
-    box-shadow: 0 0 20px #00eaff;
-    z-index: 3000;
-    text-align: center;
-    width: 90%;
-    max-width: 500px;
-    animation: slideUp 0.5s ease-in-out forwards;
+  display: none;
+  position: fixed;
+  bottom: 1.25rem;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(0, 0, 0, 0.95);
+  padding: 1.25rem;
+  border: 2px solid #00eaff;
+  border-radius: 10px;
+  box-shadow: 0 0 20px #00eaff;
+  z-index: 3000;
+  text-align: center;
+  width: 90%;
+  max-width: 500px;
+  animation: slideUp 0.5s ease-in-out forwards;
 }
 
 @keyframes slideUp {
-    0% { 
-        transform: translateX(-50%) translateY(100px); 
-        opacity: 0; 
-    }
-    100% { 
-        transform: translateX(-50%) translateY(0); 
-        opacity: 1; 
-    }
+  0% { 
+    transform: translateX(-50%) translateY(100px); 
+    opacity: 0; 
+  }
+  100% { 
+    transform: translateX(-50%) translateY(0); 
+    opacity: 1; 
+  }
 }
 
 .cookie-content p {
-    font-family: 'Exo 2', sans-serif;
-    font-size: 1rem;
-    margin-bottom: 1.25rem;
+  font-family: 'Exo 2', sans-serif;
+  font-size: 1rem;
+  margin-bottom: 1.25rem;
 }
 
 .cookie-content a {
-    color: #00eaff;
-    text-decoration: underline;
-    transition: all 0.3s;
+  color: #00eaff;
+  text-decoration: underline;
+  transition: all 0.3s;
 }
 
 .cookie-content a:hover {
-    color: #ffd700;
+  color: #ffd700;
 }
 
 .cookie-buttons {
-    display: flex;
-    justify-content: center;
-    gap: 0.9375rem;
+  display: flex;
+  justify-content: center;
+  gap: 0.9375rem;
 }
 
 .cookie-btn {
-    padding: 0.625rem 1.25rem;
-    border: 2px solid #00eaff;
-    border-radius: 5px;
-    font-family: 'Orbitron', sans-serif;
-    font-size: 1rem;
-    cursor: pointer;
-    transition: all 0.3s;
+  padding: 0.625rem 1.25rem;
+  border: 2px solid #00eaff;
+  border-radius: 5px;
+  font-family: 'Orbitron', sans-serif;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all 0.3s;
 }
 
 .accept-btn {
-    background: #00eaff;
-    color: #000;
-    box-shadow: 0 0 15px #00eaff;
+  background: #00eaff;
+  color: #000;
+  box-shadow: 0 0 15px #00eaff;
 }
 
 .accept-btn::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    border: 2px solid transparent;
-    border-radius: 5px;
-    box-sizing: border-box;
-    animation: goldPulse 2s infinite;
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border: 2px solid transparent;
+  border-radius: 5px;
+  box-sizing: border-box;
+  animation: goldPulse 2s infinite;
 }
 
 @keyframes goldPulse {
-    0% { border-color: transparent; }
-    50% { border-color: #ffd700; }
-    100% { border-color: transparent; }
+  0% { border-color: transparent; }
+  50% { border-color: #ffd700; }
+  100% { border-color: transparent; }
 }
 
 .accept-btn:hover {
-    background: #ffd700;
-    color: #000;
-    box-shadow: 0 0 20px #ffd700;
+  background: #ffd700;
+  color: #000;
+  box-shadow: 0 0 20px #ffd700;
 }
 
 .customize-btn {
-    background: rgba(0, 234, 255, 0.1);
-    color: #fff;
-    opacity: 0.7;
+  background: rgba(0, 234, 255, 0.1);
+  color: #fff;
+  opacity: 0.7;
 }
 
 .customize-btn:hover {
-    opacity: 1;
-    background: rgba(0, 234, 255, 0.3);
-    box-shadow: 0 0 10px #00eaff;
+  opacity: 1;
+  background: rgba(0, 234, 255, 0.3);
+  box-shadow: 0 0 10px #00eaff;
 }
 
 @media (max-width: 768px) {
-    .cookie-consent {
-        padding: 0.9375rem;
-        max-width: 90%;
-    }
-
-    .cookie-content p {
-        font-size: 0.875rem;
-        margin-bottom: 0.9375rem;
-    }
-
-    .cookie-btn {
-        padding: 0.5rem 0.9375rem;
-        font-size: 0.875rem;
-    }
+  .cookie-consent {
+    padding: 0.9375rem;
+    max-width: 90%;
+  }
+  .cookie-content p {
+    font-size: 0.875rem;
+    margin-bottom: 0.9375rem;
+  }
+  .cookie-btn {
+    padding: 0.5rem 0.9375rem;
+    font-size: 0.875rem;
+  }
 }
