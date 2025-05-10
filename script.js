@@ -271,25 +271,6 @@ if (typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined') {
   console.error('GSAP or ScrollTrigger not loaded');
 }
 
-// IDO Progress Bar
-const idoProgress = document.getElementById('idoProgress');
-const idoStatus = document.getElementById('idoStatus');
-
-if (idoProgress && idoStatus) {
-  let raised = 0; // Replace with API call to symban1idowallet balance post-launch
-  function updateIDOProgress() {
-    raised = Math.min(raised + 1000000, 100000000); // Simulate $1M increments
-    const percent = (raised / 100000000) * 100;
-    idoProgress.style.width = `${percent}%`;
-    idoStatus.textContent = `$${raised.toLocaleString()} of $100M Raised`;
-    if (raised < 100000000) setTimeout(updateIDOProgress, 5000);
-  }
-  updateIDOProgress();
-  console.log('IDO progress bar started');
-} else {
-  console.error('IDO progress elements not found');
-}
-
 // Hamburger Menu Toggle for Mobile
 const hamburger = document.createElement('button');
 hamburger.classList.add('hamburger');
