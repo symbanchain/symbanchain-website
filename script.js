@@ -1,105 +1,315 @@
-document.addEventListener('DOMContentLoaded', () => {
-    console.log("Hero section animation started");
+import * as THREE from 'https://unpkg.com/three@0.155.0/build/three.module.js';
 
-    // Logo Zoom-In Animation
-    gsap.from(".s-logo", {
-        scale: 0,
-        opacity: 0,
-        duration: 2,
-        ease: "elastic.out(1, 0.3)"
+console.log('Script.js loaded');
+
+// Debug Logo Loading
+const headerLogo = document.querySelector('.logo-img');
+const footerLogo = document.querySelector('.footer-logo');
+const heroLogo = document.querySelector('.holo-logo');
+
+if (headerLogo) {
+    headerLogo.addEventListener('load', () => console.log('Header logo loaded successfully'));
+    headerLogo.addEventListener('error', () => console.error('Header logo failed to load:', headerLogo.src));
+}
+
+if (footerLogo) {
+    footerLogo.addEventListener('load', () => console.log('Footer logo loaded successfully'));
+    footerLogo.addEventListener('error', () => console.error('Footer logo failed to load:', footerLogo.src));
+}
+
+if (heroLogo) {
+    console.log('Hero logo (background image) set to:', getComputedStyle(heroLogo).backgroundImage);
+}
+
+// Cookie Consent Popup
+const cookieConsent = document.getElementById('cookieConsent');
+const acceptCookiesBtn = document.getElementById('acceptCookies');
+const customizeCookiesBtn = document.getElementById('customizeCookies');
+
+if (cookieConsent) {
+    if (!localStorage.getItem('cookiesAccepted')) {
+        // Delay appearance until 2 seconds after final animation (13 seconds total)
+        setTimeout(() => {
+            cookieConsent.style.display = 'block';
+            console.log('Cookie consent popup displayed');
+        }, 13000);
+    } else {
+        console.log('Cookies already accepted, popup not shown');
+    }
+
+    acceptCookiesBtn.addEventListener('click', () => {
+        localStorage.setItem('cookiesAccepted', 'true');
+        cookieConsent.style.display = 'none';
+        console.log('Cookies accepted');
     });
 
-    // Particle Animation Delay
-    gsap.from(".particle", {
-        opacity: 0,
-        duration: 0.5,
-        delay: 2
+    customizeCookiesBtn.addEventListener('click', () => {
+        alert('Customize cookie settings (to be implemented). For now, please accept to continue.');
+        console.log('Customize cookies clicked');
+    });
+} else {
+    console.error('Cookie consent elements not found');
+}
+
+// Airdrop Modal
+const airdropModal = document.getElementById('airdropModal');
+const joinAirdropBtn = document.getElementById('joinAirdropBtn');
+const closeAirdropModal = document.getElementById('closeAirdropModal');
+
+if (joinAirdropBtn && airdropModal && closeAirdropModal) {
+    joinAirdropBtn.addEventListener('click', () => {
+        airdropModal.style.display = 'flex';
+        console.log('Airdrop modal opened');
     });
 
-    // SymbanChain Text Animation
-    gsap.from(".brand-name", {
-        opacity: 0,
-        scale: 0.5,
-        duration: 2.5,
-        ease: "power2.out"
+    closeAirdropModal.addEventListener('click', () => {
+        airdropModal.style.display = 'none';
+        console.log('Airdrop modal closed');
     });
 
-    // Tagline Letter-by-Letter Animation
-    const tagline = document.querySelector(".hero-content h1");
-    const text = tagline.textContent;
-    tagline.textContent = "";
-    text.split("").forEach(char => {
-        const span = document.createElement("span");
-        span.textContent = char;
-        tagline.appendChild(span);
-    });
-
-    gsap.from(tagline.children, {
-        opacity: 0,
-        y: 20,
-        duration: 0.05,
-        stagger: 0.03,
-        ease: "power1.out"
-    });
-
-    // Subheading Animation
-    const subheading = document.querySelector(".hero-subheading");
-    const subheadingParts = subheading.innerHTML.split(/(<span class="highlight">.*?<\/span>)/g).map(part => {
-        const span = document.createElement("span");
-        span.innerHTML = part;
-        return span;
-    });
-    subheading.innerHTML = "";
-    subheadingParts.forEach(part => subheading.appendChild(part));
-
-    gsap.from(subheading.children, {
-        opacity: 0,
-        y: 20,
-        duration: 0.8,
-        stagger: 0.3,
-        ease: "power1.out"
-    });
-
-    // Action Buttons Animation
-    gsap.from(".holo-action-btn", {
-        opacity: 0,
-        y: 30,
-        duration: 0.5,
-        stagger: 0.1,
-        ease: "power1.out",
-        scrollTrigger: {
-            trigger: ".holo-actions",
-            start: "top 80%"
+    window.addEventListener('click', (e) => {
+        if (e.target === airdropModal) {
+            airdropModal.style.display = 'none';
+            console.log('Airdrop modal closed by clicking outside');
         }
     });
 
-    // Hamburger Menu Toggle
-    const hamburger = document.querySelector(".hamburger");
-    const navUl = document.querySelector("nav ul");
-    hamburger.addEventListener("click", () => {
-        navUl.classList.toggle("active");
-        hamburger.textContent = navUl.classList.contains("active") ? "✖" : "☰";
-    });
-
-    // Airdrop Form Submission (Mock)
-    document.getElementById("airdropForm").addEventListener("submit", (e) => {
+    document.getElementById('airdropForm').addEventListener('submit', (e) => {
         e.preventDefault();
-        alert("Airdrop claim submitted! You’ll receive 1,000 $SYMBAN if you’re among the first 10,000 users.");
+        alert('Airdrop Claim Submitted! If you’re among the first 10,000 users and meet the criteria (retweet, follow @SymbanChain on X, join Telegram), you’ll receive 1,000 $SYMBAN in May 2025. Check your e-mail for confirmation! 🌌');
+        airdropModal.style.display = 'none';
+        console.log('Airdrop form submitted');
     });
+} else {
+    console.error('Airdrop modal elements not found');
+}
 
-    // Cookie Consent Popup
-    const cookieConsent = document.getElementById("cookieConsent");
-    const acceptCookies = document.getElementById("acceptCookies");
-    
-    if (!localStorage.getItem("cookiesAccepted")) {
-        setTimeout(() => {
-            cookieConsent.style.display = "block";
-            console.log("Cookie consent popup displayed");
-        }, 13000);
+// Cosmic Scene with Three.js (Static Starfield)
+let scene, camera, renderer;
+
+if (typeof THREE !== 'undefined') {
+    try {
+        scene = new THREE.Scene();
+        camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+        renderer = new THREE.WebGLRenderer({ canvas: document.getElementById('cosmicCanvas'), alpha: true });
+
+        if (renderer) {
+            renderer.setSize(window.innerWidth, window.innerHeight);
+            console.log('Three.js renderer initialized');
+
+            // Starfield
+            const starGeometry = new THREE.BufferGeometry();
+            const starMaterial = new THREE.PointsMaterial({ color: 0xFFFFFF, size: 0.1 });
+            const starVertices = [];
+
+            for (let i = 0; i < 5000; i++) {
+                const x = (Math.random() - 0.5) * 2000;
+                const y = (Math.random() - 0.5) * 2000;
+                const z = (Math.random() - 0.5) * 2000;
+                starVertices.push(x, y, z);
+            }
+
+            starGeometry.setAttribute('position', new THREE.Float32BufferAttribute(starVertices, 3));
+            const stars = new THREE.Points(starGeometry, starMaterial);
+            scene.add(stars);
+
+            camera.position.z = 50;
+
+            function animateCosmicScene() {
+                requestAnimationFrame(animateCosmicScene);
+                renderer.render(scene, camera);
+            }
+            animateCosmicScene();
+            console.log('Cosmic scene initialized successfully');
+
+            // Resize handler for responsive canvas
+            window.addEventListener('resize', () => {
+                const width = window.innerWidth;
+                const height = window.innerHeight;
+                renderer.setSize(width, height);
+                camera.aspect = width / height;
+                camera.updateProjectionMatrix();
+                console.log('Canvas resized for cosmic scene');
+            });
+        } else {
+            console.error('Cosmic canvas not found');
+        }
+    } catch (error) {
+        console.error('Error initializing cosmic scene:', error);
+    }
+} else {
+    console.error('Three.js not loaded - ensure the CDN URL is correct and loaded before this script');
+}
+
+// Hero Section Animation
+if (typeof gsap !== 'undefined') {
+    const holoLogo = document.getElementById('holoLogo');
+    const particles = document.querySelectorAll('.holo-logo .particle-3, .holo-logo .particle-4, .holo-logo::before, .holo-logo::after');
+    const brandName = document.querySelector('.brand-name');
+    const heroTagline = document.getElementById('heroTagline');
+    const taglineLetters = heroTagline.querySelectorAll('span');
+    const heroSubheading = document.querySelector('.hero-subheading');
+    const subheadingParts = heroSubheading.querySelectorAll('.subheading-part, .highlight');
+    const actionButtons = document.querySelectorAll('.holo-action-btn');
+
+    if (holoLogo && particles.length && brandName && heroTagline && taglineLetters.length && heroSubheading && subheadingParts.length && actionButtons.length) {
+        gsap.timeline()
+            // S Logo entrance with zoom-in effect
+            .fromTo(holoLogo, 
+                { scale: 0, opacity: 0 }, 
+                { scale: 1, opacity: 1, duration: 2, ease: 'power2.out' }
+            )
+            // Start logo pulsation
+            .to(holoLogo, {
+                scale: 1.1,
+                duration: 2,
+                repeat: -1,
+                yoyo: true,
+                ease: 'sine.inOut'
+            }, "-=0.5")
+            // Particles start circling after S logo is fully in
+            .fromTo(particles, 
+                { opacity: 0 }, 
+                { opacity: 1, duration: 0.5, stagger: 0.1 }, 
+                2 // Start at 2s mark, after S logo entrance
+            )
+            // SymbanChain entrance with prominent effect (no rotation)
+            .fromTo(brandName, 
+                { opacity: 0, scale: 0.5, y: 20 }, 
+                { opacity: 1, scale: 1, y: 0, duration: 2.5, ease: 'power3.out' }, 
+                "-=1"
+            )
+            // Tagline entrance (letter-by-letter)
+            .fromTo(taglineLetters, 
+                { opacity: 0, scale: 0.8 }, 
+                { opacity: 1, scale: 1, duration: 0.05, stagger: 0.05, ease: 'power2.out' }, 
+                "-=0.5"
+            )
+            // Subheading entrance (reverted to previous working version, single animation)
+            .fromTo(subheadingParts, 
+                { opacity: 0, scale: 1.2 }, 
+                { opacity: 1, scale: 1, duration: 0.8, stagger: 0.3, ease: 'power2.out' }, 
+                "+=0.5"
+            )
+            // Action buttons entrance
+            .fromTo(actionButtons, 
+                { y: 20, opacity: 0 }, 
+                { y: 0, opacity: 1, duration: 0.8, stagger: 0.2, ease: 'back.out(1.7)' }, 
+                "-=0.5"
+            );
+
+        console.log('Hero section animation started');
+    } else {
+        console.error('Hero section elements not found');
+    }
+} else {
+    console.error('GSAP not loaded');
+}
+
+// GSAP Scroll Animations for USP Cards
+if (typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined') {
+    gsap.registerPlugin(ScrollTrigger);
+
+    console.log('GSAP and ScrollTrigger loaded, initializing animations');
+
+    // USP Card Animations
+    const uspCards = document.querySelectorAll('.holo-usp-card');
+    if (uspCards.length > 0) {
+        uspCards.forEach((element, index) => {
+            console.log(`Setting up GSAP animation for USP card ${index + 1}`);
+            gsap.fromTo(element, 
+                {
+                    opacity: 0,
+                    y: 150,
+                    rotationY: 45
+                },
+                {
+                    scrollTrigger: {
+                        trigger: element,
+                        start: 'top 100%',
+                        end: 'top 30%',
+                        scrub: 2,
+                        markers: false
+                    },
+                    opacity: 1,
+                    y: -50,
+                    rotationY: -15,
+                    duration: 1.5,
+                    delay: index * 0.2,
+                    ease: 'power2.out',
+                    onStart: () => console.log(`Animation started for USP card ${index + 1}`),
+                    onComplete: () => console.log(`Animation completed for USP card ${index + 1}`)
+                }
+            );
+
+            element.addEventListener('mouseenter', () => {
+                console.log(`Hover started for USP card ${index + 1}`);
+            });
+            element.addEventListener('mouseleave', () => {
+                console.log(`Hover ended for USP card ${index + 1}`);
+            });
+        });
+        console.log('GSAP scroll animations initialized for USP cards');
+    } else {
+        console.error('No USP cards found for GSAP animation');
     }
 
-    acceptCookies.addEventListener("click", () => {
-        localStorage.setItem("cookiesAccepted", "true");
-        cookieConsent.style.display = "none";
+    // Debug hover events for top menu items
+    const menuLinks = document.querySelectorAll('.holo-link, .holo-toggle');
+    menuLinks.forEach((link, index) => {
+        link.addEventListener('mouseenter', () => {
+            console.log(`Hover started for menu item ${index + 1}`);
+        });
+        link.addEventListener('mouseleave', () => {
+            console.log(`Hover ended for menu item ${index + 1}`);
+        });
     });
+} else {
+    console.error('GSAP or ScrollTrigger not loaded');
+}
+
+// IDO Countdown Timer
+const idoStartDate = new Date('June 15, 2025 00:00:00').getTime();
+const countdownTimer = document.getElementById('countdownTimer');
+
+if (countdownTimer) {
+    function updateCountdown() {
+        const now = new Date().getTime();
+        const distance = idoStartDate - now;
+
+        const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+        const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+        const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+        document.getElementById('days').textContent = days;
+        document.getElementById('hours').textContent = hours;
+        document.getElementById('minutes').textContent = minutes;
+        document.getElementById('seconds').textContent = seconds;
+
+        if (distance < 0) {
+            clearInterval(countdownInterval);
+            countdownTimer.innerHTML = '<p>IDO is Live!</p>';
+            console.log('IDO countdown finished');
+        }
+    }
+
+    const countdownInterval = setInterval(updateCountdown, 1000);
+    updateCountdown();
+    console.log('IDO countdown started');
+} else {
+    console.error('Countdown timer elements not found');
+}
+
+// Hamburger Menu Toggle for Mobile
+const hamburger = document.createElement('button');
+hamburger.classList.add('hamburger');
+hamburger.innerHTML = '☰';
+document.querySelector('header').insertBefore(hamburger, document.querySelector('nav'));
+
+const navMenu = document.querySelector('nav ul');
+hamburger.addEventListener('click', () => {
+    navMenu.classList.toggle('active');
+    hamburger.innerHTML = navMenu.classList.contains('active') ? '✕' : '☰';
+    console.log('Hamburger menu toggled');
 });
